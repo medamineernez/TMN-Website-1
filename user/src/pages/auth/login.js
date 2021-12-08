@@ -1,16 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {Center,Button,Text,Space,Group,TextInput,PasswordInput,MediaQuery } from '@mantine/core';
 import EmailIcon from '@mui/icons-material/Email';
 import Lock from '@mui/icons-material/LockOutlined';
 
 function Login() {
 
-    const mailRef = useRef(null);
-    const passRef = useRef(null);
+
+    const [mail,setMail]=useState();
+    const [pass,setPass]=useState();
     
 const hide = { display: 'none' };
-    function loginbutton(){
-        alert("mail:"+mailRef.current.value+"\npass:"+passRef.current.value);
+    
+
+    function loginFunction(){
+        alert("mail:"+mail+"\npass:"+pass);
     }
 
     return ( 
@@ -21,11 +24,11 @@ const hide = { display: 'none' };
             <Group direction="column" style={{height:'100vh',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Text weight={700} style={{color:'#3d3d3d',fontSize:24}}>Sign in to your account</Text>
             <Space h="ls" />
-            <TextInput ref={mailRef} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
+            <TextInput onChange={e => setMail(e.target.value)} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
-            <PasswordInput ref={passRef} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
+            <PasswordInput onChange={e => setPass(e.target.value)} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
-            <Button onClick={loginbutton} color="dark" radius="xs" size="lg">Sign in</Button>
+            <Button onClick={loginFunction} color="dark" radius="xs" size="lg">Sign in</Button>
 
             </Group>
             </div>
@@ -50,11 +53,11 @@ const hide = { display: 'none' };
             
             <Text weight={700} style={{color:'#3d3d3d',fontSize:24}}>Sign in to your account</Text>
             <Space h="ls" />
-            <TextInput ref={mailRef} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
+            <TextInput onChange={e => setMail(e.target.value)} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
-            <PasswordInput ref={passRef} icon={<Lock style={{color:'#3d3d3d'}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
+            <PasswordInput onChange={e => setPass(e.target.value)} icon={<Lock style={{color:'#3d3d3d'}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'70%'}} required/>
             <Space h="ls" />
-            <Button onClick={loginbutton} color="dark" radius="xs" size="lg">Sign in</Button>
+            <Button onClick={loginFunction} color="dark" radius="xs" size="lg">Sign in</Button>
            
             </Group>
             </Center>

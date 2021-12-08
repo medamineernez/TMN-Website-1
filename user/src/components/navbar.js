@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {MediaQuery,Button, Grid, Col,Drawer,Menu,Tooltip,SimpleGrid,Burger,Accordion} from '@mantine/core';
+import {MediaQuery,Button, Grid, Col,Drawer,Menu,Tooltip,SimpleGrid,Burger} from '@mantine/core';
 import {Link} from 'react-router-dom';
 import logo from '../media/TMN_inverted.jpg';
 import { makeStyles } from '@mui/styles';
@@ -95,7 +95,7 @@ function NavBar (){
                 <Col span={2} style={centered}><img alt="" src={logo} style={{height:40}}/></Col>
 
                 <Col span={1} style={centered}>
-                    <Menu control={<Button className={classes.button} style={{useStyles}}>News</Button>}>
+                    <Menu trigger="hover" placement="center" zIndex={5 } delay={300} gutter={-1} control={<Button component={Link} to="/news" className={classes.button} style={{useStyles}}>News</Button>}>
                         <Menu.Item component={Link} to="/eds">subcategory 1</Menu.Item>
                         <Menu.Item >subcategory 2</Menu.Item>
                         <Menu.Item>subcategory 3</Menu.Item>
@@ -103,7 +103,7 @@ function NavBar (){
                 </Col>
 
                 <Col span={1} style={centered}>
-                <Menu control={<Button className={classes.button} style={{useStyles}}>Blogs</Button>}>
+                <Menu trigger="hover" placement="center" zIndex={5 } delay={300} gutter={-1} control={<Button component={Link} to="/blog" className={classes.button} style={{useStyles}}>Blogs</Button>}>
                         <Menu.Item component={Link} to="/eds">subcategory 1</Menu.Item>
                         <Menu.Item >subcategory 2</Menu.Item>
                         <Menu.Item>subcategory 3</Menu.Item>
@@ -111,7 +111,7 @@ function NavBar (){
                 </Col>
 
                 <Col span={1} style={centered}>
-                <Menu control={<Button className={classes.button} style={{useStyles}}>Events</Button>}>
+                <Menu trigger="hover" placement="center" zIndex={5} delay={300} gutter={-1} control={<Button component={Link} to="/events" className={classes.button} style={{useStyles}}>Events</Button>}>
                         <Menu.Item component={Link} to="/eds">subcategory 1</Menu.Item>
                         <Menu.Item >subcategory 2</Menu.Item>
                         <Menu.Item>subcategory 3</Menu.Item>
@@ -119,7 +119,7 @@ function NavBar (){
                 </Col>
 
                 <Col span={1} style={centered}>
-                <Menu control={<Button className={classes.button} style={{useStyles}}>Podcasts</Button>}>
+                <Menu trigger="hover" placement="center" zIndex={5 } delay={300} gutter={-1} control={<Button component={Link} to="/podcasts" className={classes.button} style={{useStyles}}>Podcasts</Button>}>
                         <Menu.Item component={Link} to="/eds">subcategory 1</Menu.Item>
                         <Menu.Item >subcategory 2</Menu.Item>
                         <Menu.Item>subcategory 3</Menu.Item>
