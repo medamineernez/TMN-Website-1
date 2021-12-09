@@ -22,7 +22,7 @@ function SliderArticle(props) {
         </SimpleGrid>
         </MediaQuery>
         <MediaQuery smallerThan="xs" styles={hide}>
-        <div style={{width:'100%',height:'40vh', padding:'10px', backgroundImage: `url(${props.src})`,backgroundSize: '100%',backgroundPosition:'center',backgroundRepeat: 'no-repeat'}}>
+        <div style={{width:'99%',height:'46vh', padding:'10px', backgroundImage: `url(${props.src})`,backgroundSize: 'cover',backgroundPosition:'center',backgroundRepeat: 'no-repeat'}}>
         <Text weight={1000} style={{fontSize:'36px',color:'#fff'}}>{props.title}</Text>
             <Text weight={300} style={{fontSize:'14px',color:'#fff'}}>{props.description}</Text>
             <Text component={Link} to={"/"+props.id} style={{position:'fixed', bottom:10,right:10,color:'#fff'}}>read more →</Text> 
