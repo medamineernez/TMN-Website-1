@@ -1,6 +1,3 @@
-/* eslint-disable no-unreachable */
-/* eslint-disable no-undef */
-
 import React, { useState, useRef } from "react";
 import {
   Center,
@@ -127,7 +124,7 @@ function Signup() {
 }
 
 function signupbutton() {
-  // eslint-disable-next-line no-undef
+  eslint-disable-next-line no-undef
   alert(
     "username:" +
       usernameRef.current.value +
