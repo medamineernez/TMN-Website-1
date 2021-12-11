@@ -14,6 +14,7 @@ const hide = { display: 'none' };
 
     function loginFunction(){
         alert("mail:"+mail+"\npass:"+pass);
+        //localStorage.setItem('session',session);
     }
 
     return ( 

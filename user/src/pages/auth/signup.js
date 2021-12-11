@@ -28,7 +28,7 @@ function Signup() {
 
     function signupFunction(){
         alert("mail: "+mail+"\nusr: "+username+"\npass: "+pass+"\ncpass: "+cpass+"\nischkd: "+isChecked);
-   }
+    }
 
     function passgenerator(){
         var passw = generate({length:10,numbers:true});
