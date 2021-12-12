@@ -10,3 +10,11 @@ POST http://localhost:3000/logout
 ### Google Auth
 GET http://localhost:3000/api/auth/google
 
+### add a category
+
+
+POST http://localhost:3000/api/admin/category
+
+
+{"title":"sports",
+ "refrencesTo":"news"}
