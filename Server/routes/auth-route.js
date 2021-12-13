@@ -14,10 +14,10 @@ require("../midlewares/passport");
 //Models
 const User = require("../models/user");
 
-// email senders
+// Email senders
 const { welcomeSender } = require("../mailers/senders");
 
-//register User
+//Register User
 
 router.post("/signup", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -61,7 +61,7 @@ router.post("/signup", (req, res) => {
   });
 });
 
-//login User
+//Login User
 
 router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
@@ -108,7 +108,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-//google auth
+//Google Auth
 
 router.get(
   "/google",
@@ -123,7 +123,7 @@ router.get(
   })
 );
 
-// facebook auth
+// Facebook Auth
 
 router.get("/auth/facebook", passport.authenticate("facebook"));
 
@@ -143,7 +143,7 @@ router.get("/", (req, res) => {
   res.send("Success");
 });
 
-//logout
+//Logout
 
 router.post("/logout", (req, res, next) => {
   res.clearCookie("access_token");
