@@ -6,7 +6,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import IconButton from '@mui/material/IconButton';
 import { generate } from 'generate-password';
-
+import axios from 'axios';
 
 const hide = { display: 'none' };
 function Signup() {
@@ -24,11 +24,61 @@ function Signup() {
 
     var [isChecked,setisChecked] = useState(false);
 
+    const [mailerr, setMailerr] = useState();
+    const [nameerr, setNameerr] = useState();
+    const [passerr, setPasserr] = useState();
+    const [pass2err, setPass2err] = useState();
 
 
     function signupFunction(){
-        alert("mail: "+mail+"\nusr: "+username+"\npass: "+pass+"\ncpass: "+cpass+"\nischkd: "+isChecked);
+        if (isChecked){
+            signupFunction_main();
+        }
+        else{
+            
+        }
     }
+
+    async function signupFunction_main(){
+        //alert("mail: "+mail+"\nusr: "+username+"\npass: "+pass+"\ncpass: "+cpass+"\nischkd: "+isChecked);
+        const bodylogin = { email: mail, password:pass , password2:cpass , name:username};
+        await axios.post('http://localhost:3000/api/auth/signup', bodylogin)
+        .then(response => { 
+	        alert(JSON.stringify("signup supposedly successful\n"+response.data));    
+        })
+        .catch(error => {
+            let errors = Object.keys(error.response.data);
+            errors.forEach(element => {
+                if (element==="email"){
+                    setMailerr(error.response.data.email);
+                }
+                else if(element==="password"){
+                    setPasserr(error.response.data.password);
+                }
+                else if(element==="password2"){
+                    setPasserr(error.response.data.password2);
+                }
+                else if(element==="name"){
+                    setNameerr(error.response.data.name);
+                }
+            });
+            if (!errors.includes("email")){
+                setMailerr("");
+            }
+            if (!errors.includes("name")){
+                setNameerr("");
+            }
+            if (!errors.includes("password")){
+                setPasserr("");
+            }
+            if (!errors.includes("password2")){
+                setPass2err("");
+            }
+            
+        });
+
+    }
+
 
     function passgenerator(){
         var passw = generate({length:10,numbers:true});
@@ -54,13 +104,13 @@ function Signup() {
             <Group direction="column" style={{height:'100vh',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Text weight={700} style={{color:'#3d3d3d',fontSize:24}}>Sign in to your account</Text>
             <Space h="ls" />
-            <TextInput onChange={e => setUsername(e.target.value)} icon={<PersonIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="username" radius="xs" error="" style={{width:'70%'}} required/>
+            <TextInput onChange={e => setUsername(e.target.value)} icon={<PersonIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="username" radius="xs" error={nameerr} style={{width:'70%'}} required/>
             <Space h="ls" />
-            <TextInput  onChange={e => setMail(e.target.value)} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
+            <TextInput  onChange={e => setMail(e.target.value)} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error={mailerr} style={{width:'70%'}} required/>
             <Space h="ls" />
             <Grid gutter="xs" justify="flex-start" columns={10} style={{width:'71.5%'}}>
             <Col span={9}>
-            <PasswordInput ref={passRef} onChange={e => setPass(e.target.value)} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'100%'}} required/>
+            <PasswordInput ref={passRef} onChange={e => setPass(e.target.value)} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error={passerr} style={{width:'100%'}} required/>
             </Col>
             <Col span={1}>
             <Tooltip position="top" placement="center" label="use this button to generator a strong password" gutter={10} >
@@ -69,7 +119,7 @@ function Signup() {
             </Col>
             </Grid>
             <Space h="ls" />
-            <PasswordInput ref={cpassRef} onChange={e => setCpass(e.target.value)} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="confirm password" radius="xs" error="" style={{width:'70%'}} required/>
+            <PasswordInput ref={cpassRef} onChange={e => setCpass(e.target.value)} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="confirm password" radius="xs" error={pass2err} style={{width:'70%'}} required/>
             <Space h="ls" />
             <Checkbox onChange={e => setisChecked(e.target.checked)} label="I agree to terms of service and privacy policy" color="dark"/>
             <Space h="ls" />
@@ -95,13 +145,13 @@ function Signup() {
             <Group direction="column" style={{height:'100vh',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Text weight={700} style={{color:'#3d3d3d',fontSize:24}}>Sign in to your account</Text>
             <Space h="ls" />
-            <TextInput onChange={e => setUsername(e.target.value)} icon={<PersonIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="username" radius="xs" error="" style={{width:'70%'}} required/>
+            <TextInput onChange={e => setUsername(e.target.value)} icon={<PersonIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="username" radius="xs" error={nameerr} style={{width:'70%'}} required/>
             <Space h="ls" />
-            <TextInput onChange={e => setMail(e.target.value)} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error="" style={{width:'70%'}} required/>
+            <TextInput onChange={e => setMail(e.target.value)} icon={<EmailIcon style={{color:'#3d3d3d'}}/>} size="lg" placeholder="email" radius="xs" error={mailerr} style={{width:'70%'}} required/>
             <Space h="ls" />
             <Grid gutter="xs" justify="flex-start" columns={10} style={{width:'71.5%'}}>
             <Col span={9}>
-            <PasswordInput ref={passRefM} onChange={e => setPass(e.target.value)} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error="" style={{width:'100%'}} required/>
+            <PasswordInput ref={passRefM} onChange={e => setPass(e.target.value)} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="password" radius="xs" error={passerr} style={{width:'100%'}} required/>
             </Col>
             <Col span={1}>
             <Tooltip position="top" placement="center" label="use this button to generator a strong password" gutter={10} >
@@ -110,7 +160,7 @@ function Signup() {
             </Col>
             </Grid>
             <Space h="ls" />
-            <PasswordInput ref={cpassRefM} onChange={e => setCpass(e.target.value)} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="confirm password" radius="xs" error="" style={{width:'70%'}} required/>
+            <PasswordInput ref={cpassRefM} onChange={e => setCpass(e.target.value)} icon={<Lock style={{color:'#3d3d3d', width:200}}/>} size="lg" placeholder="confirm password" radius="xs" error={pass2err} style={{width:'70%'}} required/>
             <Space h="ls" />
             <Checkbox onChange={e => setisChecked(e.target.checked)} label="I agree to terms of service and privacy policy" color="dark"/>
             <Space h="ls" />
