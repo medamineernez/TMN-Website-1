@@ -3,6 +3,7 @@ import {Center,Button,Text,Space,Group,TextInput,PasswordInput,MediaQuery } from
 import EmailIcon from '@mui/icons-material/Email';
 import Lock from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
+import {useHistory} from 'react-router';
 
 function Login() {
 
@@ -14,14 +15,14 @@ function Login() {
     const [token, setToken] = useState();
     
 const hide = { display: 'none' };
-    
-
+    const history = useHistory();
     async function loginFunction(){
         const bodylogin = { email: mail, password:pass };
         await axios.post('http://localhost:3000/api/auth/login', bodylogin)
         .then(response => { 
 	        setToken(response.data.token);
-            alert("login successful\ntoken="+token);
+            //alert("login successful\ntoken="+token);
+            history.push('/welcome');
         })
         .catch(error => {
             let errors = Object.keys(error.response.data);

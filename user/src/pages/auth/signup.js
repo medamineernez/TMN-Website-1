@@ -1,5 +1,5 @@
 import React, {useState, useRef } from 'react';
-import {Center,Checkbox,Button,Text,Space,Group,TextInput,PasswordInput,Tooltip,MediaQuery,Col,Grid } from '@mantine/core';
+import {Dialog,Center,Checkbox,Button,Text,Space,Group,TextInput,PasswordInput,Tooltip,MediaQuery,Col,Grid } from '@mantine/core';
 import EmailIcon from '@mui/icons-material/Email';
 import Lock from '@mui/icons-material/LockOutlined';
 import PersonIcon from '@mui/icons-material/Person';
@@ -7,6 +7,8 @@ import LockResetIcon from '@mui/icons-material/LockReset';
 import IconButton from '@mui/material/IconButton';
 import { generate } from 'generate-password';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
 
 const hide = { display: 'none' };
 function Signup() {
@@ -23,15 +25,16 @@ function Signup() {
     const cpassRefM = useRef(null);
 
     var [isChecked,setisChecked] = useState(false);
+    const [opened, setOpened] = useState(false);
 
     const [mailerr, setMailerr] = useState();
     const [nameerr, setNameerr] = useState();
     const [passerr, setPasserr] = useState();
     const [pass2err, setPass2err] = useState();
 
-
     function signupFunction(){
         if (isChecked){
+            
             signupFunction_main();
         }
         else{
@@ -44,7 +47,8 @@ function Signup() {
         const bodylogin = { email: mail, password:pass , password2:cpass , name:username};
         await axios.post('http://localhost:3000/api/auth/signup', bodylogin)
         .then(response => { 
-	        alert(JSON.stringify("signup supposedly successful\n"+response.data));    
+	        //alert(JSON.stringify("signup supposedly successful\n"+response.data));    
+            setOpened(true);
         })
         .catch(error => {
             let errors = Object.keys(error.response.data);
@@ -52,13 +56,13 @@ function Signup() {
                 if (element==="email"){
                     setMailerr(error.response.data.email);
                 }
-                else if(element==="password"){
+                if(element==="password"){
                     setPasserr(error.response.data.password);
                 }
-                else if(element==="password2"){
-                    setPasserr(error.response.data.password2);
+                if(element==="password2"){
+                    setPass2err(error.response.data.password2);
                 }
-                else if(element==="name"){
+                if(element==="name"){
                     setNameerr(error.response.data.name);
                 }
             });
@@ -124,6 +128,15 @@ function Signup() {
             <Checkbox onChange={e => setisChecked(e.target.checked)} label="I agree to terms of service and privacy policy" color="dark"/>
             <Space h="ls" />
             <Button onClick={signupFunction} color="dark" radius="xs" size="lg">Sign up</Button>
+
+            <Dialog opened={opened} withCloseButton onClose={() => setOpened(false)} size="lg" radius="md">
+                <Text size="sm" style={{ marginBottom: 10 }} weight={500}>
+                    Account created successfully, Sign In to continue 
+                </Text>
+                <Center>
+                <Button color="dark" radius="xs" component={Link} to="/login">Sign in</Button>
+                </Center>
+        </Dialog>
 
             </Group>
             </div>
