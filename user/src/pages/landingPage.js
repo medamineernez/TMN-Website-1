@@ -1,4 +1,4 @@
-import {Center, Group, Space, Text } from '@mantine/core';
+import {Center, Group, MediaQuery, Space, Text } from '@mantine/core';
 import React from 'react';
 import NavBar from '../components/navbar';
 import AwesomeSlider from 'react-awesome-slider';
@@ -7,8 +7,10 @@ import SliderArticle from '../components/sliderArticle';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import LatestNews from '../components/latestComp';
 
+
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 function LandingPage() {
+
     return ( 
         <div>
             <NavBar/>
@@ -49,7 +51,9 @@ function LandingPage() {
             </div>
             </div>
         </div>
+
     );
+
 }
 
 export default LandingPage;

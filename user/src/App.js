@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import NotFoundPage from './pages/notFoundPage';
@@ -9,13 +10,13 @@ import Signup from './pages/auth/signup'
 import WelcomePage from './pages/welcomepage';
 
 
+
 function App() {
   return (
     <div>
       <Router>
         <Switch>
-
-        <Route exact path="/">
+          <Route exact path="/">
             <LandingPage />
           </Route>
 
@@ -38,17 +39,10 @@ function App() {
           <Route exact path="*">
             <NotFoundPage />
           </Route>
-
-          
-          
         </Switch>
-    </Router>
-
-    
+      </Router>
     </div>
   );
 }
 
-
 export default App;
-

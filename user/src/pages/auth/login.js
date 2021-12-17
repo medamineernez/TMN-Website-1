@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState , useRef} from 'react';
 import {Center,Button,Text,Space,Group,TextInput,PasswordInput,MediaQuery } from '@mantine/core';
 import EmailIcon from '@mui/icons-material/Email';
 import Lock from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
 import {useHistory} from 'react-router';
+// import { textAlign } from "@mui/system";
+
 
 function Login() {
+  const mailRef = useRef(null);
+  const passRef = useRef(null);
 
 
     const [mail,setMail]=useState();
@@ -93,6 +97,7 @@ const hide = { display: 'none' };
         </MediaQuery>
         </div>
      );
+
 }
 
 export default Login;
