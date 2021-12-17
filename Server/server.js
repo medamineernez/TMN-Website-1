@@ -32,7 +32,10 @@ app.get("/", (req, res) => {
 
 // Routes
 const userRoutes = require("./routes/auth-route");
+const categoryRoutes =require("./routes/category-route");
 app.use("/api/auth", userRoutes);
+app.use("/api/admin",categoryRoutes);
+
 
 //Error handler
 app.use((req, res, next) => {
