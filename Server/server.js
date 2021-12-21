@@ -33,10 +33,12 @@ app.get("/", (req, res) => {
 // Routes
 const userRoutes = require("./routes/auth-route");
 const categoryRoutes =require("./routes/category-route");
-const adminRoutes =require("./routes/admin-routes")
+const adminRoutes =require("./routes/admin-routes");
+const coAdminRoutes =require("./routes/coadmin-routes");
 app.use("/api/auth", userRoutes);
 app.use("/api/admin",categoryRoutes);
 app.use("/api/admin",adminRoutes);
+app.use("/api/coadmin",coAdminRoutes);
 
 
 //Error handler

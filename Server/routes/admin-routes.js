@@ -4,6 +4,7 @@ const jwt =require("jsonwebtoken");
 const router = express.Router();
 const Admin = require("../models/admin");
 const keys = require("../config/keys");
+const CoAdmin =require ("../models/coAdmin");
 
 
 
@@ -38,6 +39,33 @@ if (admin.name === process.env.ADMIN_NAME && admin.email === process.env.ADMIN_E
 }
 
   
+});
+
+router.post('/addcoadmin',(req,res)=>{
+
+  const coadmin = new CoAdmin ({
+
+    name : req.body.name ,
+    email : req.body.email,
+    password :req.body.password
+
+  });
+
+  coadmin.save().then(
+    ()=> {
+      res.status(201).json({
+        message : "coadmin saved successfully!"
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error :error 
+      });
+    }
+  );
+
+
 });
 
 module.exports =router ;

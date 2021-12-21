@@ -1,7 +1,7 @@
 const express = require("express");
 const {Schema , model }=require("mongoose");
 
-const AdminSchema = new Schema ({
+const coAdminSchema = new Schema ({
 
     name : {
         type :String ,
@@ -24,5 +24,5 @@ const AdminSchema = new Schema ({
 
 });
 
-module.exports =model("Admin",AdminSchema);
+module.exports =model("CoAdmin",coAdminSchema);
 
