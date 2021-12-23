@@ -18,29 +18,26 @@ function Category() {
                     src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
                     category='news'
                     id="02"
-                title="earth gets nuked, TWICE!!"
-                description="unsurprisingly, fallout players are the first to die horrible deaths. and other things to say about the faces of calamity at the dinner table"
-              />
+                    title="earth gets nuked, TWICE!!"
+                    description="unsurprisingly, fallout players are the first to die horrible deaths. and other things to say about the faces of calamity at the dinner table"
+                    />
 
                 <ArticleCard
                     src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
                     category='news'
                     id="02"
-                title="earth gets nuked"
-                description="unsurprisingly, fallout players are the first to die horrible deaths. and other things to say about the faces of calamity at the dinner table"
-              />
+                    title="earth gets nuked"
+                    description="unsurprisingly, fallout players are the first to die horrible deaths. and other things to say about the faces of calamity at the dinner table"
+                />
 
 
                 <ArticleCard
                     src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
                     category='news'
                     id="02"
-                title="earth gets nuked"
-                description="unsurprisingly, fallout players are the first to die horrible deaths. and other things to say about the faces of calamity at the dinner table"
-              />
-
-
-              
+                    title="earth gets nuked"
+                    description="unsurprisingly, fallout players are the first to die horrible deaths. and other things to say about the faces of calamity at the dinner table"
+                />
 
               </Group>
             </div>

@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import NotFoundPage from './pages/notFoundPage';
@@ -9,7 +7,7 @@ import Login from './pages/auth/login'
 import Signup from './pages/auth/signup'
 import WelcomePage from './pages/welcomepage';
 import Category from './pages/article/category';
-
+import Article from './pages/article/article';
 
 
 function App() {
@@ -39,6 +37,10 @@ function App() {
 
           <Route exact path="/:category(news|blogs|events|podcasts)">
             <Category />
+          </Route>
+
+          <Route exact path="/:category(news|blogs|events|podcasts)/:id">
+            <Article />
           </Route>
 
           <Route exact path="*">
