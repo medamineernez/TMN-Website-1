@@ -8,6 +8,7 @@ import LoginNav from './pages/auth/loginNavigation'
 import Login from './pages/auth/login'
 import Signup from './pages/auth/signup'
 import WelcomePage from './pages/welcomepage';
+import Category from './pages/article/category';
 
 
 
@@ -34,6 +35,10 @@ function App() {
 
           <Route exact path="/welcome">
             <WelcomePage />
+          </Route>
+
+          <Route exact path="/:category(news|blogs|events|podcasts)">
+            <Category />
           </Route>
 
           <Route exact path="*">

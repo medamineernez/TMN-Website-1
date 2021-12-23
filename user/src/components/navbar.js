@@ -148,7 +148,7 @@ function NavBar() {
                 control={
                   <Button
                     component={Link}
-                    to="/blog"
+                    to="/blogs"
                     className={classes.button}
                     style={{ useStyles }}
                   >
