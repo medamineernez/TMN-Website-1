@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import ArticleCard from '../../components/articleCard';
 import NavBar from '../../components/navbar';
-import { Group } from '@mantine/core';
+import { Group,Loader,Center } from '@mantine/core';
+import axios from 'axios';
 
 function Category() {
 
     let { category } = useParams();
+    let [post, setPost] = useState();
+
+    useEffect(() => {
+        axios.get("https://reqres.in/api/users?page=2").then((response) => {
+          setPost(response.data);
+        });
+      }, []);
+    
+      if (!post) return <Center style={{widt:'100%',height:'80vh'}}><Loader color="dark" size="xl" variant="bars" /></Center>;
+      var rows = [];
+      post.data.map(piece => {
+          rows.push(<ArticleCard title={piece.first_name} id = {piece.id} category={category} description={piece.last_name} src={piece.avatar}/>);
+            return '';
+        })
     
     return ( 
         <div>
@@ -14,34 +29,9 @@ function Category() {
                 <div style={{paddingLeft:'5%', paddingTop:1,paddingBottom:50}}>
                     <h1 style={{color:'#3d3d3d', fontSize:40}}>{category}</h1>
                     <Group>
-                    <ArticleCard
-                    src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
-                    category='news'
-                    id="02"
-                    title="earth gets nuked, TWICE!!"
-                    description="unsurprisingly, fallout players are the first to die horrible deaths. and other things to say about the faces of calamity at the dinner table"
-                    />
-
-                <ArticleCard
-                    src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
-                    category='news'
-                    id="02"
-                    title="earth gets nuked"
-                    description="unsurprisingly, fallout players are the first to die horrible deaths. and other things to say about the faces of calamity at the dinner table"
-                />
-
-
-                <ArticleCard
-                    src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
-                    category='news'
-                    id="02"
-                    title="earth gets nuked"
-                    description="unsurprisingly, fallout players are the first to die horrible deaths. and other things to say about the faces of calamity at the dinner table"
-                />
-
-              </Group>
-            </div>
-
+                        {rows}
+                    </Group>
+                </div>
         </div>
         
 
