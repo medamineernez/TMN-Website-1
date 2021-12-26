@@ -75,7 +75,7 @@ function Sidebar(props) {
   };
   const { routes, logo } = props;
   let navbarBrand = (
-      <img alt={logo.imgAlt} className="navbar-brand-img" src={logo.imgSrc} />
+    <img alt={logo.imgAlt} className="navbar-brand-img" src={logo.imgSrc} />
   );
   return (
     <Navbar
@@ -218,7 +218,6 @@ function Sidebar(props) {
           {/* Divider */}
           <hr className="my-3" />
           {/* Heading */}
-          
         </Collapse>
       </Container>
     </Navbar>
