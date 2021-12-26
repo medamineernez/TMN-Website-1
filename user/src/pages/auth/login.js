@@ -54,7 +54,7 @@ function Login() {
     <div>
       <MediaQuery largerThan="sm" styles={hide}>
         <Center style={{ height: "100vh" }}>
-          <div style={{ width: "60%" }}>
+          <div style={{ width: "60%"}}>
             <Group
               direction="column"
               style={{
@@ -62,9 +62,10 @@ function Login() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                backgroundColor:'#ffffff'
               }}
             >
-              <Text weight={700} style={{ color: "#3d3d3d", fontSize: 24 }}>
+              <Text weight={700} style={{color: "#3d3d3d", fontSize: 24 }}>
                 Sign in to your account
               </Text>
               <Space h="ls" />
@@ -151,6 +152,7 @@ function Login() {
               width: "100%",
               alignItems: "center",
               justifyContent: "center",
+              backgroundColor:'#ffffff'
             }}
           >
             <Text weight={700} style={{ color: "#3d3d3d", fontSize: 24 }}>
