@@ -42,7 +42,9 @@ function LandingPage() {
             </div>
           </AutoplaySlider>
         </Center>
-        <div style={{ marginTop: "50px", marginLeft: "50px", marginRight: "50px" }}>
+        <div
+          style={{ marginTop: "50px", marginLeft: "50px", marginRight: "50px" }}
+        >
           <Text weight={900} style={{ fontSize: "46px" }}>
             latest news:
           </Text>
