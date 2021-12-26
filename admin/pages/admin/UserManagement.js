@@ -452,7 +452,7 @@ function Tables() {
                           <i className="fas fa-ellipsis-v" />
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-arrow" right>
-                        <DropdownItem
+                          <DropdownItem
                             href="#pablo"
                             onClick={(e) => e.preventDefault()}
                           >
@@ -590,7 +590,7 @@ function Tables() {
                           <i className="fas fa-ellipsis-v" />
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-arrow" right>
-                        <DropdownItem
+                          <DropdownItem
                             href="#pablo"
                             onClick={(e) => e.preventDefault()}
                           >
@@ -728,7 +728,7 @@ function Tables() {
                           <i className="fas fa-ellipsis-v" />
                         </DropdownToggle>
                         <DropdownMenu className="dropdown-menu-arrow" right>
-                        <DropdownItem
+                          <DropdownItem
                             href="#pablo"
                             onClick={(e) => e.preventDefault()}
                           >
