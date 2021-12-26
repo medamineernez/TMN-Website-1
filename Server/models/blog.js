@@ -1,73 +1,72 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Create Schema
 const BlogSchema = new Schema({
   category: {
     type: Schema.Types.ObjectId,
-    ref: 'Category'
+    ref: "Category",
   },
 
   title: {
     type: String,
-    required: true
+    required: true,
   },
 
   // react text editor component with subtitles etc ..
 
   text: {
     type: String,
-    required:true,
+    required: true,
   },
 
   imageUrl: {
     type: String,
-    required:true,
+    required: true,
   },
 
-  imageUrl1:{
-    type:String,
-},
+  imageUrl1: {
+    type: String,
+  },
 
-likes: [
+  likes: [
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    }
+        ref: "User",
+      },
+    },
   ],
   comments: [
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: "User",
       },
       text: {
         type: String,
-        required: true
+        required: true,
       },
       name: {
-        type: String
+        type: String,
       },
-     
+
       date: {
         type: Date,
-        default: Date.now
-      }
-    }
+        default: Date.now,
+      },
+    },
   ],
 
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
 
-  author :{
-      type:String,
-      required:true,
-  }
-
+  author: {
+    type: String,
+    required: true,
+  },
 });
 
-module.exports = Blog = mongoose.model('Blog', BlogSchema);
+module.exports = Blog = mongoose.model("Blog", BlogSchema);
