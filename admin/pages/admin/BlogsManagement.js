@@ -30,9 +30,7 @@ const Icons = () => {
               <CardHeader className="bg-transparent">
                 <h3 className="mb-0">Blogs List</h3>
               </CardHeader>
-              <CardBody>
-                
-              </CardBody>
+              <CardBody></CardBody>
             </Card>
           </div>
         </Row>

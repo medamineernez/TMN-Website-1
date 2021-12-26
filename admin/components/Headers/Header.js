@@ -6,9 +6,7 @@ import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 function Header() {
   return (
     <>
-      <div className="header bg-gradient-dark pb-8 pt-5 pt-md-8">
-        
-      </div>
+      <div className="header bg-gradient-dark pb-8 pt-5 pt-md-8"></div>
     </>
   );
 }

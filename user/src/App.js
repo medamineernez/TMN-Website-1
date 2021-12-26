@@ -1,14 +1,13 @@
-import React from 'react';
-import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
-import NotFoundPage from './pages/notFoundPage';
-import LandingPage from './pages/landingPage';
-import LoginNav from './pages/auth/loginNavigation'
-import Login from './pages/auth/login'
-import Signup from './pages/auth/signup'
-import WelcomePage from './pages/welcomepage';
-import Category from './pages/article/category';
-import Article from './pages/article/article';
-
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NotFoundPage from "./pages/notFoundPage";
+import LandingPage from "./pages/landingPage";
+import LoginNav from "./pages/auth/loginNavigation";
+import Login from "./pages/auth/login";
+import Signup from "./pages/auth/signup";
+import WelcomePage from "./pages/welcomepage";
+import Category from "./pages/article/category";
+import Article from "./pages/article/article";
 
 function App() {
   return (
