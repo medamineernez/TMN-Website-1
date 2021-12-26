@@ -1,12 +1,31 @@
 ### Register User
+
 POST http://localhost:3000/signup
 
 ### Login User
+
 POST http://localhost:3000/login
 
 ### Logout User
+
 POST http://localhost:3000/logout
 
 ### Google Auth
+
 GET http://localhost:3000/api/auth/google
 
+### add a category
+
+POST http://localhost:3000/api/admin/category
+
+### get all cathegory 
+
+GET http://localhost:3000/api/admin/allCategorys
+
+
+### get one category 
+npmnpm GET http://localhost:3000/api/admin/allCategorys/:id
+
+### delete category 
+
+DELETE http://localhost:3000/api/admin/allCategorys/:id
