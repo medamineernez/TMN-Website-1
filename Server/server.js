@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const session = require("express-session");
-const cors = require('cors');
+const cors = require("cors");
 
 require("dotenv").config();
 const app = express();
@@ -33,10 +33,9 @@ app.get("/", (req, res) => {
 
 // Routes
 const userRoutes = require("./routes/auth-route");
-const categoryRoutes =require("./routes/category-route");
+const categoryRoutes = require("./routes/category-route");
 app.use("/api/auth", userRoutes);
-app.use("/api/admin",categoryRoutes);
-
+app.use("/api/admin", categoryRoutes);
 
 //Error handler
 app.use((req, res, next) => {
