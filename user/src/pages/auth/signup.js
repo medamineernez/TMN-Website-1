@@ -124,7 +124,7 @@ function Signup() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor:'#ffffff'
+                backgroundColor: "#ffffff",
               }}
             >
               <Text weight={700} style={{ color: "#3d3d3d", fontSize: 24 }}>
@@ -290,7 +290,7 @@ function Signup() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor:'#ffffff'
+              backgroundColor: "#ffffff",
             }}
           >
             <Text weight={700} style={{ color: "#3d3d3d", fontSize: 24 }}>
