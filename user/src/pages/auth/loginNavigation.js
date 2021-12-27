@@ -19,7 +19,7 @@ function LoginNav() {
           alignItems: "center",
           justifyContent: "center",
           height: "100vh",
-          backgroundColor:'#FFFFFF'
+          backgroundColor: "#FFFFFF",
         }}
       >
         <Group direction="column" spacing="xl">

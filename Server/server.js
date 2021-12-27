@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const session = require("express-session");
-const cors = require('cors');
+const path =require("path");
+const cors = require("cors");
+
 
 require("dotenv").config();
 const app = express();
@@ -34,8 +36,16 @@ app.get("/", (req, res) => {
 // Routes
 const userRoutes = require("./routes/auth-route");
 const categoryRoutes =require("./routes/category-route");
+const adminRoutes =require("./routes/admin-routes");
+const coAdminRoutes =require("./routes/coadmin-routes");
+const blogRoutes =require("./routes/blog-route");
 app.use("/api/auth", userRoutes);
 app.use("/api/admin",categoryRoutes);
+app.use("/api/admin",adminRoutes);
+app.use("/api/coadmin",coAdminRoutes);
+app.use("/api/blogs",blogRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 
 //Error handler
