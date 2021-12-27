@@ -4,11 +4,13 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const session = require("express-session");
 const path =require("path");
+const cors = require("cors");
+
 
 require("dotenv").config();
 const app = express();
 app.use(express.json());
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -43,6 +45,7 @@ app.use("/api/admin",adminRoutes);
 app.use("/api/coadmin",coAdminRoutes);
 app.use("/api/blogs",blogRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 
 //Error handler

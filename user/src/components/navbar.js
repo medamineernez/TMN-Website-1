@@ -9,7 +9,6 @@ import {
   Tooltip,
   SimpleGrid,
   Burger,
-  Accordion,
 } from "@mantine/core";
 import { Link } from "react-router-dom";
 import logo from "../media/TMN_inverted.jpg";
@@ -106,13 +105,26 @@ function NavBar() {
             }}
           >
             <Col span={2} style={centered}>
-              <img alt="" src={logo} style={{ height: 40 }} />
+              <Link to="/">
+                <img alt="" src={logo} style={{ height: 40 }} />
+              </Link>
             </Col>
 
             <Col span={1} style={centered}>
               <Menu
+                trigger="hover"
+                placement="start"
+                size="sm"
+                zIndex={5}
+                delay={300}
+                gutter={-1}
                 control={
-                  <Button className={classes.button} style={{ useStyles }}>
+                  <Button
+                    component={Link}
+                    to="/news"
+                    className={classes.button}
+                    style={{ useStyles }}
+                  >
                     News
                   </Button>
                 }
@@ -127,8 +139,19 @@ function NavBar() {
 
             <Col span={1} style={centered}>
               <Menu
+                trigger="hover"
+                placement="start"
+                size="sm"
+                zIndex={5}
+                delay={300}
+                gutter={-1}
                 control={
-                  <Button className={classes.button} style={{ useStyles }}>
+                  <Button
+                    component={Link}
+                    to="/blogs"
+                    className={classes.button}
+                    style={{ useStyles }}
+                  >
                     Blogs
                   </Button>
                 }
@@ -143,8 +166,19 @@ function NavBar() {
 
             <Col span={1} style={centered}>
               <Menu
+                trigger="hover"
+                placement="start"
+                size="sm"
+                zIndex={5}
+                delay={300}
+                gutter={-1}
                 control={
-                  <Button className={classes.button} style={{ useStyles }}>
+                  <Button
+                    component={Link}
+                    to="/events"
+                    className={classes.button}
+                    style={{ useStyles }}
+                  >
                     Events
                   </Button>
                 }
@@ -159,8 +193,19 @@ function NavBar() {
 
             <Col span={1} style={centered}>
               <Menu
+                trigger="hover"
+                placement="start"
+                size="sm"
+                zIndex={5}
+                delay={300}
+                gutter={-1}
                 control={
-                  <Button className={classes.button} style={{ useStyles }}>
+                  <Button
+                    component={Link}
+                    to="/podcasts"
+                    className={classes.button}
+                    style={{ useStyles }}
+                  >
                     Podcasts
                   </Button>
                 }
@@ -236,16 +281,36 @@ function NavBar() {
                 padding="xl"
                 size="xl"
               >
-                <Button className={classes.buttonDrawer} style={{ useStyles }}>
+                <Button
+                  component={Link}
+                  to="/news"
+                  className={classes.buttonDrawer}
+                  style={{ useStyles }}
+                >
                   News
                 </Button>
-                <Button className={classes.buttonDrawer} style={{ useStyles }}>
+                <Button
+                  component={Link}
+                  to="/blogs"
+                  className={classes.buttonDrawer}
+                  style={{ useStyles }}
+                >
                   Blogs
                 </Button>
-                <Button className={classes.buttonDrawer} style={{ useStyles }}>
+                <Button
+                  component={Link}
+                  to="/events"
+                  className={classes.buttonDrawer}
+                  style={{ useStyles }}
+                >
                   Events
                 </Button>
-                <Button className={classes.buttonDrawer} style={{ useStyles }}>
+                <Button
+                  component={Link}
+                  to="/podcasts"
+                  className={classes.buttonDrawer}
+                  style={{ useStyles }}
+                >
                   podcasts
                 </Button>
                 <SimpleGrid
@@ -285,7 +350,9 @@ function NavBar() {
               </Drawer>
             </Col>
             <Col span={3} style={centered}>
-              <img alt="" src={logo} style={{ height: 40 }} />
+              <Link to="/">
+                <img alt="" src={logo} style={{ height: 40 }} />
+              </Link>
             </Col>
             <Col span={3} style={centered}>
               <Link to="/loginNavigation">

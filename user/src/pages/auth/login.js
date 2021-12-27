@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import {
   Center,
   Button,
@@ -9,18 +9,45 @@ import {
   PasswordInput,
   MediaQuery,
 } from "@mantine/core";
-
 import EmailIcon from "@mui/icons-material/Email";
 import Lock from "@mui/icons-material/LockOutlined";
-// import { textAlign } from "@mui/system";
+import axios from "axios";
+import { useHistory } from "react-router";
 
 function Login() {
-  const mailRef = useRef(null);
-  const passRef = useRef(null);
+  const [mail, setMail] = useState();
+  const [pass, setPass] = useState();
+  const [mailerr, setMailerr] = useState();
+  const [passerr, setPasserr] = useState();
+  const [token, setToken] = useState();
 
   const hide = { display: "none" };
-  function loginbutton() {
-    alert("mail:" + mailRef.current.value + "\npass:" + passRef.current.value);
+  const history = useHistory();
+  async function loginFunction() {
+    const bodylogin = { email: mail, password: pass };
+    await axios
+      .post("http://localhost:3000/api/auth/login", bodylogin)
+      .then((response) => {
+        setToken(response.data.token);
+        //alert("login successful\ntoken="+token);
+        history.push("/welcome");
+      })
+      .catch((error) => {
+        let errors = Object.keys(error.response.data);
+        errors.forEach((element) => {
+          if (element === "email") {
+            setMailerr(error.response.data.email);
+          } else if (element === "password") {
+            setPasserr(error.response.data.password);
+          }
+        });
+        if (!errors.includes("email")) {
+          setMailerr("");
+        }
+        if (!errors.includes("password")) {
+          setPasserr("");
+        }
+      });
   }
 
   return (
@@ -35,6 +62,7 @@ function Login() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
+                backgroundColor: "#ffffff",
               }}
             >
               <Text weight={700} style={{ color: "#3d3d3d", fontSize: 24 }}>
@@ -42,28 +70,33 @@ function Login() {
               </Text>
               <Space h="ls" />
               <TextInput
-                ref={mailRef}
+                onChange={(e) => setMail(e.target.value)}
                 icon={<EmailIcon style={{ color: "#3d3d3d" }} />}
                 size="lg"
                 placeholder="email"
                 radius="xs"
-                error=""
+                error={mailerr}
                 style={{ width: "70%" }}
                 required
               />
               <Space h="ls" />
               <PasswordInput
-                ref={passRef}
+                onChange={(e) => setPass(e.target.value)}
                 icon={<Lock style={{ color: "#3d3d3d", width: 200 }} />}
                 size="lg"
                 placeholder="password"
                 radius="xs"
-                error=""
+                error={passerr}
                 style={{ width: "70%" }}
                 required
               />
               <Space h="ls" />
-              <Button onClick={loginbutton} color="dark" radius="xs" size="lg">
+              <Button
+                onClick={loginFunction}
+                color="dark"
+                radius="xs"
+                size="lg"
+              >
                 Sign in
               </Button>
             </Group>
@@ -119,6 +152,7 @@ function Login() {
               width: "100%",
               alignItems: "center",
               justifyContent: "center",
+              backgroundColor: "#ffffff",
             }}
           >
             <Text weight={700} style={{ color: "#3d3d3d", fontSize: 24 }}>
@@ -126,28 +160,28 @@ function Login() {
             </Text>
             <Space h="ls" />
             <TextInput
-              ref={mailRef}
+              onChange={(e) => setMail(e.target.value)}
               icon={<EmailIcon style={{ color: "#3d3d3d" }} />}
               size="lg"
               placeholder="email"
               radius="xs"
-              error=""
+              error={mailerr}
               style={{ width: "70%" }}
               required
             />
             <Space h="ls" />
             <PasswordInput
-              ref={passRef}
+              onChange={(e) => setPass(e.target.value)}
               icon={<Lock style={{ color: "#3d3d3d" }} />}
               size="lg"
               placeholder="password"
               radius="xs"
-              error=""
+              error={passerr}
               style={{ width: "70%" }}
               required
             />
             <Space h="ls" />
-            <Button onClick={loginbutton} color="dark" radius="xs" size="lg">
+            <Button onClick={loginFunction} color="dark" radius="xs" size="lg">
               Sign in
             </Button>
           </Group>

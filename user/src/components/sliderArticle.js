@@ -47,11 +47,11 @@ function SliderArticle(props) {
       <MediaQuery smallerThan="xs" styles={hide}>
         <div
           style={{
-            width: "100%",
-            height: "40vh",
+            width: "99%",
+            height: "46vh",
             padding: "10px",
             backgroundImage: `url(${props.src})`,
-            backgroundSize: "100%",
+            backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
           }}
