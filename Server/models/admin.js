@@ -1,28 +1,21 @@
 const express = require("express");
-const {Schema , model }=require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const AdminSchema = new Schema ({
+const AdminSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
 
-    name : {
-        type :String ,
-        required:true,
-        
-    },
+  email: {
+    type: String,
+    required: true,
+  },
 
-    email :{
-        type :String ,
-        required : true ,
-      
-    },
-
-    password :{
-        type :String ,
-        required :true ,
-        
-    }
-    
-
+  password: {
+    type: String,
+    required: true,
+  },
 });
 
-module.exports =model("Admin",AdminSchema);
-
+module.exports = model("Admin", AdminSchema);
