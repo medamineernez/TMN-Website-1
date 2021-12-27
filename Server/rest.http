@@ -24,8 +24,39 @@ GET http://localhost:3000/api/admin/allCategorys
 
 
 ### get one category 
-npmnpm GET http://localhost:3000/api/admin/allCategorys/:id
+GET http://localhost:3000/api/admin/allCategorys/:id
 
 ### delete category 
 
 DELETE http://localhost:3000/api/admin/allCategorys/:id
+
+
+### admin login 
+
+POST http://localhost:3000/api/admin/login
+
+### add co admins 
+
+POST http://localhost:3000/api/admin/addcoadmin
+
+### co admin login 
+POST http://localhost:3000/api/coadmin/login
+
+### add blog 
+
+POST http://localhost:3000/api/blogs/addblog
+
+### all blogs 
+
+GET http://localhost:3000/api/blogs/addblog
+
+
+### one blog 
+
+GET http://localhost:3000/api/oneblog/:id
+
+### delete blog 
+
+DELETE http://localhost:3000/api/allblogs/:id
+
+
