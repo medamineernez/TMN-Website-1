@@ -10,26 +10,25 @@ const BlogSchema = new Schema(
     },
 
     category: {
-        type: Schema.Types.ObjectId,
-        ref: "Category",
+      type: Schema.Types.ObjectId,
+      ref: "Category",
     },
 
     content: {
-        type :String,
-        required :true 
+      type: String,
+      required: true,
     },
 
     image: {
-        type: String ,
-        required: true 
+      type: String,
+      required: true,
     },
 
-    image2:{
-        type: String,
-        required :true 
+    image2: {
+      type: String,
+      required: true,
     },
-    
-},
+  },
   { timestamps: true }
 );
 
