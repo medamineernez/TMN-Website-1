@@ -6,6 +6,7 @@ const mltr = require("../midlewares/multer_config");
 //add new blog
 
 router.post("/addblog", mltr, (req, res, next) => {
+
   const url = req.protocol + "://" + req.get("host");
 
   const blog = new Blog({
@@ -13,7 +14,7 @@ router.post("/addblog", mltr, (req, res, next) => {
     category: req.body.category,
     content: req.body.content,
     image: url + "/images/" + req.file,
-    image2: req.body.image2,
+    image2: url + "/images/"+req.file,
   });
 
   blog
@@ -87,7 +88,7 @@ router.patch("/:id", (req, res) => {
   blog.image = req.file.path;
   blog.image2 = req.body.image2;
 
-  console.log("your blog has changed succesfully !! ");
+  console.log(" your blog has changed succesfully !! ");
 });
 
 module.exports = router;
