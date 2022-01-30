@@ -51,8 +51,8 @@ router.get("/oneblog/:id", (res, req, next) => {
   Blog.findOne({
     _id: req.params.id,
   })
-    .then((category) => {
-      res.status(200).json(category);
+    .then((blog) => {
+      res.status(200).json(blog);
     })
     .catch((error) => {
       res.status(404).json({
