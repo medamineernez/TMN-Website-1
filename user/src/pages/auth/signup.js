@@ -22,6 +22,7 @@ import IconButton from "@mui/material/IconButton";
 import { generate } from "generate-password";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import NavBar from "../../components/navbar";
 
 const hide = { display: "none" };
 function Signup() {
@@ -38,16 +39,19 @@ function Signup() {
 
   var [isChecked, setisChecked] = useState(false);
   const [opened, setOpened] = useState(false);
+  const [tosopened, setTosOpened] = useState(false);
 
   const [mailerr, setMailerr] = useState();
   const [nameerr, setNameerr] = useState();
   const [passerr, setPasserr] = useState();
   const [pass2err, setPass2err] = useState();
 
+
   function signupFunction() {
     if (isChecked) {
       signupFunction_main();
     } else {
+      setTosOpened(true);
     }
   }
 
@@ -114,6 +118,21 @@ function Signup() {
 
   return (
     <div>
+
+      <Dialog
+        opened={tosopened}
+        withCloseButton
+        onClose={() => setTosOpened(false)}
+        size="lg"
+        radius="md"
+      >
+        
+        <Text size="sm" style={{ marginBottom: 10, marginLeft:10 }} weight={500}>
+          please agree to the Terms of service to continue
+        </Text>
+      </Dialog>
+
+      <NavBar/>
       <MediaQuery largerThan="sm" styles={hide}>
         <Center style={{ height: "100vh" }}>
           <div style={{ width: "60%" }}>
@@ -287,7 +306,7 @@ function Signup() {
             direction="column"
             style={{
               height: "100vh",
-              display: "flex",
+              width: "100%",
               alignItems: "center",
               justifyContent: "center",
               backgroundColor: "#ffffff",
