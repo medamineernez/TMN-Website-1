@@ -14,7 +14,7 @@ function LoginNav() {
   };
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <div
         style={{
           display: "flex",
