@@ -53,7 +53,7 @@ function Login() {
 
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <MediaQuery largerThan="sm" styles={hide}>
         <Center style={{ height: "100vh" }}>
           <div style={{ width: "60%" }}>
