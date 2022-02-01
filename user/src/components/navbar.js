@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MediaQuery,
   Button,
@@ -6,7 +6,6 @@ import {
   Col,
   Drawer,
   Menu,
-  Tooltip,
   SimpleGrid,
   Burger,
 } from "@mantine/core";
@@ -87,6 +86,33 @@ function NavBar() {
     justifyContent: "center",
     marginTop: 0,
   };
+
+  function logout(){
+    localStorage.clear();
+  }
+
+  const [user, setUser] = useState();
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    //the finest piece of code written in history
+    //this whole component is literally incomprehensible, seek god in case of errors
+    if (email!==null){
+    setUser(<Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
+    <Link to="/loginNavigation">
+        <AccountCircleIcon className={classes.usr} style={{ fontSize: 35, marginTop: "10px", marginLeft: "30px", }}/>  
+    </Link>}>
+    <Menu.Item>hi, {email}</Menu.Item>
+    <Menu.Item component={Link} to="/" onClick={()=>{logout()}}>logout</Menu.Item>
+    </Menu>)}
+     else{
+      setUser(<Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
+        <Link to="/loginNavigation">
+            <AccountCircleIcon className={classes.usr} style={{ fontSize: 35, marginTop: "10px", marginLeft: "30px", }}/>  
+        </Link>}>
+        <Menu.Item component={Link} to="/loginNavigation">login</Menu.Item>
+        </Menu>)
+    }
+  },[]);
 
   return (
     <div>
@@ -232,23 +258,7 @@ function NavBar() {
               </SimpleGrid>
             </Col>
             <Col span={1} style={centered}>
-              <Link to="/loginNavigation">
-                <Tooltip
-                  position="bottom"
-                  placement="center"
-                  label="sign in or signup to your account"
-                  gutter={10}
-                >
-                  <AccountCircleIcon
-                    className={classes.usr}
-                    style={{
-                      fontSize: 35,
-                      marginTop: "10px",
-                      marginLeft: "30px",
-                    }}
-                  />
-                </Tooltip>
-              </Link>
+               {user}
             </Col>
           </Grid>
         </div>
