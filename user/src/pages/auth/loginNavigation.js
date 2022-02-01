@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import googleIcon from "../../media/google.svg";
 import fbIcon from "../../media/facebook.svg";
 import mailIcon from "../../media/mail.png";
+import NavBar from "../../components/navbar";
 
 function LoginNav() {
   const buttonstyle = {
@@ -13,6 +14,7 @@ function LoginNav() {
   };
   return (
     <div>
+      <NavBar/>
       <div
         style={{
           display: "flex",
