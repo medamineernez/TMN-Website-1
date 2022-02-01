@@ -77,6 +77,8 @@ const useStyles = makeStyles({
 
 function NavBar() {
   const [opened, setOpened] = useState(false);
+  const [islogged, setLogged] = useState(false);
+  
   const classes = useStyles();
 
   const centered = {
@@ -89,6 +91,8 @@ function NavBar() {
 
   function logout(){
     localStorage.clear();
+    setLogged(false);
+    
   }
 
   const [user, setUser] = useState();
@@ -97,6 +101,7 @@ function NavBar() {
     //the finest piece of code written in history
     //this whole component is literally incomprehensible, seek god in case of errors
     if (email!==null){
+    setLogged(true);
     setUser(<Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
     <Link to="/loginNavigation">
         <AccountCircleIcon className={classes.usr} style={{ fontSize: 35, marginTop: "10px", marginLeft: "30px", }}/>  
@@ -105,14 +110,15 @@ function NavBar() {
     <Menu.Item component={Link} to="/" onClick={()=>{logout()}}>logout</Menu.Item>
     </Menu>)}
      else{
-      setUser(<Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
+        setLogged(false);
+        setUser(<Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
         <Link to="/loginNavigation">
             <AccountCircleIcon className={classes.usr} style={{ fontSize: 35, marginTop: "10px", marginLeft: "30px", }}/>  
         </Link>}>
         <Menu.Item component={Link} to="/loginNavigation">login</Menu.Item>
         </Menu>)
     }
-  },[]);
+  },[islogged]);
 
   return (
     <div>
