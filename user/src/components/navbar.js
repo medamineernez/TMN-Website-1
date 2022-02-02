@@ -78,7 +78,7 @@ const useStyles = makeStyles({
 function NavBar() {
   const [opened, setOpened] = useState(false);
   const [islogged, setLogged] = useState(false);
-  
+
   const classes = useStyles();
 
   const centered = {
@@ -89,10 +89,9 @@ function NavBar() {
     marginTop: 0,
   };
 
-  function logout(){
+  function logout() {
     localStorage.clear();
     setLogged(false);
-    
   }
 
   const [user, setUser] = useState();
@@ -100,25 +99,63 @@ function NavBar() {
     const email = localStorage.getItem("email");
     //the finest piece of code written in history
     //this whole component is literally incomprehensible, seek god in case of errors
-    if (email!==null){
-    setLogged(true);
-    setUser(<Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
-    <Link to="/loginNavigation">
-        <AccountCircleIcon className={classes.usr} style={{ fontSize: 35, marginTop: "10px", marginLeft: "30px", }}/>  
-    </Link>}>
-    <Menu.Item>hi, {email}</Menu.Item>
-    <Menu.Item component={Link} to="/" onClick={()=>{logout()}}>logout</Menu.Item>
-    </Menu>)}
-     else{
-        setLogged(false);
-        setUser(<Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
-        <Link to="/loginNavigation">
-            <AccountCircleIcon className={classes.usr} style={{ fontSize: 35, marginTop: "10px", marginLeft: "30px", }}/>  
-        </Link>}>
-        <Menu.Item component={Link} to="/loginNavigation">login</Menu.Item>
-        </Menu>)
+    if (email !== null) {
+      setLogged(true);
+      setUser(
+        <Menu
+          trigger="hover"
+          placement="start"
+          size="sm"
+          zIndex={5}
+          delay={300}
+          gutter={-1}
+          control={
+            <Link to="/loginNavigation">
+              <AccountCircleIcon
+                className={classes.usr}
+                style={{ fontSize: 35, marginTop: "10px", marginLeft: "30px" }}
+              />
+            </Link>
+          }
+        >
+          <Menu.Item>hi, {email}</Menu.Item>
+          <Menu.Item
+            component={Link}
+            to="/"
+            onClick={() => {
+              logout();
+            }}
+          >
+            logout
+          </Menu.Item>
+        </Menu>
+      );
+    } else {
+      setLogged(false);
+      setUser(
+        <Menu
+          trigger="hover"
+          placement="start"
+          size="sm"
+          zIndex={5}
+          delay={300}
+          gutter={-1}
+          control={
+            <Link to="/loginNavigation">
+              <AccountCircleIcon
+                className={classes.usr}
+                style={{ fontSize: 35, marginTop: "10px", marginLeft: "30px" }}
+              />
+            </Link>
+          }
+        >
+          <Menu.Item component={Link} to="/loginNavigation">
+            login
+          </Menu.Item>
+        </Menu>
+      );
     }
-  },[islogged]);
+  }, [islogged]);
 
   return (
     <div>
@@ -264,7 +301,7 @@ function NavBar() {
               </SimpleGrid>
             </Col>
             <Col span={1} style={centered}>
-               {user}
+              {user}
             </Col>
           </Grid>
         </div>
