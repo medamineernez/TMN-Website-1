@@ -1,13 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import NavBar from "../components/navbar";
 import { Center, Button, Group, Text } from "@mantine/core";
 import { Link } from "react-router-dom";
 
 function WelcomePage() {
-
-  
-  var email =localStorage.getItem("email");
-  
+  var email = localStorage.getItem("email");
 
   return (
     <div>
