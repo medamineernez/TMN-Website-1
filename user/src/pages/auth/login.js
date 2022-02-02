@@ -30,6 +30,9 @@ function Login() {
       .post("http://localhost:3000/api/auth/login", bodylogin)
       .then((response) => {
         setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("email", mail);
+        
         //alert("login successful\ntoken="+token);
         history.push("/welcome");
       })
