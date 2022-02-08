@@ -11,7 +11,6 @@ const validateLoginInput = require("../validations/login");
 const router = express.Router();
 const User = require("../models/user");
 
-
 // Email senders
 const { welcomeSender } = require("../mailers/senders");
 
@@ -43,15 +42,14 @@ router.post("/signup", (req, res) => {
           if (err) throw err;
           newUser.password = hash;
           newUser
-            .save(welcomeSender(
-              newUser.email,
-              newUser.name,
-              newUser.verificationCode
-            ))
-            .then(
-              (user) => res.json(user),
-              
+            .save(
+              welcomeSender(
+                newUser.email,
+                newUser.name,
+                newUser.verificationCode
+              )
             )
+            .then((user) => res.json(user))
             .catch((err) => console.log(err));
         });
       });
@@ -64,7 +62,6 @@ router.post("/signup", (req, res) => {
 router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
-  
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -72,9 +69,7 @@ router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  
   User.findOne({ email }).then((user) => {
-   
     if (!user) {
       errors.email = "User not found";
       return res.status(404).json(errors);
@@ -83,10 +78,8 @@ router.post("/login", (req, res) => {
     // Check Password
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (isMatch) {
-        
-        const payload = { id: user.id, name: user.name }; 
+        const payload = { id: user.id, name: user.name };
 
-     
         jwt.sign(
           payload,
           keys.secretOrKey,
@@ -106,7 +99,6 @@ router.post("/login", (req, res) => {
   });
 });
 
-
 //Logout
 
 router.post("/logout", (req, res, next) => {
@@ -114,8 +106,10 @@ router.post("/logout", (req, res, next) => {
   res.json({ success: true });
 });
 
-
-router.get("/facebook", passport.authenticate("facebook", { scope: ["profile"] }));
+router.get(
+  "/facebook",
+  passport.authenticate("facebook", { scope: ["profile"] })
+);
 
 router.get(
   "/facebook/callback",
@@ -134,7 +128,5 @@ router.get(
     failureRedirect: "/login/failed",
   })
 );
-
-
 
 module.exports = router;
