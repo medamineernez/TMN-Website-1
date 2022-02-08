@@ -3,7 +3,7 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 const passport = require("passport");
 require("dotenv").config;
 
-const GOOGLE_CLIENT_ID =process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 
 FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
@@ -21,8 +21,6 @@ passport.use(
     }
   )
 );
-
-
 
 passport.use(
   new FacebookStrategy(

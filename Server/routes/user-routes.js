@@ -5,10 +5,6 @@ const {
 } = require("../midlewares/auth-middleware.js");
 const User = require("../models/user");
 
-
-
-
-
 //display all the users
 
 router.get("/allusers", (req, res, next) => {
