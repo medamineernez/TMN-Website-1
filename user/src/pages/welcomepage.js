@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../components/navbar";
 import { Center, Button, Group, Text } from "@mantine/core";
 import { Link } from "react-router-dom";
 
 function WelcomePage() {
+  var email = localStorage.getItem("email");
+
   return (
     <div>
       <NavBar />
@@ -20,7 +22,7 @@ function WelcomePage() {
             }}
           >
             <Text weight={700} style={{ color: "#3d3d3d", fontSize: 48 }}>
-              Welcome to Tunisian Modern Newspaper
+              Welcome to Tunisian Modern Newspaper {email}
             </Text>
             <Button
               component={Link}

@@ -13,6 +13,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import Lock from "@mui/icons-material/LockOutlined";
 import axios from "axios";
 import { useHistory } from "react-router";
+import NavBar from "../../components/navbar";
 
 function Login() {
   const [mail, setMail] = useState();
@@ -29,6 +30,9 @@ function Login() {
       .post("http://localhost:3000/api/auth/login", bodylogin)
       .then((response) => {
         setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("email", mail);
+
         //alert("login successful\ntoken="+token);
         history.push("/welcome");
       })
@@ -52,6 +56,7 @@ function Login() {
 
   return (
     <div>
+      <NavBar />
       <MediaQuery largerThan="sm" styles={hide}>
         <Center style={{ height: "100vh" }}>
           <div style={{ width: "60%" }}>

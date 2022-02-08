@@ -3,9 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const session = require("express-session");
-const path =require("path");
+const path = require("path");
 const cors = require("cors");
-
 
 require("dotenv").config();
 const app = express();
@@ -47,6 +46,7 @@ app.use("/api/coadmin",coAdminRoutes);
 app.use("/api/blogs",blogRoutes);
 app.use("/api/user",usersRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 
 

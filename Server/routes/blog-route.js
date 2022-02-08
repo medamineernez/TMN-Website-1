@@ -6,15 +6,16 @@ const mltr = require("../midlewares/multer_config");
 //add new blog
 
 router.post("/addblog", mltr, (req, res, next) => {
-
   const url = req.protocol + "://" + req.get("host");
 
   const blog = new Blog({
     title: req.body.title,
     category: req.body.category,
     content: req.body.content,
+
     image: url + "/images/" + req.file.filname,
     image2: url + "/images/"+req.file.filename,
+
   });
 
   blog
