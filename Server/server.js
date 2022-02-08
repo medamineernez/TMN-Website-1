@@ -39,11 +39,13 @@ const categoryRoutes =require("./routes/category-route");
 const adminRoutes =require("./routes/admin-routes");
 const coAdminRoutes =require("./routes/coadmin-routes");
 const blogRoutes =require("./routes/blog-route");
+const usersRoutes = require("./routes/user-routes");
 app.use("/api/auth", userRoutes);
 app.use("/api/admin",categoryRoutes);
 app.use("/api/admin",adminRoutes);
 app.use("/api/coadmin",coAdminRoutes);
 app.use("/api/blogs",blogRoutes);
+app.use("/api/user",usersRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 

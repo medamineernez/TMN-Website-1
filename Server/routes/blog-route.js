@@ -13,8 +13,8 @@ router.post("/addblog", mltr, (req, res, next) => {
     title: req.body.title,
     category: req.body.category,
     content: req.body.content,
-    image: url + "/images/" + req.file,
-    image2: url + "/images/"+req.file,
+    image: url + "/images/" + req.file.filname,
+    image2: url + "/images/"+req.file.filename,
   });
 
   blog

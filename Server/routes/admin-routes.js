@@ -54,4 +54,11 @@ router.post("/addcoadmin", (req, res) => {
     });
 });
 
+// get all co admins 
+
+
+
+
+
+
 module.exports = router;
