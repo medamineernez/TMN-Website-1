@@ -14,8 +14,7 @@ router.post("/addblog", mltr, (req, res, next) => {
     content: req.body.content,
 
     image: url + "/images/" + req.file.filname,
-    image2: url + "/images/"+req.file.filename,
-
+    image2: url + "/images/" + req.file.filename,
   });
 
   blog
