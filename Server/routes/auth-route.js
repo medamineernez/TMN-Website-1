@@ -4,15 +4,13 @@ const bcrypt = require("bcrypt");
 const keys = require("../config/keys");
 const passport = require("passport");
 const crypto = require("crypto");
+require("../midlewares/passport");
 
 const validateRegisterInput = require("../validations/register");
 const validateLoginInput = require("../validations/login");
-
 const router = express.Router();
-require("../midlewares/passport");
-
-//Models
 const User = require("../models/user");
+
 
 // Email senders
 const { welcomeSender } = require("../mailers/senders");
@@ -45,14 +43,14 @@ router.post("/signup", (req, res) => {
           if (err) throw err;
           newUser.password = hash;
           newUser
-            .save()
+            .save(welcomeSender(
+              newUser.email,
+              newUser.name,
+              newUser.verificationCode
+            ))
             .then(
               (user) => res.json(user),
-              welcomeSender(
-                newUser.email,
-                newUser.name,
-                newUser.verificationCode
-              )
+              
             )
             .catch((err) => console.log(err));
         });
@@ -66,7 +64,7 @@ router.post("/signup", (req, res) => {
 router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
-  // Check Validation
+  
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -74,9 +72,9 @@ router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  // Find user by email
+  
   User.findOne({ email }).then((user) => {
-    // Check for user
+   
     if (!user) {
       errors.email = "User not found";
       return res.status(404).json(errors);
@@ -85,10 +83,10 @@ router.post("/login", (req, res) => {
     // Check Password
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (isMatch) {
-        // User Matched
-        const payload = { id: user.id, name: user.name }; // Create JWT Payload
+        
+        const payload = { id: user.id, name: user.name }; 
 
-        // Sign Token
+     
         jwt.sign(
           payload,
           keys.secretOrKey,
@@ -108,47 +106,35 @@ router.post("/login", (req, res) => {
   });
 });
 
-//Google Auth
-
-router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
-
-router.get(
-  "/google/calback",
-  passport.authenticate("google", {
-    successRedirect: "/protected",
-    failureRedirect: "/auth/failure",
-  })
-);
-
-// Facebook Auth
-
-router.get("/auth/facebook", passport.authenticate("facebook"));
-
-router.get(
-  "/auth/facebook/callback",
-  passport.authenticate("facebook", {
-    successRedirect: "/",
-    failureRedirect: "/fail",
-  })
-);
-
-router.get("/fail", (req, res) => {
-  res.send("Failed attempt");
-});
-
-router.get("/", (req, res) => {
-  res.send("Success");
-});
 
 //Logout
 
 router.post("/logout", (req, res, next) => {
   res.clearCookie("access_token");
-  // console.log('I managed to get here!');
   res.json({ success: true });
 });
+
+
+router.get("/facebook", passport.authenticate("facebook", { scope: ["profile"] }));
+
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: "http://localhost:3000/auth/facebook/callback",
+    failureRedirect: "/login/failed",
+  })
+);
+
+router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "http://localhost:3000/auth/google/callback",
+    failureRedirect: "/login/failed",
+  })
+);
+
+
 
 module.exports = router;
