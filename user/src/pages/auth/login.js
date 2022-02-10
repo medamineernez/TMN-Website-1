@@ -32,7 +32,7 @@ function Login() {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("email", mail);
-        
+
         //alert("login successful\ntoken="+token);
         history.push("/welcome");
       })
@@ -56,7 +56,7 @@ function Login() {
 
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <MediaQuery largerThan="sm" styles={hide}>
         <Center style={{ height: "100vh" }}>
           <div style={{ width: "60%" }}>

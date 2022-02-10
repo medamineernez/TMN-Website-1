@@ -1,24 +1,40 @@
 ### Register User
 
-POST http://localhost:3000/signup
+POST http://localhost:3000/api/auth/signup
 
 ### Login User
 
-POST http://localhost:3000/login
+POST http://localhost:3000/api/auth/login
+
+### get all users 
+GET http://localhost:3000/api/user/allusers
+
+
+
+### get one user not tested
+GET http://localhost:3000/api/user/allusers/:id
+
+
+
 
 ### Logout User
 
-POST http://localhost:3000/logout
+POST http://localhost:3000/api/auth/logout
 
 ### Google Auth
 
 GET http://localhost:3000/api/auth/google
 
+### facebook auth 
+
+POST http://localhost:3000/api/auth/facebook  
+
+
 ### add a category
 
 POST http://localhost:3000/api/admin/category
 
-### get all cathegory 
+### get all category 
 
 GET http://localhost:3000/api/admin/allCategorys
 

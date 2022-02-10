@@ -78,7 +78,7 @@ const useStyles = makeStyles({
 function NavBar() {
   const [opened, setOpened] = useState(false);
   const [islogged, setLogged] = useState(false);
-  
+
   const classes = useStyles();
 
   const centered = {
@@ -89,10 +89,9 @@ function NavBar() {
     marginTop: 0,
   };
 
-  function logout(){
+  function logout() {
     localStorage.clear();
     setLogged(false);
-    
   }
 
   const [user, setUser] = useState();
@@ -271,7 +270,7 @@ function NavBar() {
               </SimpleGrid>
             </Col>
             <Col span={1} style={centered}>
-               {user}
+              {user}
             </Col>
           </Grid>
         </div>

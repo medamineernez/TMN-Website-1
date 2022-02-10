@@ -12,8 +12,9 @@ router.post("/addblog", mltr, (req, res, next) => {
     title: req.body.title,
     category: req.body.category,
     content: req.body.content,
-    image: url + "/images/" + req.file,
-    image2: url + "/images/" + req.file,
+
+    image: url + "/images/" + req.file.filname,
+    image2: url + "/images/" + req.file.filename,
   });
 
   blog
@@ -50,8 +51,8 @@ router.get("/oneblog/:id", (res, req, next) => {
   Blog.findOne({
     _id: req.params.id,
   })
-    .then((category) => {
-      res.status(200).json(category);
+    .then((blog) => {
+      res.status(200).json(blog);
     })
     .catch((error) => {
       res.status(404).json({
