@@ -46,7 +46,6 @@ function Signup() {
   const [passerr, setPasserr] = useState();
   const [pass2err, setPass2err] = useState();
 
-
   function signupFunction() {
     if (isChecked) {
       signupFunction_main();
@@ -118,7 +117,6 @@ function Signup() {
 
   return (
     <div>
-
       <Dialog
         opened={tosopened}
         withCloseButton
@@ -126,13 +124,16 @@ function Signup() {
         size="lg"
         radius="md"
       >
-        
-        <Text size="sm" style={{ marginBottom: 10, marginLeft:10 }} weight={500}>
+        <Text
+          size="sm"
+          style={{ marginBottom: 10, marginLeft: 10 }}
+          weight={500}
+        >
           please agree to the Terms of service to continue
         </Text>
       </Dialog>
 
-      <NavBar/>
+      <NavBar />
       <MediaQuery largerThan="sm" styles={hide}>
         <Center style={{ height: "100vh" }}>
           <div style={{ width: "60%" }}>
