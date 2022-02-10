@@ -15,10 +15,12 @@ function LoginNav() {
   };
 
   async function loginFunction() {
+    
     //const bodylogin = { email: mail, password: pass };
     await axios
-      .get("http://localhost:3000/api/auth/login")
+      .get("localhost:3000/api/auth/google")
       .then((response) => {
+        alert(response);
         //setToken(response.data.token);
         //localStorage.setItem("token", response.data.token);
         //localStorage.setItem("email", mail);
@@ -26,7 +28,9 @@ function LoginNav() {
         //alert("login successful\ntoken="+token);
         //history.push("/welcome");
       })
-      .catch((error) => {     /*
+      .catch((error) => {
+        alert(error);
+           /*
         let errors = Object.keys(error.response.data);
         errors.forEach((element) => {
           if (element === "email") {
@@ -65,6 +69,7 @@ function LoginNav() {
             radius="xs"
             style={buttonstyle}
             variant="outline"
+            onClick={loginFunction}
             leftIcon={
               <img
                 src={googleIcon}
@@ -84,7 +89,7 @@ function LoginNav() {
             leftIcon={
               <img
                 src={fbIcon}
-                alt="google"
+                alt="facebook"
                 style={{ width: 18, height: 18 }}
               />
             }
@@ -102,7 +107,7 @@ function LoginNav() {
             leftIcon={
               <img
                 src={mailIcon}
-                alt="google"
+                alt="mail"
                 style={{ width: 22, height: 16 }}
               />
             }

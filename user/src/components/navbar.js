@@ -16,8 +16,17 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import axios from "axios";
 
 const hide = { display: "none" };
+
+let newssub = [];
+
+let blogssub = [];
+
+let podcastssub = [];
+
+let eventssub = [];
 const useStyles = makeStyles({
   button: {
     backgroundColor: "#fff",
@@ -78,6 +87,7 @@ const useStyles = makeStyles({
 function NavBar() {
   const [opened, setOpened] = useState(false);
   const [islogged, setLogged] = useState(false);
+  const [rawSub, setrawSub] = useState();
 
   const classes = useStyles();
 
@@ -95,7 +105,32 @@ function NavBar() {
   }
 
   const [user, setUser] = useState();
+
   useEffect(() => {
+    //load subcategories from DB
+    axios.get("http://localhost:3000/api/admin/allCategorys").then((response) => {
+      
+        response.data.forEach(sub => {
+          if (sub.refrencesTo==="news"){
+            newssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          }
+          if (sub.refrencesTo==="blogs"){
+            blogssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          }
+          if (sub.refrencesTo==="podcasts"){
+            podcastssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          }
+          if (sub.refrencesTo==="events"){
+            eventssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          }
+        })
+        
+      });
+
+  
+    //make changes to navbar depending on whether there's a user logged in
+    //might need further modifications to enhance readability
+
     const email = localStorage.getItem("email");
     //the finest piece of code written in history
     //this whole component is literally incomprehensible, seek god in case of errors
@@ -111,6 +146,8 @@ function NavBar() {
     <Menu.Item component={Link} to="/" onClick={()=>{logout()}}>logout</Menu.Item>
     </Menu>
     )
+
+    
   }
 
      else{ //render when no session exist in localStorage
@@ -124,7 +161,12 @@ function NavBar() {
         </Menu>
         )
     }
-  },[classes.usr,islogged]);
+
+    
+
+      
+
+  },[classes.usr]);
 
   return (
     <div>
@@ -167,11 +209,7 @@ function NavBar() {
                   </Button>
                 }
               >
-                <Menu.Item component={Link} to="/eds">
-                  subcategory 1
-                </Menu.Item>
-                <Menu.Item>subcategory 2</Menu.Item>
-                <Menu.Item>subcategory 3</Menu.Item>
+                {newssub}
               </Menu>
             </Col>
 
@@ -194,11 +232,7 @@ function NavBar() {
                   </Button>
                 }
               >
-                <Menu.Item component={Link} to="/eds">
-                  subcategory 1
-                </Menu.Item>
-                <Menu.Item>subcategory 2</Menu.Item>
-                <Menu.Item>subcategory 3</Menu.Item>
+                {blogssub}
               </Menu>
             </Col>
 
@@ -221,11 +255,7 @@ function NavBar() {
                   </Button>
                 }
               >
-                <Menu.Item component={Link} to="/eds">
-                  subcategory 1
-                </Menu.Item>
-                <Menu.Item>subcategory 2</Menu.Item>
-                <Menu.Item>subcategory 3</Menu.Item>
+                {eventssub}
               </Menu>
             </Col>
 
@@ -248,11 +278,7 @@ function NavBar() {
                   </Button>
                 }
               >
-                <Menu.Item component={Link} to="/eds">
-                  subcategory 1
-                </Menu.Item>
-                <Menu.Item>subcategory 2</Menu.Item>
-                <Menu.Item>subcategory 3</Menu.Item>
+                {podcastssub}
               </Menu>
             </Col>
 
