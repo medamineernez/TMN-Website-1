@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import NavBar from "../components/navbar";
 import { Center, Button, Group, Text } from "@mantine/core";
 import { Link } from "react-router-dom";

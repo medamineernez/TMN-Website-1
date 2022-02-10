@@ -100,7 +100,9 @@ function NavBar() {
     const email = localStorage.getItem("email");
     //the finest piece of code written in history
     //this whole component is literally incomprehensible, seek god in case of errors
-    if (email!==null){
+
+
+    if (email!==null){ //render when user in logged
     setLogged(true);
     setUser(<Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
     <Link to="/loginNavigation">
@@ -108,17 +110,22 @@ function NavBar() {
     </Link>}>
     <Menu.Item>hi, {email}</Menu.Item>
     <Menu.Item component={Link} to="/" onClick={()=>{logout()}}>logout</Menu.Item>
-    </Menu>)}
-     else{
+    </Menu>
+    )
+  }
+
+     else{ //render when no session exist in localStorage
         setLogged(false);
-        setUser(<Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
+        setUser(
+        <Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
         <Link to="/loginNavigation">
             <AccountCircleIcon className={classes.usr} style={{ fontSize: 35, marginTop: "10px", marginLeft: "30px", }}/>  
         </Link>}>
         <Menu.Item component={Link} to="/loginNavigation">login</Menu.Item>
-        </Menu>)
+        </Menu>
+        )
     }
-  },[islogged]);
+  },[classes.usr,islogged]);
 
   return (
     <div>

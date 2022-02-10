@@ -5,6 +5,7 @@ import googleIcon from "../../media/google.svg";
 import fbIcon from "../../media/facebook.svg";
 import mailIcon from "../../media/mail.png";
 import NavBar from "../../components/navbar";
+import axios from "axios";
 
 function LoginNav() {
   const buttonstyle = {
@@ -12,6 +13,37 @@ function LoginNav() {
     height: 50,
     borderWidth: 1,
   };
+
+  async function loginFunction() {
+    //const bodylogin = { email: mail, password: pass };
+    await axios
+      .get("http://localhost:3000/api/auth/login")
+      .then((response) => {
+        //setToken(response.data.token);
+        //localStorage.setItem("token", response.data.token);
+        //localStorage.setItem("email", mail);
+        
+        //alert("login successful\ntoken="+token);
+        //history.push("/welcome");
+      })
+      .catch((error) => {     /*
+        let errors = Object.keys(error.response.data);
+        errors.forEach((element) => {
+          if (element === "email") {
+            setMailerr(error.response.data.email);
+          } else if (element === "password") {
+            setPasserr(error.response.data.password);
+          }
+        });
+        if (!errors.includes("email")) {
+          setMailerr("");
+        }
+        if (!errors.includes("password")) {
+          setPasserr("");
+        }
+      */});
+  }
+
   return (
     <div>
       <NavBar/>
