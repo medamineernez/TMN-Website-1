@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import googleIcon from "../../media/google.svg";
 import fbIcon from "../../media/facebook.svg";
 import mailIcon from "../../media/mail.png";
+import NavBar from "../../components/navbar";
+import axios from "axios";
 
 function LoginNav() {
   const buttonstyle = {
@@ -11,14 +13,51 @@ function LoginNav() {
     height: 50,
     borderWidth: 1,
   };
+
+  async function loginFunction() {
+    
+    //const bodylogin = { email: mail, password: pass };
+    await axios
+      .get("localhost:3000/api/auth/google")
+      .then((response) => {
+        alert(response);
+        //setToken(response.data.token);
+        //localStorage.setItem("token", response.data.token);
+        //localStorage.setItem("email", mail);
+        
+        //alert("login successful\ntoken="+token);
+        //history.push("/welcome");
+      })
+      .catch((error) => {
+        alert(error);
+           /*
+        let errors = Object.keys(error.response.data);
+        errors.forEach((element) => {
+          if (element === "email") {
+            setMailerr(error.response.data.email);
+          } else if (element === "password") {
+            setPasserr(error.response.data.password);
+          }
+        });
+        if (!errors.includes("email")) {
+          setMailerr("");
+        }
+        if (!errors.includes("password")) {
+          setPasserr("");
+        }
+      */});
+  }
+
   return (
     <div>
+      <NavBar />
       <div
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           height: "100vh",
+          backgroundColor: "#FFFFFF",
         }}
       >
         <Group direction="column" spacing="xl">
@@ -30,6 +69,7 @@ function LoginNav() {
             radius="xs"
             style={buttonstyle}
             variant="outline"
+            onClick={loginFunction}
             leftIcon={
               <img
                 src={googleIcon}
@@ -49,7 +89,7 @@ function LoginNav() {
             leftIcon={
               <img
                 src={fbIcon}
-                alt="google"
+                alt="facebook"
                 style={{ width: 18, height: 18 }}
               />
             }
@@ -67,7 +107,7 @@ function LoginNav() {
             leftIcon={
               <img
                 src={mailIcon}
-                alt="google"
+                alt="mail"
                 style={{ width: 22, height: 16 }}
               />
             }

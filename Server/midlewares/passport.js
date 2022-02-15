@@ -1,28 +1,44 @@
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy;
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth2").Strategy;
+require("dotenv").config;
 
-const GOOGLE_CLIENT_ID =
-  "296377947195-6h923bn6i4bn7smrn92um8asg6itvv80.apps.googleusercontent.com";
-const GOOGLE_CLIENT_SECRET = "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";
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
+FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID;
+FACEBOOK_APP_SECRET = process.env.FACEBOOK_APP_SECRET;
 
 passport.use(
   new GoogleStrategy(
     {
       clientID: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/api/auth/google",
-      passReqToCallback: true,
+      callbackURL: "/auth/google/callback",
     },
-    function (request, accessToken, refreshToken, profile, done) {
-      return done(err, profile);
+    function (accessToken, refreshToken, profile, done) {
+      done(null, profile);
     }
   )
 );
 
-passport.serializeUser(function (uuser, done) {
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: FACEBOOK_APP_ID,
+      clientSecret: FACEBOOK_APP_SECRET,
+      callbackURL: "/auth/facebook/callback",
+    },
+    function (accessToken, refreshToken, profile, done) {
+      done(null, profile);
+    }
+  )
+);
+
+passport.serializeUser((user, done) => {
   done(null, user);
 });
 
-passport.deserializeUser(function (uuser, done) {
+passport.deserializeUser((user, done) => {
   done(null, user);
 });

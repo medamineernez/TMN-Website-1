@@ -3,20 +3,22 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const keys = require("../config/keys");
 const passport = require("passport");
+const crypto = require("crypto");
+require("../midlewares/passport");
 
 const validateRegisterInput = require("../validations/register");
 const validateLoginInput = require("../validations/login");
-
 const router = express.Router();
-require("../midlewares/passport");
-
-//Models
 const User = require("../models/user");
 
-//register User
+// Email senders
+const { welcomeSender } = require("../mailers/senders");
+
+//Register User
 
 router.post("/signup", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
+  const code = crypto.randomInt(10000, 10000000);
 
   // Check Validation
   if (!isValid) {
@@ -32,6 +34,7 @@ router.post("/signup", (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
+        verificationCode: code,
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -39,7 +42,13 @@ router.post("/signup", (req, res) => {
           if (err) throw err;
           newUser.password = hash;
           newUser
-            .save()
+            .save(
+              welcomeSender(
+                newUser.email,
+                newUser.name,
+                newUser.verificationCode
+              )
+            )
             .then((user) => res.json(user))
             .catch((err) => console.log(err));
         });
@@ -48,12 +57,11 @@ router.post("/signup", (req, res) => {
   });
 });
 
-//login User
+//Login User
 
 router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
-  // Check Validation
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -61,9 +69,7 @@ router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  // Find user by email
   User.findOne({ email }).then((user) => {
-    // Check for user
     if (!user) {
       errors.email = "User not found";
       return res.status(404).json(errors);
@@ -72,10 +78,8 @@ router.post("/login", (req, res) => {
     // Check Password
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (isMatch) {
-        // User Matched
-        const payload = { id: user.id, name: user.name }; // Create JWT Payload
+        const payload = { id: user.id, name: user.name };
 
-        // Sign Token
         jwt.sign(
           payload,
           keys.secretOrKey,
@@ -95,27 +99,34 @@ router.post("/login", (req, res) => {
   });
 });
 
-//google auth
-
-router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
-
-router.get(
-  "/google/calback",
-  passport.authenticate("google", {
-    successRedirect: "/protected",
-    failureRedirect: "/auth/failure",
-  })
-);
-
-//logout
+//Logout
 
 router.post("/logout", (req, res, next) => {
   res.clearCookie("access_token");
-  // console.log('I managed to get here!');
   res.json({ success: true });
 });
+
+router.get(
+  "/facebook",
+  passport.authenticate("facebook", { scope: ["profile"] })
+);
+
+router.get(
+  "/facebook/callback",
+  passport.authenticate("facebook", {
+    successRedirect: "http://localhost:3000/auth/facebook/callback",
+    failureRedirect: "/login/failed",
+  })
+);
+
+router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "http://localhost:3000/auth/google/callback",
+    failureRedirect: "/login/failed",
+  })
+);
 
 module.exports = router;
