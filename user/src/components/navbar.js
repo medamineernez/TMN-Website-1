@@ -111,7 +111,7 @@ function NavBar() {
     axios.get("http://localhost:3000/api/admin/allCategorys").then((response) => {
       
         response.data.forEach(sub => {
-          if (sub.refrencesTo==="news"){
+          if (sub.refrencesTo==="news"){//
             newssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
           }
           if (sub.refrencesTo==="blogs"){
