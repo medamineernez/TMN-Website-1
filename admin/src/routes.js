@@ -10,15 +10,16 @@ import UserProfileLite from "./views/UserProfileLite";
 import AddNewPost from "./views/AddNewPost";
 import Errors from "./views/Errors";
 import ComponentsOverview from "./views/ComponentsOverview";
-import Tables from "./views/Tables";
+import UsersManagement from "./views/UsersManagement";
 import BlogPosts from "./views/BlogPosts";
+import CoAdmin from "./views/CoAdmin";
 
 export default [
   {
     path: "/",
     exact: true,
     layout: DefaultLayout,
-    component: () => <Redirect to="/blog-overview" />
+    component: () => <Redirect to="/blog-posts" />
   },
   {
     path: "/blog-overview",
@@ -46,9 +47,14 @@ export default [
     component: ComponentsOverview
   },
   {
+    path: "/co-admin",
+    layout: DefaultLayout,
+    component: CoAdmin 
+  },
+  {
     path: "/tables",
     layout: DefaultLayout,
-    component: Tables
+    component: UsersManagement
   },
   {
     path: "/blog-posts",
