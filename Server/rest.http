@@ -1,0 +1,78 @@
+### Register User
+
+POST http://localhost:3000/api/auth/signup
+
+### Login User
+
+POST http://localhost:3000/api/auth/login
+
+### get all users 
+GET http://localhost:3000/api/user/allusers
+
+
+
+### get one user not tested
+GET http://localhost:3000/api/user/allusers/:id
+
+
+
+
+### Logout User
+
+POST http://localhost:3000/api/auth/logout
+
+### Google Auth
+
+GET http://localhost:3000/api/auth/google
+
+### facebook auth 
+
+POST http://localhost:3000/api/auth/facebook  
+
+
+### add a category
+
+POST http://localhost:3000/api/admin/category
+
+### get all category 
+
+GET http://localhost:3000/api/admin/allCategorys
+
+
+### get one category 
+GET http://localhost:3000/api/admin/allCategorys/:id
+
+### delete category 
+
+DELETE http://localhost:3000/api/admin/allCategorys/:id
+
+
+### admin login 
+
+POST http://localhost:3000/api/admin/login
+
+### add co admins 
+
+POST http://localhost:3000/api/admin/addcoadmin
+
+### co admin login 
+POST http://localhost:3000/api/coadmin/login
+
+### add blog 
+
+POST http://localhost:3000/api/blogs/addblog
+
+### all blogs 
+
+GET http://localhost:3000/api/blogs/addblog
+
+
+### one blog 
+
+GET http://localhost:3000/api/oneblog/:id
+
+### delete blog 
+
+DELETE http://localhost:3000/api/allblogs/:id
+
+
