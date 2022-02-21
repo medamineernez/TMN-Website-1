@@ -8,6 +8,9 @@ import {
   Menu,
   SimpleGrid,
   Burger,
+  TextInput,
+  Center,
+  ActionIcon
 } from "@mantine/core";
 import { Link } from "react-router-dom";
 import logo from "../media/TMN_inverted.jpg";
@@ -16,7 +19,9 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import axios from "axios";
+
 
 const hide = { display: "none" };
 
@@ -62,6 +67,13 @@ const useStyles = makeStyles({
     },
   },
 
+  search: {
+    color: "#3d3d3d",
+    "&:hover": {
+      color: "#000000",
+    },
+  },
+
   ytb: {
     color: "#3d3d3d",
     "&:hover": {
@@ -102,6 +114,10 @@ function NavBar() {
   function logout() {
     localStorage.clear();
     setLogged(false);
+  }
+
+  function showsearch(){
+    alert(5);
   }
 
   const [user, setUser] = useState();
@@ -280,10 +296,13 @@ function NavBar() {
               >
                 {podcastssub}
               </Menu>
+
             </Col>
 
             <Col span={1} offset={1} style={centered}>
-              <SimpleGrid cols={3}>
+              <SimpleGrid cols={4}>
+              <SearchRoundedIcon className={classes.search} onClick={() => showsearch()}/>
+
                 <a href="https://www.facebook.com/TunisianModernNewspaperOfficiel">
                   <FacebookIcon className={classes.fcb} />
                 </a>
@@ -293,6 +312,7 @@ function NavBar() {
                 <a href="https://www.linkedin.com/company/tunisian-modern-newspaper/">
                   <LinkedInIcon className={classes.ytb} />
                 </a>
+                
               </SimpleGrid>
             </Col>
             <Col span={1} style={centered}>
@@ -417,6 +437,15 @@ function NavBar() {
           </Grid>
         </div>
       </MediaQuery>
+      <div style={{backgroundColor:'#ffffff', width:'100%', height:'60px'}}>
+        <Center style={{height:'100%'}}>
+            <TextInput variant="filled" style={{width:'80%'}} ></TextInput>
+            <ActionIcon variant="light" style={{marginLeft:10,width:40, height:40, borderRadius:50}}>
+              <SearchRoundedIcon/>
+            </ActionIcon>
+        </Center>
+
+      </div>
     </div>
   );
 }
