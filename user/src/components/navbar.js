@@ -32,6 +32,15 @@ let blogssub = [];
 let podcastssub = [];
 
 let eventssub = [];
+
+//for preventing the subcategory self-cloning bug
+let newssubt = [];
+
+let blogssubt = [];
+
+let podcastssubt = [];
+
+let eventssubt = [];
 const useStyles = makeStyles({
   button: {
     backgroundColor: "#fff",
@@ -100,6 +109,7 @@ function NavBar() {
   const [opened, setOpened] = useState(false);
   const [islogged, setLogged] = useState(false);
   const [rawSub, setrawSub] = useState();
+  const [searchopened, setSearchOpened] = useState(false);
 
   const classes = useStyles();
 
@@ -126,19 +136,23 @@ function NavBar() {
     //load subcategories from DB
     axios.get("http://localhost:3000/api/admin/allCategorys").then((response) => {
       
-        response.data.forEach(sub => {
-          if (sub.refrencesTo==="news"){//
-            newssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
-          }
-          if (sub.refrencesTo==="blogs"){
-            blogssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
-          }
-          if (sub.refrencesTo==="podcasts"){
-            podcastssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
-          }
-          if (sub.refrencesTo==="events"){
-            eventssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
-          }
+      response.data.forEach(sub => {
+        if ((sub.refrencesTo==="news")&&(!newssubt.includes(sub.title))){
+          newssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          newssubt.push(sub.title);
+        }
+        if (sub.refrencesTo==="blogs"&&(!blogssubt.includes(sub.title))){
+          blogssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          blogssubt.push(sub.title);
+        }
+        if (sub.refrencesTo==="podcasts"&&(!podcastssubt.includes(sub.title))){
+          podcastssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          podcastssubt.push(sub.title);
+        }
+        if (sub.refrencesTo==="events"&&(!eventssubt.includes(sub.title))){
+          eventssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          eventssubt.push(sub.title);
+        }
         })
         
       });
