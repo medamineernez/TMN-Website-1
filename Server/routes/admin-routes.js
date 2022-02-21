@@ -44,7 +44,7 @@ router.post("/addcoadmin", (req, res) => {
     .save()
     .then(() => {
       res.status(201).json({
-        message: "coadmin saved successfully!",
+        message: "coadmin saved successfully !",
       });
     })
     .catch((error) => {

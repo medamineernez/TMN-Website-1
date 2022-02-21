@@ -13,8 +13,8 @@ router.post("/addblog", mltr, (req, res, next) => {
     category: req.body.category,
     content: req.body.content,
 
-    image: url + "/images/" + req.file.filname,
-    image2: url + "/images/" + req.file.filename,
+    image: url + "/images/" + req.file,
+    image2: url + "/images/" + req.file,
   });
 
   blog
@@ -47,8 +47,9 @@ router.get("/allblogs", (req, res, next) => {
 
 //get one blog
 
-router.get("/oneblog/:id", (res, req, next) => {
-  Blog.findOne({
+ router.get('/detail/:id',(req ,res) => {
+   
+     Blog.findOne({
     _id: req.params.id,
   })
     .then((blog) => {
@@ -59,7 +60,9 @@ router.get("/oneblog/:id", (res, req, next) => {
         error: error,
       });
     });
-});
+   
+  }); 
+
 
 //delete one blog
 
@@ -79,7 +82,7 @@ router.delete("/allblogs/:id", (req, res, next) => {
 
 //update blog
 
-router.patch("/:id", (req, res) => {
+router.patch("/allblogs/:id", (req, res) => {
   const blog = Blog.find((blog) => blog.id === req.params.id);
 
   blog.title = req.body.title;
