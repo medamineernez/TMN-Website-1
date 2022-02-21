@@ -11,8 +11,7 @@ const validateLoginInput = require("../validations/login");
 const router = express.Router();
 const User = require("../models/user");
 
-// Email senders
-const { welcomeSender } = require("../mailers/senders");
+
 
 //Register User
 
@@ -42,13 +41,7 @@ router.post("/signup", (req, res) => {
           if (err) throw err;
           newUser.password = hash;
           newUser
-            .save(
-              welcomeSender(
-                newUser.email,
-                newUser.name,
-                newUser.verificationCode
-              )
-            )
+            .save()
             .then((user) => res.json(user))
             .catch((err) => console.log(err));
         });
@@ -106,27 +99,6 @@ router.post("/logout", (req, res, next) => {
   res.json({ success: true });
 });
 
-router.get(
-  "/facebook",
-  passport.authenticate("facebook", { scope: ["profile"] })
-);
 
-router.get(
-  "/facebook/callback",
-  passport.authenticate("facebook", {
-    successRedirect: "http://localhost:3000/auth/facebook/callback",
-    failureRedirect: "/login/failed",
-  })
-);
-
-router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
-
-router.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "http://localhost:3000/auth/google/callback",
-    failureRedirect: "/login/failed",
-  })
-);
 
 module.exports = router;
