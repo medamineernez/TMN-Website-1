@@ -12,6 +12,7 @@ import {
   Center,
   ActionIcon
 } from "@mantine/core";
+import Fade from 'react-reveal/Fade';
 import { Link } from "react-router-dom";
 import logo from "../media/TMN_inverted.jpg";
 import { makeStyles } from "@mui/styles";
@@ -20,6 +21,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import axios from "axios";
 
 
@@ -126,8 +128,8 @@ function NavBar() {
     setLogged(false);
   }
 
-  function showsearch(){
-    alert(5);
+  function handleSearch(){
+    setSearchOpened(!searchopened);
   }
 
   const [user, setUser] = useState();
@@ -200,6 +202,7 @@ function NavBar() {
 
   return (
     <div>
+      
       <MediaQuery largerThan="xs" styles={hide}>
         <div style={{ marginBottom: 50 }}>
           <Grid
@@ -315,8 +318,12 @@ function NavBar() {
 
             <Col span={1} offset={1} style={centered}>
               <SimpleGrid cols={4}>
-              <SearchRoundedIcon className={classes.search} onClick={() => showsearch()}/>
-
+                
+                {searchopened?
+                <CloseRoundedIcon className={classes.search} onClick={() => handleSearch()}/>
+                :
+              <SearchRoundedIcon className={classes.search} onClick={() => handleSearch()}/>
+                }
                 <a href="https://www.facebook.com/TunisianModernNewspaperOfficiel">
                   <FacebookIcon className={classes.fcb} />
                 </a>
@@ -451,7 +458,9 @@ function NavBar() {
           </Grid>
         </div>
       </MediaQuery>
-      <div style={{backgroundColor:'#ffffff', width:'100%', height:'60px'}}>
+      
+      <Fade top when={searchopened} durantion={100}>
+      <div style={{backgroundColor:'#ffffff', width:'100%', height:'60px',position:'fixed',zIndex:4,top:50,left:0, visibility:{searchopened}}}>
         <Center style={{height:'100%'}}>
             <TextInput variant="filled" style={{width:'80%'}} ></TextInput>
             <ActionIcon variant="light" style={{marginLeft:10,width:40, height:40, borderRadius:50}}>
@@ -460,6 +469,8 @@ function NavBar() {
         </Center>
 
       </div>
+      </Fade>
+        
     </div>
   );
 }
