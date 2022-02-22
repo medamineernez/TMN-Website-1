@@ -11,8 +11,6 @@ import {
   PasswordInput,
   Tooltip,
   MediaQuery,
-  Col,
-  Grid,
 } from "@mantine/core";
 import EmailIcon from "@mui/icons-material/Email";
 import Lock from "@mui/icons-material/LockOutlined";
@@ -173,13 +171,8 @@ function Signup() {
                 required
               />
               <Space h="ls" />
-              <Grid
-                gutter="xs"
-                justify="flex-start"
-                columns={10}
-                style={{ width: "71.5%" }}
-              >
-                <Col span={9}>
+              
+              <div style={{display:'flex',flexDirection:'row',width:'70%'}}>
                   <PasswordInput
                     ref={passRef}
                     onChange={(e) => setPass(e.target.value)}
@@ -188,11 +181,11 @@ function Signup() {
                     placeholder="password"
                     radius="xs"
                     error={passerr}
-                    style={{ width: "100%" }}
+                    style={{ width: "100%", marginRight:'5%', alignSelf:'flex-start' }}
                     required
                   />
-                </Col>
-                <Col span={1}>
+                
+                
                   <Tooltip
                     position="top"
                     placement="center"
@@ -206,13 +199,14 @@ function Signup() {
                         height: 50,
                         borderRadius: 1,
                         backgroundColor: "#000000",
+                        alignSelf:'flex-end'
                       }}
                     >
                       <LockResetIcon style={{ color: "#ffffff" }} />
                     </IconButton>
                   </Tooltip>
-                </Col>
-              </Grid>
+                
+              </div>
               <Space h="ls" />
               <PasswordInput
                 ref={cpassRef}
@@ -339,13 +333,7 @@ function Signup() {
               required
             />
             <Space h="ls" />
-            <Grid
-              gutter="xs"
-              justify="flex-start"
-              columns={10}
-              style={{ width: "71.5%" }}
-            >
-              <Col span={9}>
+            <div style={{display:'flex',flexDirection:'row',width:'70%'}}>
                 <PasswordInput
                   ref={passRefM}
                   onChange={(e) => setPass(e.target.value)}
@@ -354,11 +342,10 @@ function Signup() {
                   placeholder="password"
                   radius="xs"
                   error={passerr}
-                  style={{ width: "100%" }}
+                  style={{ width: "100%", marginRight:'5%', alignSelf:'flex-start' }}
                   required
                 />
-              </Col>
-              <Col span={1}>
+              
                 <Tooltip
                   position="top"
                   placement="center"
@@ -372,13 +359,13 @@ function Signup() {
                       height: 50,
                       borderRadius: 1,
                       backgroundColor: "#000000",
+                      alignSelf:'flex-end' 
                     }}
                   >
                     <LockResetIcon style={{ color: "#ffffff" }} />
                   </IconButton>
                 </Tooltip>
-              </Col>
-            </Grid>
+               </div>
             <Space h="ls" />
             <PasswordInput
               ref={cpassRefM}
