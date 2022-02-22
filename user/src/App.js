@@ -8,6 +8,8 @@ import Signup from "./pages/auth/signup";
 import WelcomePage from "./pages/welcomepage";
 import Category from "./pages/article/category";
 import Article from "./pages/article/article";
+import EventPage from "./pages/article/eventPage";
+import PodcastPage from "./pages/article/podcast";
 
 function App() {
   return (
@@ -34,12 +36,20 @@ function App() {
             <WelcomePage />
           </Route>
 
-          <Route exact path="/:category(news|blogs|events|podcasts)">
+          <Route exact path="/:category(news|blogs|podcasts)">
             <Category />
           </Route>
 
-          <Route exact path="/:category(news|blogs|events|podcasts)/:id">
+          <Route exact path="/:category(news|blogs)/:id">
             <Article />
+          </Route>
+
+          <Route exact path="/events">
+            <EventPage/>
+          </Route>
+
+          <Route exact path="/podcasts/:id">
+            <PodcastPage/>
           </Route>
 
           <Route exact path="*">
