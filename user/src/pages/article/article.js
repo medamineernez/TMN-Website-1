@@ -9,7 +9,7 @@ function Article() {
       <NavBar />
       id={id} and category={category}
       <div style={{ paddingLeft: "5%", paddingTop: 1, paddingBottom: 50 }}>
-        <h1 style={{ color: "#3d3d3d", fontSize: 40 }}>{category}</h1>
+        <h1 style={{ color: "#000000", fontSize: 40 }}>{category}</h1>
       </div>
     </div>
   );

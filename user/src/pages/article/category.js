@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ArticleCard from "../../components/articleCard";
-import ArticleCard2 from "../../components/articleCard2";
 import NavBar from "../../components/navbar";
 import { Group, Loader, Center } from "@mantine/core";
 import axios from "axios";
@@ -40,7 +39,7 @@ function Category() {
     <div>
       <NavBar />
       <div style={{ paddingLeft: "5%", paddingTop: 1, paddingBottom: 50 }}>
-        <h1 style={{ color: "#3d3d3d", fontSize: 40 }}>{category}</h1>
+        <h1 style={{ color: "#000000", fontSize: 40 }}>{category}</h1>
         <Group direction="column">{rows}</Group>
       </div>
     </div>

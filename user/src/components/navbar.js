@@ -46,19 +46,19 @@ let eventssubt = [];
 const useStyles = makeStyles({
   button: {
     backgroundColor: "#fff",
-    color: "#3d3d3d",
+    color: "#000000",
     marginTop: 0,
     height: "52px",
     borderRadius: "0px",
     "&:hover": {
-      backgroundColor: "#3d3d3d !important",
+      backgroundColor: "#000000 !important",
       color: "#FFFFFF",
     },
   },
 
   buttonDrawer: {
     backgroundColor: "#fff",
-    color: "#3d3d3d",
+    color: "#000000",
     marginTop: 0,
     marginBottom: 50,
     height: "52px",
@@ -66,41 +66,41 @@ const useStyles = makeStyles({
     borderRadius: "0px",
     fontSize: "24px",
     "&:hover": {
-      backgroundColor: "#3d3d3d !important",
+      backgroundColor: "#000000 !important",
       color: "#FFFFFF",
     },
   },
 
   fcb: {
-    color: "#3d3d3d",
+    color: "#000000",
     "&:hover": {
       color: "#3b5998",
     },
   },
 
   search: {
-    color: "#3d3d3d",
+    color: "#000000",
     "&:hover": {
       color: "#000000",
     },
   },
 
   ytb: {
-    color: "#3d3d3d",
+    color: "#000000",
     "&:hover": {
       color: "#0077b5",
     },
   },
 
   ins: {
-    color: "#3d3d3d",
+    color: "#000000",
     "&:hover": {
       color: "#d6249f",
     },
   },
 
   usr: {
-    color: "#3d3d3d",
+    color: "#000000",
     "&:hover": {
       color: "#9f9f9f",
     },
@@ -109,8 +109,6 @@ const useStyles = makeStyles({
 
 function NavBar() {
   const [opened, setOpened] = useState(false);
-  const [islogged, setLogged] = useState(false);
-  const [rawSub, setrawSub] = useState();
   const [searchopened, setSearchOpened] = useState(false);
 
   const classes = useStyles();
@@ -125,7 +123,6 @@ function NavBar() {
 
   function logout() {
     localStorage.clear();
-    setLogged(false);
   }
 
   function handleSearch(){
@@ -169,7 +166,7 @@ function NavBar() {
 
 
     if (email!==null){ //render when user in logged
-    setLogged(true);
+
     setUser(<Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
     <Link to="/loginNavigation">
         <AccountCircleIcon className={classes.usr} style={{ fontSize: 35, marginTop: "10px", marginLeft: "30px", }}/>  
@@ -183,7 +180,7 @@ function NavBar() {
   }
 
      else{ //render when no session exist in localStorage
-        setLogged(false);
+       
         setUser(
         <Menu trigger="hover" placement="start" size="sm" zIndex={5} delay={300} gutter={-1} control={
         <Link to="/loginNavigation">
@@ -444,6 +441,12 @@ function NavBar() {
               </Link>
             </Col>
             <Col span={3} style={centered}>
+
+            {searchopened?
+                <CloseRoundedIcon className={classes.search} onClick={() => handleSearch()}/>
+                :
+              <SearchRoundedIcon className={classes.search} onClick={() => handleSearch()}/>
+                }
               <Link to="/loginNavigation">
                 <AccountCircleIcon
                   className={classes.usr}
@@ -454,7 +457,10 @@ function NavBar() {
                   }}
                 />
               </Link>
+              
             </Col>
+            
+            
           </Grid>
         </div>
       </MediaQuery>

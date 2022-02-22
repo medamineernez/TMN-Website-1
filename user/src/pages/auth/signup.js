@@ -147,13 +147,13 @@ function Signup() {
                 backgroundColor: "#ffffff",
               }}
             >
-              <Text weight={700} style={{ color: "#3d3d3d", fontSize: 24 }}>
+              <Text weight={700} style={{ color: "#000000", fontSize: 24 }}>
                 Sign in to your account
               </Text>
               <Space h="ls" />
               <TextInput
                 onChange={(e) => setUsername(e.target.value)}
-                icon={<PersonIcon style={{ color: "#3d3d3d" }} />}
+                icon={<PersonIcon style={{ color: "#000000" }} />}
                 size="lg"
                 placeholder="username"
                 radius="xs"
@@ -164,7 +164,7 @@ function Signup() {
               <Space h="ls" />
               <TextInput
                 onChange={(e) => setMail(e.target.value)}
-                icon={<EmailIcon style={{ color: "#3d3d3d" }} />}
+                icon={<EmailIcon style={{ color: "#000000" }} />}
                 size="lg"
                 placeholder="email"
                 radius="xs"
@@ -183,7 +183,7 @@ function Signup() {
                   <PasswordInput
                     ref={passRef}
                     onChange={(e) => setPass(e.target.value)}
-                    icon={<Lock style={{ color: "#3d3d3d", width: 200 }} />}
+                    icon={<Lock style={{ color: "#000000", width: 200 }} />}
                     size="lg"
                     placeholder="password"
                     radius="xs"
@@ -205,7 +205,7 @@ function Signup() {
                         width: 50,
                         height: 50,
                         borderRadius: 1,
-                        backgroundColor: "#3d3d3d",
+                        backgroundColor: "#000000",
                       }}
                     >
                       <LockResetIcon style={{ color: "#ffffff" }} />
@@ -217,7 +217,7 @@ function Signup() {
               <PasswordInput
                 ref={cpassRef}
                 onChange={(e) => setCpass(e.target.value)}
-                icon={<Lock style={{ color: "#3d3d3d", width: 200 }} />}
+                icon={<Lock style={{ color: "#000000", width: 200 }} />}
                 size="lg"
                 placeholder="confirm password"
                 radius="xs"
@@ -264,7 +264,7 @@ function Signup() {
             style={{
               padding: 20,
               width: "40%",
-              backgroundColor: "#3d3d3d",
+              backgroundColor: "#000000",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -313,13 +313,13 @@ function Signup() {
               backgroundColor: "#ffffff",
             }}
           >
-            <Text weight={700} style={{ color: "#3d3d3d", fontSize: 24 }}>
+            <Text weight={700} style={{ color: "#000000", fontSize: 24 }}>
               Sign in to your account
             </Text>
             <Space h="ls" />
             <TextInput
               onChange={(e) => setUsername(e.target.value)}
-              icon={<PersonIcon style={{ color: "#3d3d3d" }} />}
+              icon={<PersonIcon style={{ color: "#000000" }} />}
               size="lg"
               placeholder="username"
               radius="xs"
@@ -330,7 +330,7 @@ function Signup() {
             <Space h="ls" />
             <TextInput
               onChange={(e) => setMail(e.target.value)}
-              icon={<EmailIcon style={{ color: "#3d3d3d" }} />}
+              icon={<EmailIcon style={{ color: "#000000" }} />}
               size="lg"
               placeholder="email"
               radius="xs"
@@ -349,7 +349,7 @@ function Signup() {
                 <PasswordInput
                   ref={passRefM}
                   onChange={(e) => setPass(e.target.value)}
-                  icon={<Lock style={{ color: "#3d3d3d", width: 200 }} />}
+                  icon={<Lock style={{ color: "#000000", width: 200 }} />}
                   size="lg"
                   placeholder="password"
                   radius="xs"
@@ -371,7 +371,7 @@ function Signup() {
                       width: 50,
                       height: 50,
                       borderRadius: 1,
-                      backgroundColor: "#3d3d3d",
+                      backgroundColor: "#000000",
                     }}
                   >
                     <LockResetIcon style={{ color: "#ffffff" }} />
@@ -383,7 +383,7 @@ function Signup() {
             <PasswordInput
               ref={cpassRefM}
               onChange={(e) => setCpass(e.target.value)}
-              icon={<Lock style={{ color: "#3d3d3d", width: 200 }} />}
+              icon={<Lock style={{ color: "#000000", width: 200 }} />}
               size="lg"
               placeholder="confirm password"
               radius="xs"

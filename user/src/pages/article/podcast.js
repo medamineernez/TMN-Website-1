@@ -11,7 +11,7 @@ function PodcastPage() {
       <NavBar />
       
       <div style={{ paddingLeft: "5%", paddingTop: 1, paddingBottom: 50 }}>
-        <h1 style={{ color: "#3d3d3d", fontSize: 40 }}>Title of podcast {id}</h1>
+        <h1 style={{ color: "#000000", fontSize: 40 }}>Title of podcast {id}</h1>
         <YoutubeEmbed embedId="rokGy0huYEA" />
         <div style={{marginLeft:20, marginTop:20}}>
         <Text style={{fontSize:25, fontWeight:700}}>description:</Text>
