@@ -6,6 +6,7 @@ import "react-awesome-slider/dist/styles.css";
 import SliderArticle from "../components/sliderArticle";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import LatestNews from "../components/latestComp";
+import Footer from "../components/footer";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 function LandingPage() {
@@ -123,6 +124,7 @@ function LandingPage() {
           <Space />
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
