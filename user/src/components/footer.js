@@ -68,8 +68,7 @@ function Footer() {
                         Blessed is he who suffers temptation
                         Since he, with approval, shall receive the crown of life
                     </Text>
-                     
-                </div>
+                 </div>
             </SimpleGrid>
         
      );
