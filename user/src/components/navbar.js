@@ -107,7 +107,6 @@ const useStyles = makeStyles({
     color: "#000000",
     "&:hover": {
       color: "#9f9f9f",
-      width:'110%'
     },
   },
   hovermenu: {

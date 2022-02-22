@@ -26,7 +26,8 @@ function Footer() {
             color: "#ffffff",
             fontSize:'500px',
             "&:hover": {
-              color: "#555555",
+                
+              color: "#555",
             },
           },
     });
@@ -61,7 +62,7 @@ function Footer() {
                 </div>
                 </div>
                 <div style={{width:'100%', height: '100%', display:'flex', justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
-                    <Text style={{fontSize:'26px',marginRight:'20px', fontWeight:700, color:'#fff',display:'flex',alignSelf:'flex-end'}}>About Us</Text>
+                    <Text style={{fontSize:'26px',marginRight:'20px', fontWeight:700, color:'#fff',display:'flex',alignSelf:'flex-end', marginTop:'-30px'}}>About Us</Text>
                     <Text style={{fontSize:'14px', marginRight:'20px',marginLeft:'20px', color:'#fff',textAlign: 'justify',textJustify: 'inter-word'}}>
                         The mouth of the just shall meditate wisdom
                         And his language shall be spoken in judgment
