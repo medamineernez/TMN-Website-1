@@ -10,8 +10,9 @@ import {
   Burger,
   TextInput,
   Center,
-  ActionIcon
+  ActionIcon,
 } from "@mantine/core";
+
 import Fade from 'react-reveal/Fade';
 import { Link } from "react-router-dom";
 import logo from "../media/TMN_inverted.jpg";
@@ -43,6 +44,9 @@ let blogssubt = [];
 let podcastssubt = [];
 
 let eventssubt = [];
+
+
+
 const useStyles = makeStyles({
   button: {
     backgroundColor: "#fff",
@@ -103,6 +107,14 @@ const useStyles = makeStyles({
     color: "#000000",
     "&:hover": {
       color: "#9f9f9f",
+      width:'110%'
+    },
+  },
+  hovermenu: {
+    
+    "&:hover": {
+      color: "#fff",
+      backgroundColor: "#000",
     },
   },
 });
@@ -137,7 +149,7 @@ function NavBar() {
       
       response.data.forEach(sub => {
         if ((sub.refrencesTo==="news")&&(!newssubt.includes(sub.title))){
-          newssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          newssub.push(<Menu.Item className={classes.hovermenu} component={Link} to="/">{sub.title}</Menu.Item>)
           newssubt.push(sub.title);
         }
         if (sub.refrencesTo==="blogs"&&(!blogssubt.includes(sub.title))){
@@ -195,7 +207,7 @@ function NavBar() {
 
       
 
-  },[classes.usr]);
+  },[classes.usr,classes.hovermenu]);
 
   return (
     <div>
@@ -225,9 +237,11 @@ function NavBar() {
                 trigger="hover"
                 placement="start"
                 size="sm"
+                shadow="xs"
                 zIndex={5}
                 delay={300}
                 gutter={-1}
+                style={{width:'500px'}}
                 control={
                   <Button
                     component={Link}
@@ -248,6 +262,7 @@ function NavBar() {
                 trigger="hover"
                 placement="start"
                 size="sm"
+                shadow="xs"
                 zIndex={5}
                 delay={300}
                 gutter={-1}
@@ -271,6 +286,7 @@ function NavBar() {
                 trigger="hover"
                 placement="start"
                 size="sm"
+                shadow="xs"
                 zIndex={5}
                 delay={300}
                 gutter={-1}
@@ -294,6 +310,7 @@ function NavBar() {
                 trigger="hover"
                 placement="start"
                 size="sm"
+                shadow="xs" 
                 zIndex={5}
                 delay={300}
                 gutter={-1}
@@ -465,8 +482,8 @@ function NavBar() {
         </div>
       </MediaQuery>
       
-      <Fade top when={searchopened} durantion={100}>
-      <div style={{backgroundColor:'#ffffff', width:'100%', height:'60px',position:'fixed',zIndex:4,top:50,left:0, visibility:{searchopened}}}>
+      <Fade top when={searchopened} duration={500}>
+      <div style={{backgroundColor:'#ffffff', width:'100%', height:'60px',position:'fixed',zIndex:4,top:50,left:0, display:searchopened ? "" : 'none'}}>
         <Center style={{height:'100%'}}>
             <TextInput variant="filled" style={{width:'80%'}} ></TextInput>
             <ActionIcon variant="light" style={{marginLeft:10,width:40, height:40, borderRadius:50}}>
