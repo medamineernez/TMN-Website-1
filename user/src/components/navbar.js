@@ -11,7 +11,10 @@ import {
   TextInput,
   Center,
   ActionIcon,
-} from "@mantine/core";
+  Group,
+  Text,
+  List,
+} from "@mantine/core"; //@mantine/core@3.2.3 
 
 import Fade from 'react-reveal/Fade';
 import { Link } from "react-router-dom";
@@ -44,6 +47,15 @@ let blogssubt = [];
 let podcastssubt = [];
 
 let eventssubt = [];
+
+let newsnav = [];
+
+let blogsnav = [];
+
+let podcastsnav = [];
+
+let eventsnav = [];
+
 
 
 
@@ -148,19 +160,23 @@ function NavBar() {
       
       response.data.forEach(sub => {
         if ((sub.refrencesTo==="news")&&(!newssubt.includes(sub.title))){
-          newssub.push(<Menu.Item className={classes.hovermenu} component={Link} to="/">{sub.title}</Menu.Item>)
+          newssub.push(<Menu.Item className={classes.hovermenu} component={Link} to="/news/">{sub.title}</Menu.Item>)
+          newsnav.push(<List.Item><Link to={"/news/"+sub.title} style={{ textDecoration: 'none',fontSize:'18px', fontWeight:'400', color:'#000' }}>{sub.title}</Link></List.Item>);
           newssubt.push(sub.title);
         }
         if (sub.refrencesTo==="blogs"&&(!blogssubt.includes(sub.title))){
-          blogssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          blogssub.push(<Menu.Item component={Link} to="/blogs/">{sub.title}</Menu.Item>)
+          blogsnav.push(<List.Item><Link to={"/blogs/"+sub.title} style={{ textDecoration: 'none',fontSize:'18px', fontWeight:'400', color:'#000' }}>{sub.title}</Link></List.Item>);
           blogssubt.push(sub.title);
         }
         if (sub.refrencesTo==="podcasts"&&(!podcastssubt.includes(sub.title))){
-          podcastssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          podcastssub.push(<Menu.Item component={Link} to="/podcasts/">{sub.title}</Menu.Item>)
+          podcastsnav.push(<List.Item><Link to={"/podcasts/"+sub.title} style={{ textDecoration: 'none',fontSize:'18px', fontWeight:'400', color:'#000' }}>{sub.title}</Link></List.Item>);
           podcastssubt.push(sub.title);
         }
         if (sub.refrencesTo==="events"&&(!eventssubt.includes(sub.title))){
-          eventssub.push(<Menu.Item component={Link} to="/">{sub.title}</Menu.Item>)
+          eventssub.push(<Menu.Item component={Link} to="/events/">{sub.title}</Menu.Item>)
+          eventsnav.push(<List.Item><Link to={"/events/"+sub.title} style={{ textDecoration: 'none',fontSize:'18px', fontWeight:'400', color:'#000' }}>{sub.title}</Link></List.Item>);
           eventssubt.push(sub.title);
         }
         })
@@ -211,7 +227,7 @@ function NavBar() {
   return (
     <div>
       
-      <MediaQuery largerThan="xs" styles={hide}>
+      <MediaQuery largerThan="md" styles={hide}>
         <div style={{ marginBottom: 50 }}>
           <Grid
             columns={9}
@@ -225,6 +241,12 @@ function NavBar() {
               zIndex: "5",
             }}
           >
+            <Burger
+                opened={opened}
+                onClick={() => setOpened((o) => !o)}
+                title="drawer"
+                style={{position:'absolute', top:18, left:35}}
+              />
             <Col span={2} style={centered}>
               <Link to="/">
                 <img alt="" src={logo} style={{ height: 40 }} />
@@ -356,7 +378,7 @@ function NavBar() {
         </div>
       </MediaQuery>
 
-      <MediaQuery smallerThan="xs" styles={hide}>
+      <MediaQuery smallerThan="md" styles={hide}>
         <div style={{ marginBottom: 50 }}>
           <Grid
             columns={9}
@@ -376,80 +398,7 @@ function NavBar() {
                 onClick={() => setOpened((o) => !o)}
                 title="drawer"
               />
-              <Drawer
-                opened={opened}
-                onClose={() => setOpened(false)}
-                title={<img alt="" src={logo} style={{ height: 40 }} />}
-                padding="xl"
-                size="xl"
-              >
-                <Button
-                  component={Link}
-                  to="/news"
-                  className={classes.buttonDrawer}
-                  style={{ useStyles }}
-                >
-                  News
-                </Button>
-                <Button
-                  component={Link}
-                  to="/blogs"
-                  className={classes.buttonDrawer}
-                  style={{ useStyles }}
-                >
-                  Blogs
-                </Button>
-                <Button
-                  component={Link}
-                  to="/events"
-                  className={classes.buttonDrawer}
-                  style={{ useStyles }}
-                >
-                  Events
-                </Button>
-                <Button
-                  component={Link}
-                  to="/podcasts"
-                  className={classes.buttonDrawer}
-                  style={{ useStyles }}
-                >
-                  podcasts
-                </Button>
-                <SimpleGrid
-                  spacing="xl"
-                  cols={3}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    alignContent: "center",
-                    justifyContent: "center",
-                    marginTop: 0,
-                  }}
-                >
-                  <a href="https://www.facebook.com/TunisianModernNewspaperOfficiel">
-                    <FacebookIcon
-                      style={{ fontSize: "48px" }}
-                      className={classes.fcb}
-                    />
-                  </a>
-                  <a href="https://www.instagram.com/tunisian_modern_newspaper/">
-                    <InstagramIcon
-                      style={{
-                        marginLeft: 50,
-                        marginRight: 50,
-                        fontSize: "48px",
-                      }}
-                      className={classes.ins}
-                    />
-                  </a>
-                  <a href="https://www.linkedin.com/company/tunisian-modern-newspaper/">
-                    <LinkedInIcon
-                      style={{ fontSize: "48px" }}
-                      className={classes.ytb}
-                    />
-                  </a>
-                </SimpleGrid>
-              </Drawer>
+              
             </Col>
             <Col span={3} style={centered}>
               <Link to="/">
@@ -492,7 +441,99 @@ function NavBar() {
 
       </div>
       </Fade>
-        
+      <Drawer
+                opened={opened}
+                onClose={() => setOpened(false)}
+                title={<img alt="" src={logo} style={{ height: 40 }} />}
+                padding="xs"
+                size="100%"
+                >
+                   <div style={{backgroundColor:'#ffffff', width:'100%', height:'60px',position:'fixed',zIndex:4,top:50,left:0}}>
+                      <Center style={{height:'100%'}}>
+                        <TextInput variant="filled" style={{width:'80%'}} ></TextInput>
+                        <ActionIcon variant="light" style={{marginLeft:10,width:40, height:40, borderRadius:50}}>
+                        <SearchRoundedIcon/>
+                        </ActionIcon>
+                      </Center>
+
+      </div>
+                  <Group position="apart" style={{marginTop:'75px'}}>
+                    <div style={{ width:'180px'}}>
+                      <Link to="/news" style={{ textDecoration: 'none' }}>
+                      <Text style={{fontSize:'26px', fontWeight:'700', textDecoration:'none'}}>News</Text>
+                      </Link>
+                      <List style={{marginLeft:10}}>
+                        {newsnav}
+                      </List>
+                      
+                    </div>
+                    <div style={{width:'180px'}}>
+                    <Link to="/blogs" style={{ textDecoration: 'none' }}>
+                      <Text style={{fontSize:'26px', fontWeight:'700', textDecoration:'none'}}>Blogs</Text>
+                      </Link>
+                      <List style={{marginLeft:10}}>
+                        {blogsnav}
+                      </List>
+                    </div>
+                    <div style={{width:'180px'}}>
+                    <Link to="/events" style={{ textDecoration: 'none' }}>
+                      <Text style={{fontSize:'26px', fontWeight:'700', textDecoration:'none'}}>Events</Text>
+                      </Link>
+                      <List style={{marginLeft:10}}>
+                        {eventsnav}
+                      </List>
+                    </div>
+                    <div style={{width:'180px'}}>
+                    <Link to="/podcasts" style={{ textDecoration: 'none' }}>
+                      <Text style={{fontSize:'26px', fontWeight:'700', textDecoration:'none'}}>Podcasts</Text>
+                      </Link>
+                      <List style={{marginLeft:10}}>
+                        {podcastsnav}
+                      </List>
+                    </div>
+                    <SimpleGrid
+                  spacing="xl"
+                  cols={3}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    alignContent: "center",
+                    justifyContent: "center",
+                    position:'absolute', 
+                    alignSelf:'center',
+                    width:'100%',
+                    bottom:10, 
+                  }}
+                >
+                  <a href="https://www.facebook.com/TunisianModernNewspaperOfficiel" >
+                    <FacebookIcon
+                      style={{ fontSize: "48px" }}
+                      className={classes.fcb}
+                    />
+                  </a>
+                  <a href="https://www.instagram.com/tunisian_modern_newspaper/">
+                    <InstagramIcon
+                      style={{
+                        marginLeft: 50,
+                        marginRight: 50,
+                        fontSize: "48px",
+                      }}
+                      className={classes.ins}
+                    />
+                  </a>
+                  <a href="https://www.linkedin.com/company/tunisian-modern-newspaper/">
+                    <LinkedInIcon
+                      style={{ fontSize: "48px" }}
+                      className={classes.ytb}
+                    />
+                  </a>
+                </SimpleGrid>
+                    
+                    </Group>
+                    
+                
+                
+              </Drawer>
     </div>
   );
 }
