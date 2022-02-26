@@ -1,6 +1,7 @@
 import React from "react";
 import PageTitle from "../components/common/PageTitle";
 import Editor from "../components/add-new-post/Editor";
+import { Link } from "react-router-dom";
 import {  Container,
           Button,
           Row, 
@@ -8,7 +9,9 @@ import {  Container,
           InputGroup,
           InputGroupAddon,
           InputGroupText,
-          FormSelect } from "shards-react";
+          FormSelect,
+          Breadcrumb,
+          BreadcrumbItem } from "shards-react";
 
 
 const AddNewPost = () => (
@@ -18,6 +21,14 @@ const AddNewPost = () => (
       <PageTitle sm="4" title="Add New Post" subtitle="Blog Posts" className="text-sm-left" />
     </Row>
     
+    {/* Components Navigation */}
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <Link to="/">Dashboard</Link>
+      </BreadcrumbItem>
+      <BreadcrumbItem active>New post</BreadcrumbItem>
+    </Breadcrumb>
+
     <Row>
       {/* Editor */}
 
@@ -32,9 +43,21 @@ const AddNewPost = () => (
           </InputGroupAddon>
         <FormSelect>
           <option>Choose</option>
+          <option>News</option>
+          <option>Blog</option>
+          <option>Podcast</option>
+          <option>Event</option>
+        </FormSelect>
+        </InputGroup>
+        <InputGroup className="mb-3">
+          <InputGroupAddon type="prepend">
+            <InputGroupText>Sub-Category</InputGroupText>
+          </InputGroupAddon>
+        <FormSelect>
+          <option>Choose</option>
           <option>Sports</option>
           <option>Adventures</option>
-          <option>EDS EDS</option>
+          <option>Buisness</option>
         </FormSelect>
         </InputGroup>
         <div className="custom-file mb-3">
@@ -49,7 +72,7 @@ const AddNewPost = () => (
             Choose second image
           </label>
         </div>
-        <Button theme="accent" size="sm" className="ml-auto">
+        <Button theme="accent" size="xl" className="ml-auto">
             <i className="material-icons">file_copy</i> Publish
           </Button>
       </Col>

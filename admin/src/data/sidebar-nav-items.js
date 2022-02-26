@@ -11,14 +11,39 @@ export default function() {
       to: "/add-new-post",
     },
     {
+      title: "Categories",
+      htmlBefore: '<i class="material-icons">view_module</i>',
+      to: "/categories",
+    },
+    {
       title: "Users Management",
       htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/tables",
+      to: "/UsersManagement",
     },
     {
       title: "Co-Admins",
       htmlBefore: '<i class="material-icons">table_chart</i>',
       to: "/co-admin",
+    },
+    {
+      title: "Blogs Approval",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/Blogs-approval",
+    },
+    {
+      title: "Podcasts Approval",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/Podcasts-approval",
+    },
+    {
+      title: "News Approval",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/News-approval",
+    },
+    {
+      title: "Events Approval",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/Events-approval",
     },
     {
       title: "User Profile",

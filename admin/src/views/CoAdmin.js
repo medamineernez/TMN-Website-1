@@ -1,5 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Card, CardHeader, CardBody, Button } from "shards-react";
+import {Link} from "react-router-dom";
+import { Container, Row, Col, Card, CardHeader, CardBody, Button, Breadcrumb, BreadcrumbItem, } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
 
@@ -7,15 +8,27 @@ const Tables = () => (
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="Users" subtitle="Users management" className="text-sm-left" />
+      <PageTitle sm="4" title="Co-Admins" subtitle="Co-Admins Management" className="text-sm-left" />
     </Row>
+
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <Link to="/">Dashboard</Link>
+      </BreadcrumbItem>
+      <BreadcrumbItem active>Co-Admins</BreadcrumbItem>
+    </Breadcrumb>
 
     {/* Default Dark Table */}
     <Row>
       <Col>
         <Card small className="mb-4 overflow-hidden">
           <CardHeader className="bg-dark">
-            <h6 className="m-0 text-white">Active Users</h6>
+            <h6 className="m-0 text-white">Active Co-Admins</h6>
+            <Link to="/new-co-admin">
+              <Button outline theme="primary" className="mb-2 mr-1" style={{float: "right"}}>
+                Add Co-Admin
+              </Button>
+            </Link>
           </CardHeader>
           <CardBody className="bg-dark p-0 pb-3">
             <table className="table table-dark mb-0">
