@@ -78,7 +78,6 @@ const AddNewPost = () => (
             Choose second image
           </label>
         </div>
-        <Button theme="accent" size="xl" className="ml-auto">
         <Button theme="accent" size="sm" className="ml-auto">
             <i className="material-icons">file_copy</i> Publish
           </Button>

@@ -99,6 +99,8 @@ export default [
     path: "/Events-approval",
     layout: DefaultLayout,
     component: EventsApproval
+  },
+  {
 
     path: "/tables",
     layout: DefaultLayout,
