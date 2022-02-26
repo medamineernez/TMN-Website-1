@@ -16,7 +16,7 @@ import {
 } from "shards-react";
 
 const UserAccountDetails = ({ title }) => (
-  <Card small className="mb-4">
+  <Card normal className="mb-4">
     <CardHeader className="border-bottom">
       <h6 className="m-0">{title}</h6>
     </CardHeader>
@@ -32,7 +32,6 @@ const UserAccountDetails = ({ title }) => (
                   <FormInput
                     id="feFirstName"
                     placeholder="First Name"
-                    value="Sierra"
                     onChange={() => {}}
                   />
                 </Col>

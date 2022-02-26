@@ -29,7 +29,7 @@ class BlogPosts extends React.Component {
           authorAvatar: require("../images/avatars/1.jpg"),
           title: "Conduct at an replied removal an amongst",
           body:
-            "However venture pursuit he am mr cordial. Forming musical am hearing studied be luckily. But in for determine what would see...",
+            "However venture pursuit he am mr cordial. Forming musical am hearing studied be luckily. But in for determine what would see ...",
           date: "28 February 2019"
         },
         {
@@ -78,7 +78,7 @@ class BlogPosts extends React.Component {
           title:
             "Attention he extremity unwilling on otherwise cars backwards yet",
           body:
-            "Conviction up partiality as delightful is discovered. Yet jennings resolved disposed exertion you off. Left did fond drew fat head poor jet pan flying over...",
+            "Conviction up partiality as delightful is discovered. Yet jennings resolved disposed exertion you off. Left did fond drew fat head poor jet pan flying over ...",
           date: "29 February 2019"
         },
         {
