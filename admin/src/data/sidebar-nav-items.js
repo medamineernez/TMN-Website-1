@@ -44,6 +44,15 @@ export default function() {
       title: "Events Approval",
       htmlBefore: '<i class="material-icons">table_chart</i>',
       to: "/Events-approval",
+
+      title: "Users Management",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/tables",
+    },
+    {
+      title: "Co-Admins",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/co-admin",
     },
     {
       title: "User Profile",

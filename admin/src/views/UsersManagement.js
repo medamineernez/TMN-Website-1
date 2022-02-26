@@ -17,7 +17,6 @@ const Tables = () => (
       </BreadcrumbItem>
       <BreadcrumbItem active>Users</BreadcrumbItem>
     </Breadcrumb>
-
     {/* Default Light Table */}
     <Row>
       <Col>
@@ -42,6 +41,7 @@ const Tables = () => (
                     E-mail
                   </th>
                   <th scope="col" className="border-0">
+
                     City
                   </th>
                   <th scope="col" className="border-0">

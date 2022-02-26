@@ -14,13 +14,13 @@ import ComponentsOverview from "./views/ComponentsOverview";
 import UsersManagement from "./views/UsersManagement";
 import BlogPosts from "./views/BlogPosts";
 import CoAdmin from "./views/CoAdmin";
+
 import BlogsApproval from "./views/BlogsApproval";
 import PodcastsApproval from "./views/PodcastSApproval";
 import NewsApproval from "./views/NewsApproval";
 import EventsApproval from "./views/EventsApproval";
 import Categories from "./views/Categories";
 import NewSubCategory from "./views/NewSubCategory";
-
 
 export default [
   {
@@ -60,6 +60,7 @@ export default [
     component: CoAdmin 
   },
   {
+
     path: "/categories",
     layout: DefaultLayout,
     component: Categories 
@@ -98,6 +99,11 @@ export default [
     path: "/Events-approval",
     layout: DefaultLayout,
     component: EventsApproval
+
+    path: "/tables",
+    layout: DefaultLayout,
+    component: UsersManagement
+
   },
   {
     path: "/blog-posts",
