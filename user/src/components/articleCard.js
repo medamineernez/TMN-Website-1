@@ -6,7 +6,7 @@ const hide = { display: "none" };
 function ArticleCard(props) {
   return (
     <div>
-      <MediaQuery largerThan="xs" styles={hide}>
+      <MediaQuery largerThan="md" styles={hide}>
         <Card
           style={{ width: "900px", height: "300px" }}
           shadow="xl"
@@ -31,9 +31,10 @@ function ArticleCard(props) {
         </Card>
       </MediaQuery>
 
-      <MediaQuery smallerThan="xs" styles={hide}>
+      <MediaQuery smallerThan="md" styles={hide}>
+        <div style={{width:'90vw'}}>
         <Card
-          style={{ width: "400px", height: "300px" }}
+          style={{ width: "100%" }}
           shadow="sm"
           padding="xl"
           component={Link}
@@ -52,6 +53,7 @@ function ArticleCard(props) {
           </Card.Section>
           
         </Card>
+        </div>
       </MediaQuery>
     </div>
   );
