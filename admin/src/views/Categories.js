@@ -1,48 +1,53 @@
 import React from "react";
-import { Container, Row, Col, Card, CardHeader, CardBody, Button, Breadcrumb, BreadcrumbItem } from "shards-react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
+import { Container, Row, Col, Card, CardHeader, CardBody, Button, Breadcrumb, BreadcrumbItem, } from "shards-react";
+
 import PageTitle from "../components/common/PageTitle";
 
 const Tables = () => (
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="Users" subtitle="Users management" className="text-sm-left" />
+      <PageTitle sm="4" title="Categories" subtitle="Categories Management" className="text-sm-left" />
     </Row>
 
-    {/* Components Navigation */}
     <Breadcrumb>
       <BreadcrumbItem>
         <Link to="/">Dashboard</Link>
       </BreadcrumbItem>
-      <BreadcrumbItem active>Users</BreadcrumbItem>
+      <BreadcrumbItem active>Categories</BreadcrumbItem>
     </Breadcrumb>
-    {/* Default Light Table */}
+
+    {/* Default Dark Table */}
     <Row>
       <Col>
-        <Card small className="mb-4">
-          <CardHeader className="border-bottom">
-            <h6 className="m-0">Users list</h6>
+        <Card small className="mb-4 overflow-hidden">
+          <CardHeader className="bg-dark">
+            <h6 className="m-0 text-white">Categories list</h6>
+            <Link to="/new-Subcategory">
+              <Button outline theme="primary" className="mb-2 mr-1" style={{float: "right"}}>
+                Add Sub-Category
+              </Button>
+            </Link>
           </CardHeader>
-          <CardBody className="p-0 pb-3">
-            <table className="table mb-0">
-              <thead className="bg-light">
+          <CardBody className="bg-dark p-0 pb-3">
+            <table className="table table-dark mb-0">
+              <thead className="thead-dark">
                 <tr>
                   <th scope="col" className="border-0">
-                    ID
+                    #
                   </th>
                   <th scope="col" className="border-0">
-                    First Name
+                    Categories
                   </th>
                   <th scope="col" className="border-0">
-                    Last Name
+                    #
                   </th>
                   <th scope="col" className="border-0">
-                    E-mail
+                    Sub-Categories
                   </th>
                   <th scope="col" className="border-0">
-
-                    City
+                    
                   </th>
                   <th scope="col" className="border-0">
                     
@@ -55,16 +60,17 @@ const Tables = () => (
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>Wael</td>
-                  <td>Morjen</td>
-                  <td>waelmorjen@gmail.com</td>
-                  <td>Sousse</td>
+                  <td>Podcast</td>
+                  <td>1</td>
+                  <td>Buisness</td>
+                  <td></td>
                   <td></td>
                   <td>
                     <Button outline size="sm" theme="danger" className="mb-2 mr-1">
-                      Delete
-                    </Button></td>
-                </tr>
+                      Delete Sub-Category
+                    </Button>
+                  </td>
+                </tr>               
               </tbody>
             </table>
           </CardBody>
