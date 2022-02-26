@@ -38,7 +38,7 @@ function Category() {
   return (
     <div>
       <NavBar />
-      <div style={{ paddingLeft: "5%", paddingTop: 1, paddingBottom: 50 }}>
+      <div style={{ marginLeft:20,paddingTop: 1, paddingBottom: 50 }}>
         <h1 style={{ color: "#000000", fontSize: 40 }}>{category}</h1>
         <Group direction="column">{rows}</Group>
       </div>

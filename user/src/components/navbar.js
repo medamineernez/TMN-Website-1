@@ -160,22 +160,22 @@ function NavBar() {
       
       response.data.forEach(sub => {
         if ((sub.refrencesTo==="news")&&(!newssubt.includes(sub.title))){
-          newssub.push(<Menu.Item className={classes.hovermenu} component={Link} to="/news/">{sub.title}</Menu.Item>)
+          newssub.push(<Menu.Item className={classes.hovermenu} component={Link} to={"/news/"+sub.title}>{sub.title}</Menu.Item>)
           newsnav.push(<List.Item><Link to={"/news/"+sub.title} style={{ textDecoration: 'none',fontSize:'18px', fontWeight:'400', color:'#000' }}>{sub.title}</Link></List.Item>);
           newssubt.push(sub.title);
         }
         if (sub.refrencesTo==="blogs"&&(!blogssubt.includes(sub.title))){
-          blogssub.push(<Menu.Item component={Link} to="/blogs/">{sub.title}</Menu.Item>)
+          blogssub.push(<Menu.Item component={Link} to={"/blogs/"+sub.title}>{sub.title}</Menu.Item>)
           blogsnav.push(<List.Item><Link to={"/blogs/"+sub.title} style={{ textDecoration: 'none',fontSize:'18px', fontWeight:'400', color:'#000' }}>{sub.title}</Link></List.Item>);
           blogssubt.push(sub.title);
         }
         if (sub.refrencesTo==="podcasts"&&(!podcastssubt.includes(sub.title))){
-          podcastssub.push(<Menu.Item component={Link} to="/podcasts/">{sub.title}</Menu.Item>)
+          podcastssub.push(<Menu.Item component={Link} to={"/podcasts/"+sub.title}>{sub.title}</Menu.Item>)
           podcastsnav.push(<List.Item><Link to={"/podcasts/"+sub.title} style={{ textDecoration: 'none',fontSize:'18px', fontWeight:'400', color:'#000' }}>{sub.title}</Link></List.Item>);
           podcastssubt.push(sub.title);
         }
         if (sub.refrencesTo==="events"&&(!eventssubt.includes(sub.title))){
-          eventssub.push(<Menu.Item component={Link} to="/events/">{sub.title}</Menu.Item>)
+          eventssub.push(<Menu.Item component={Link} to={"/events/"+sub.title}>{sub.title}</Menu.Item>)
           eventsnav.push(<List.Item><Link to={"/events/"+sub.title} style={{ textDecoration: 'none',fontSize:'18px', fontWeight:'400', color:'#000' }}>{sub.title}</Link></List.Item>);
           eventssubt.push(sub.title);
         }
@@ -481,6 +481,7 @@ function NavBar() {
                       </Link>
                       <List style={{marginLeft:10}}>
                         {eventsnav}
+                        edseds
                       </List>
                     </div>
                     <div style={{width:'180px'}}>
