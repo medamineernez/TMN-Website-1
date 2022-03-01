@@ -1,4 +1,4 @@
-import { Center, Group, Space, Text } from "@mantine/core";
+import { Center, Group, Space, Text, Affix, Transition, ActionIcon } from "@mantine/core";
 import React from "react";
 import NavBar from "../components/navbar";
 import AwesomeSlider from "react-awesome-slider";
@@ -7,9 +7,15 @@ import SliderArticle from "../components/sliderArticle";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import LatestNews from "../components/latestComp";
 import Footer from "../components/footer";
+import { useWindowScroll } from '@mantine/hooks';
+import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
+
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
+
 function LandingPage() {
+  const [scroll, scrollTo] = useWindowScroll();
+
   return (
     <div>
       <NavBar />
@@ -124,6 +130,21 @@ function LandingPage() {
           <Space />
         </div>
       </div>
+      <Affix position={{ bottom: 20, right: 20 }}>
+        <Transition transition="slide-up" mounted={scroll.y > 0}>
+          {(transitionStyles) => (
+            <ActionIcon
+              leftIcon={<Text>Up</Text>}
+              style={{borderRadius:'50px', width:'40px', height:'40px', opacity:'0.7', backgroundColor:'#000'}}
+              onClick={() => scrollTo({ y: 0 })}
+              variant="filled"
+              borderRadius={50}
+            >
+              <ArrowUpwardRoundedIcon ></ArrowUpwardRoundedIcon>
+            </ActionIcon>
+          )}
+        </Transition>
+      </Affix>
       <Footer/>
     </div>
   );
