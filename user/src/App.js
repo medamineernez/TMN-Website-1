@@ -6,10 +6,11 @@ import LoginNav from "./pages/auth/loginNavigation";
 import Login from "./pages/auth/login";
 import Signup from "./pages/auth/signup";
 import WelcomePage from "./pages/welcomepage";
-import Category from "./pages/article/category";
+import CategoryContent from "./pages/article/categoryContent";
 import Article from "./pages/article/article";
-import EventPage from "./pages/article/eventPage";
+import EventContent from "./pages/article/eventContent";
 import PodcastPage from "./pages/article/podcast";
+import SubCategoryContent from "./pages/article/subcategoryContent";
 
 function App() {
   return (
@@ -37,15 +38,19 @@ function App() {
           </Route>
 
           <Route exact path="/:category(news|blogs|podcasts)">
-            <Category />
+            <CategoryContent />
           </Route>
 
-          <Route exact path="/:category(news|blogs)/:id">
+          <Route exact path="/:category(news|blogs|podcasts)/:subcategory">
+            <SubCategoryContent />
+          </Route>
+
+          <Route exact path="/:category(news|blogs)/:subcategory/:id">
             <Article />
           </Route>
 
           <Route exact path="/events">
-            <EventPage/>
+            <EventContent/>
           </Route>
 
           <Route exact path="/podcasts/:id">

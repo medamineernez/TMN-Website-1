@@ -5,7 +5,7 @@ import NavBar from "../../components/navbar";
 import { Group, Loader, Center } from "@mantine/core";
 import axios from "axios";
 
-function Category() {
+function SubCategoryContent() {
   let { category } = useParams();
   let [post, setPost] = useState();
 
@@ -46,4 +46,4 @@ function Category() {
   );
 }
 
-export default Category;
+export default SubCategoryContent;

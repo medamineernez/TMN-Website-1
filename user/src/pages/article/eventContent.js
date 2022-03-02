@@ -2,7 +2,7 @@ import React from "react";
 import EventCard from "../../components/eventCard";
 import NavBar from "../../components/navbar";
 
-function EventPage() {
+function EventContent() {
   
   return (
     <div>
@@ -15,4 +15,4 @@ function EventPage() {
   );
 }
 
-export default EventPage;
+export default EventContent;
