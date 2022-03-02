@@ -28,6 +28,17 @@ const BlogSchema = new Schema(
       type: String,
       required: true,
     },
+
+    author:{
+      type: String,
+      required:false,
+    },
+
+    status:{
+      type : String,
+      required :true ,
+      enum :["aproved","on hold","rejected"]
+    },
   },
   { timestamps: true }
 );

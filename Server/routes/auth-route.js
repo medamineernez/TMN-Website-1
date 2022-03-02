@@ -34,6 +34,7 @@ router.post("/signup", (req, res) => {
         email: req.body.email,
         password: req.body.password,
         verificationCode: code,
+        role:"user",
       });
 
       bcrypt.genSalt(10, (err, salt) => {
@@ -94,10 +95,14 @@ router.post("/login", (req, res) => {
 
 //Logout
 
-router.post("/logout", (req, res, next) => {
-  res.clearCookie("access_token");
-  res.json({ success: true });
-});
+  router.post('/logout-btn',(req,res)=>{
+    res.clearCookie("access_token");
+    res.json({ success: true });
+
+
+   
+  })
+
 
 
 
