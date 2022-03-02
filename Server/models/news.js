@@ -1,49 +1,47 @@
 const { Schema, model } = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
-const EventSchema = new Schema(
+const NewsSchema = new Schema(
   {
     title: {
       type : String ,
       required : true ,
 
     },
-
-    date: {
-     type : Date ,
-     required : true
+    
+    newsImages:{
+        type :String,
+        required : true
+    },
+    
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: "Category",
     },
 
-    hour :{
+    content:{
         type :String,
         required : true
     },
 
-     location :{
-        type :String,
-        required : true
+    author:{
+        type :String ,
+        required :true
     },
 
-     eventPoster:{
-        type :String,
-        required : true
-    },
+  
 
-        details:{
-        type :String,
-        required : true
-    },
     status :{
       type :String ,
       required : true ,
       enum :["approved","on hold","rejected"],
+},
     },
-    
 
-  },
   { timestamps: true }
+
 );
 
-EventSchema.plugin(uniqueValidator);
+NewsSchema.plugin(uniqueValidator);
 
-module.exports = model("Event", EventSchema);
+module.exports = model("News", NewsSchema);

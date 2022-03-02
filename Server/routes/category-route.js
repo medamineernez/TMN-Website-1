@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const Category = require("../models/category");
 
-//add new cathegory
+//add new category
 
 router.post(
-  "/category",
+  "/addCategory",
   (req, res, next) => {
     const category = new Category({
       title: req.body.title,

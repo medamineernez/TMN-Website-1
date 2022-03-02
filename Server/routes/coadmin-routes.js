@@ -29,4 +29,18 @@ router.post("/login", (req, res) => {
   });
 });
 
+// get all co admins 
+
+router.get("/allCoadmins", (req, res, next) => {
+  CoAdmin.find()
+    .then((coadmins) => {
+      res.status(200).json(coadmins);
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error: error,
+      });
+    });
+});
+
 module.exports = router;
