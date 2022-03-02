@@ -35,16 +35,24 @@ function LandingPage() {
               <SliderArticle
                 src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
                 id="02"
-                title="earth gets nuked"
-                description="unsurprisingly, fallout players are the first to die horrible deaths. and other things to say about the faces of calamity at the dinner table"
+                title="Ernez 3mal pull request"
+                description="enfin, ba3d allahou a3laam 9adem wa9t, ernez 3mal pull request, literally wallit nebki mel far7a ki choft el notification"
               />
             </div>
             <div>
               <SliderArticle
                 src="https://i0.wp.com/www.eurasiareview.com/wp-content/uploads/2018/12/c-13.jpg?fit=830%2C510&ssl=1"
                 id="3"
-                title="things not to do in public"
-                description="a list of things that should not be done in public, no throwing nuclear waste at people is never ok"
+                title="zidou fas5ou el subcategories"
+                description="yfass5ou fel subcategories mel DB w au meme temps y7ebbouni ne5dem el fonctionalité ta3 page el subcategory"
+              />
+            </div>
+            <div>
+              <SliderArticle
+                src="https://i0.wp.com/www.eurasiareview.com/wp-content/uploads/2018/12/c-13.jpg?fit=830%2C510&ssl=1"
+                id="3"
+                title="islam??"
+                description="m5ollili subcategory wa7da esmha islam?? t7ebech nroddou el site y9ollek el 9eblaa mniin wakahaw"
               />
             </div>
           </AutoplaySlider>

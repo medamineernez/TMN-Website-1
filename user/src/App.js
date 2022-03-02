@@ -11,6 +11,7 @@ import Article from "./pages/article/article";
 import EventContent from "./pages/article/eventContent";
 import PodcastPage from "./pages/article/podcast";
 import SubCategoryContent from "./pages/article/subcategoryContent";
+import EventSubCategoryContent from "./pages/article/eventsubcategoryContent";
 
 function App() {
   return (
@@ -52,8 +53,12 @@ function App() {
           <Route exact path="/events">
             <EventContent/>
           </Route>
+          
+          <Route exact path="/events/:subcategory">
+            <EventSubCategoryContent/>
+          </Route>
 
-          <Route exact path="/podcasts/:id">
+          <Route exact path="/podcasts/:subcategory/:id">
             <PodcastPage/>
           </Route>
 
