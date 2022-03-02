@@ -33,7 +33,11 @@ const EventSchema = new Schema(
         type :String,
         required : true
     },
-
+    status :{
+      type :String ,
+      required : true ,
+      enum :["approved","on hold","rejected"],
+    },
     
 
   },
