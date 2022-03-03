@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody, Button, Modal, ModalBo
 import { Link } from "react-router-dom";
 import PageTitle from "../components/common/PageTitle";
 
-export default class NewsApproval extends React.Component {
+export default class NewsManagement extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
@@ -22,7 +22,7 @@ export default class NewsApproval extends React.Component {
         <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="News list" subtitle="News approval" className="text-sm-left" />
+      <PageTitle sm="4" title="News list" subtitle="News Management" className="text-sm-left" />
     </Row>
 
     {/* Components Navigation */}
@@ -30,7 +30,7 @@ export default class NewsApproval extends React.Component {
       <BreadcrumbItem>
         <Link to="/">Dashboard</Link>
       </BreadcrumbItem>
-      <BreadcrumbItem active>News Approval</BreadcrumbItem>
+      <BreadcrumbItem active>News Management</BreadcrumbItem>
     </Breadcrumb>
 
     {/* Default Dark Table */}
@@ -38,7 +38,12 @@ export default class NewsApproval extends React.Component {
       <Col>
         <Card small className="mb-4 overflow-hidden">
           <CardHeader className="bg-dark">
-            <h6 className="m-0 text-white">Requested Blogs</h6>
+            <h6 className="m-0 text-white">News list</h6>
+            <Link to="/new-news">
+              <Button outline theme="primary" className="mb-2 mr-1" style={{float: "right"}}>
+                Add News
+              </Button>
+            </Link>
           </CardHeader>
           <CardBody className="bg-dark p-0 pb-3">
             <table className="table table-dark mb-0">

@@ -7,7 +7,7 @@ import { DefaultLayout } from "./layouts";
 // Route Views
 import BlogOverview from "./views/BlogOverview";
 import UserProfileLite from "./views/UserProfileLite";
-import AddNewPost from "./views/AddNewPost";
+import AddNewBlog from "./views/AddNewBlog";
 import AddNewCoAdmin from "./views/AddNewCoAdmin";
 import Errors from "./views/Errors";
 import ComponentsOverview from "./views/ComponentsOverview";
@@ -20,7 +20,8 @@ import NewsApproval from "./views/NewsApproval";
 import EventsApproval from "./views/EventsApproval";
 import Categories from "./views/Categories";
 import NewSubCategory from "./views/NewSubCategory";
-
+import AddNewNews from "./views/AddNewNews";
+import AddNewEvent from "./views/AddNewEvent";
 
 export default [
   {
@@ -40,9 +41,19 @@ export default [
     component: UserProfileLite
   },
   {
-    path: "/add-new-post",
+    path: "/new-blog",
     layout: DefaultLayout,
-    component: AddNewPost
+    component: AddNewBlog
+  },
+  {
+    path: "/new-news",
+    layout: DefaultLayout,
+    component: AddNewNews
+  },
+  {
+    path: "/new-event",
+    layout: DefaultLayout,
+    component: AddNewEvent
   },
   {
     path: "/errors",
@@ -80,22 +91,22 @@ export default [
     component: UsersManagement
   },
   {
-    path: "/Blogs-approval",
+    path: "/Blogs-management",
     layout: DefaultLayout,
     component: BlogsApproval 
   },
   {
-    path: "/Podcasts-approval",
+    path: "/Podcasts-management",
     layout: DefaultLayout,
     component: PodcastsApproval 
   },
   {
-    path: "/News-approval",
+    path: "/News-management",
     layout: DefaultLayout,
     component: NewsApproval
   },
   {
-    path: "/Events-approval",
+    path: "/Events-management",
     layout: DefaultLayout,
     component: EventsApproval
   },

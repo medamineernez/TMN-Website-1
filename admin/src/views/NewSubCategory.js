@@ -43,11 +43,11 @@ const AddNewCoAdmin = () => (
           <Form>
             <Row form>
             <Col md="6" className="form-group">
-                <label htmlFor="feFirstName">Category Name</label>
+                <label htmlFor="feFirstName">Sub-Category Name</label>
                 <FormInput
                   id="feCategoryName"
                   type="text"
-                  placeholder="Category name"
+                  placeholder="Sub-Category name"
                   required={true}
                 />
               </Col>

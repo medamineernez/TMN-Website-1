@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {Link} from "react-router-dom";
 import { Container, Row, Col, Card, CardHeader, CardBody, Button, Breadcrumb, BreadcrumbItem, } from "shards-react";
-
 import PageTitle from "../components/common/PageTitle";
 
-const Tables = () => (
+
+const Tables = () => {
+  const [coadmins, setCoadmins] = useState([])
+
+  const fetchData = () => {
+    fetch("http://localhost:3000/api/coadmin/allCoadmins")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setCoadmins(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  return(
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
@@ -54,19 +71,23 @@ const Tables = () => (
                   </th>
                 </tr>
               </thead>
+              
               <tbody>
+              {coadmins &&
+                coadmins.map((coadmin) => (
                 <tr>
-                  <td>1</td>
-                  <td>Amine</td>
+                  <td key={coadmin.id}>{coadmin.id}</td>
+                  <td>{coadmin.name}</td>
                   <td>Ernez</td>
-                  <td>amineernez@gmail.com</td>
+                  <td>{coadmin.email}</td>
                   <td>Sousse</td>
                   <td>
                     <Button outline size="sm" theme="danger" className="mb-2 mr-1">
                       Delete
                     </Button>
                   </td>
-                </tr>               
+                </tr>
+                ))}
               </tbody>
             </table>
           </CardBody>
@@ -74,6 +95,6 @@ const Tables = () => (
       </Col>
     </Row>
   </Container>
-);
-
+  )
+};
 export default Tables;

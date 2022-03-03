@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody, Button, Modal, ModalBo
 import { Link } from "react-router-dom";
 import PageTitle from "../components/common/PageTitle";
 
-export default class BlogsApproval extends React.Component {
+export default class BlogsManagement extends React.Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
@@ -23,7 +23,7 @@ export default class BlogsApproval extends React.Component {
 
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="Blogs list" subtitle="Blogs approval" className="text-sm-left" />
+      <PageTitle sm="4" title="Blogs list" subtitle="Blogs Management" className="text-sm-left" />
     </Row>
     
     {/* Components Navigation */}
@@ -31,7 +31,7 @@ export default class BlogsApproval extends React.Component {
       <BreadcrumbItem>
         <Link to="/">Dashboard</Link>
       </BreadcrumbItem>
-      <BreadcrumbItem active>Blogs Approval</BreadcrumbItem>
+      <BreadcrumbItem active>Blogs Management</BreadcrumbItem>
     </Breadcrumb>
 
     {/* Default Dark Table */}
@@ -39,7 +39,12 @@ export default class BlogsApproval extends React.Component {
       <Col>
         <Card small className="mb-4 overflow-hidden">
           <CardHeader className="bg-dark">
-            <h6 className="m-0 text-white">Requested Blogs</h6>
+            <h6 className="m-0 text-white">Blogs list</h6>
+            <Link to="/new-blog">
+              <Button outline theme="primary" className="mb-2 mr-1" style={{float: "right"}}>
+                Add Blog
+              </Button>
+            </Link>
           </CardHeader>
           <CardBody className="bg-dark p-0 pb-3">
             <table className="table table-dark mb-0">
