@@ -72,4 +72,20 @@ router.get("/allCoadmins", (req, res, next) => {
     });
 });
 
+ // delete co admin
+
+ router.delete("/deleteCoadmin/:id", (req,res) => {
+  CoAdmin.remove({
+    _id: req.params.id,
+  })
+    .then(() => {
+      res.send({ message: "Co admin deleted successfully!" });
+    })
+    .catch((error) => {
+      res.status(404).json({
+        error: error,
+      });
+    });
+});
+
 module.exports = router;
