@@ -71,7 +71,7 @@ UPDATE http://localhost:3000/api/blogs/allblogs/:id
 
 // all users 
 
-GET  http://localhost:3000/api/users/allusers/:id
+GET  http://localhost:3000/api/user/allusers
 
 //get one user 
 
