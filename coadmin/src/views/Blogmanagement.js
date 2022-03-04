@@ -120,8 +120,11 @@ const Blogmanagement = () => {
         <Card small className="mb-3">
     <CardBody>
       <Form className="add-new-post">
-        <FormInput size="lg" className="mb-3" placeholder="Your Post Title" />
+      <FormInput size="lg" className="mb-3" placeholder="Your Post Title" required />
+      <FormInput size="lg" className="mb-3" placeholder="Your Propriety"  required />
+        <FormInput size="lg" className="mb-3" placeholder="Your Post Title" required />
         <ReactQuill className="add-new-post__editor mb-1" />
+        <Button type="submit" size="sm" theme="success" className="mb-2 mr-1" id="pos" >Create</Button>
       </Form>
     </CardBody>
   </Card>
