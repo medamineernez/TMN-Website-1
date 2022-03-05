@@ -2,6 +2,7 @@ import React from "react";
 import PageTitle from "../components/common/PageTitle";
 import Editor from "../components/add-new-post/Editor";
 import { Link } from "react-router-dom";
+
 import {  Container,
           Button,
           Row, 
@@ -9,6 +10,7 @@ import {  Container,
           InputGroup,
           InputGroupAddon,
           InputGroupText,
+
           FormSelect,
           Breadcrumb,
           BreadcrumbItem,
@@ -22,6 +24,7 @@ const AddNewBlog = () => (
       <PageTitle sm="4" title="Add New Post" subtitle="Blog Posts" className="text-sm-left" />
     </Row>
     
+
     {/* Components Navigation */}
     <Breadcrumb>
       <BreadcrumbItem>
@@ -32,7 +35,6 @@ const AddNewBlog = () => (
       </BreadcrumbItem>
       <BreadcrumbItem active>New Blog</BreadcrumbItem>
     </Breadcrumb>
-
     <Row>
       {/* Editor */}
 
@@ -43,6 +45,22 @@ const AddNewBlog = () => (
       <Col lg="12" md="12">
         <InputGroup className="mb-3">
           <InputGroupAddon type="prepend">
+
+
+            <InputGroupText>Category</InputGroupText>
+          </InputGroupAddon>
+        <FormSelect>
+          <option>Choose</option>
+
+          <option>News</option>
+          <option>Blog</option>
+          <option>Podcast</option>
+          <option>Event</option>
+        </FormSelect>
+        </InputGroup>
+        <InputGroup className="mb-3">
+          <InputGroupAddon type="prepend">
+
             <InputGroupText>Sub-Category</InputGroupText>
           </InputGroupAddon>
         <FormSelect>
@@ -50,6 +68,9 @@ const AddNewBlog = () => (
           <option>Sports</option>
           <option>Adventures</option>
           <option>Buisness</option>
+          <option>Sports</option>
+          <option>Adventures</option>
+          <option>EDS EDS</option>
         </FormSelect>
         </InputGroup>
         <div className="custom-file mb-3">
@@ -64,6 +85,7 @@ const AddNewBlog = () => (
             Choose second image
           </label>
         </div>
+
         <InputGroup seamless className="mb-3">
           <InputGroupAddon type="prepend">
             <InputGroupText>
@@ -75,10 +97,16 @@ const AddNewBlog = () => (
         <Button theme="accent" size="xl" className="ml-auto">
           <i className="material-icons">file_copy</i> Publish
         </Button>
+
+        <Button theme="accent" size="sm" className="ml-auto">
+            <i className="material-icons">file_copy</i> Publish
+          </Button>
       </Col>
       
     </Row>
   </Container>
 );
 
+
 export default AddNewBlog;
+

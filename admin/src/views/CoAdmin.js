@@ -52,9 +52,6 @@ const Tables = () => {
               <thead className="thead-dark">
                 <tr>
                   <th scope="col" className="border-0">
-                    #
-                  </th>
-                  <th scope="col" className="border-0">
                     First Name
                   </th>
                   <th scope="col" className="border-0">
@@ -76,11 +73,10 @@ const Tables = () => {
               {coadmins &&
                 coadmins.map((coadmin) => (
                 <tr>
-                  <td key={coadmin.id}>{coadmin.id}</td>
                   <td>{coadmin.name}</td>
-                  <td>Ernez</td>
+                  <td>{coadmin.lastName}</td>
                   <td>{coadmin.email}</td>
-                  <td>Sousse</td>
+                  <td>{coadmin.city}</td>
                   <td>
                     <Button outline size="sm" theme="danger" className="mb-2 mr-1">
                       Delete

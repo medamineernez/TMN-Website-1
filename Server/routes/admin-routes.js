@@ -11,6 +11,7 @@ router.post("/login", (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    role :"admin" ,
   });
 
   if (
@@ -36,15 +37,18 @@ router.post("/login", (req, res) => {
 router.post("/addcoadmin", (req, res) => {
   const coadmin = new CoAdmin({
     name: req.body.name,
+    lastName:req.body.lastName,
     email: req.body.email,
     password: req.body.password,
+    city : req.body.city,
+    role :"co-admin",
   });
 
   coadmin
     .save()
     .then(() => {
       res.status(201).json({
-        message: "coadmin saved successfully!",
+        message: "coadmin saved successfully !",
       });
     })
     .catch((error) => {
@@ -54,6 +58,10 @@ router.post("/addcoadmin", (req, res) => {
     });
 });
 
-// get all co admins
+
+
+
+
+
 
 module.exports = router;
