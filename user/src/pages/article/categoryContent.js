@@ -2,48 +2,67 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ArticleCard from "../../components/articleCard";
 import NavBar from "../../components/navbar";
-import { Group, Loader, Center } from "@mantine/core";
+import { Loader, Center } from "@mantine/core";
 import axios from "axios";
+import Footer from "../../components/footer";
 
 function CategoryContent() {
   let { category } = useParams();
   let [post, setPost] = useState();
-
-  useEffect(() => {
-    axios.get("https://reqres.in/api/users?page=2").then((response) => {
-      setPost(response.data);
-    });
-  }, []);
-
-  if (!post)
-    return (
-      <Center style={{ widt: "100%", height: "80vh" }}>
-        <Loader color="dark" size="xl" variant="bars" />
-      </Center>
-    );
   var rows = [];
-  post.data.map((piece) => {
+
+function getcategory(categoryid){
+  axios.get("http://localhost:3000/api/categorys/allCategorys/"+categoryid).then((response) => {
+    alert(response.data);
+  });
+}
+
+  useEffect(() => { 
+    function getdata(){
+      axios.get("http://localhost:3000/api/"+category+"/all"+category).then((response) => {
+        setPost(response.data);
+      });}
+    getdata();
+    
+  }, [category]);
+
+  if (post){
+    
+    post.map((piece) => {
     rows.push(
       <ArticleCard
-        title={piece.first_name}
-        id={piece.id}
-        category={category}
-        description={piece.last_name}
-        src={piece.avatar}
+        title={piece.title}
+        id={piece._id}
+        category='news'//{piece.category}
+        description={piece.content}
+        src={piece.image}
       />
     );
+    
     return "";
-  });
+ });
+}
 
-  return (
-    <div>
-      <NavBar />
-      <div style={{ marginLeft:20,paddingTop: 1, paddingBottom: 50 }}>
-        <h1 style={{ color: "#000000", fontSize: 40 }}>{category}</h1>
-        <Group direction="column">{rows}</Group>
-      </div>
+if (!post)
+return (
+  <Center style={{ widt: "100%", height: "80vh" }}>
+    <Loader color="dark" size="xl" variant="bars" />
+  </Center>
+);
+else{
+return (
+<div>
+  <NavBar />
+  category={category}
+  <div style={{ height:'100vh' }}>
+    <h1 style={{ color: "#000000", fontSize: 40, marginLeft:'30px' }}>{category}</h1>
+    <div style={{marginLeft:'30px'}}>
+    {rows}
     </div>
-  );
+  </div>
+  <Footer/> 
+</div>
+);}
 }
 
 export default CategoryContent;

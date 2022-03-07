@@ -14,11 +14,13 @@ import {
   Group,
   Text,
   List,
+  MantineProvider,
 } from "@mantine/core"; //@mantine/core@3.2.3 
 
 import Fade from 'react-reveal/Fade';
 import { Link } from "react-router-dom";
 import logo from "../media/TMN_inverted.jpg";
+import logo2 from "../media/TMN_colored.jpg";
 import { makeStyles } from "@mui/styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -145,6 +147,9 @@ function NavBar() {
   };
 
   function logout() {
+    if (window.location.pathname==='/'){
+      window.location.reload(false);
+    }
     localStorage.clear();
   }
 
@@ -156,7 +161,7 @@ function NavBar() {
 
   useEffect(() => {
     //load subcategories from DB
-    axios.get("http://localhost:3000/api/admin/allCategorys").then((response) => {
+    axios.get("http://localhost:3000/api/categorys/allCategorys").then((response) => {
       
       response.data.forEach(sub => {
         if ((sub.refrencesTo==="news")&&(!newssubt.includes(sub.title))){
@@ -169,7 +174,7 @@ function NavBar() {
           blogsnav.push(<List.Item><Link to={"/blogs/"+sub.title} style={{ textDecoration: 'none',fontSize:'18px', fontWeight:'400', color:'#000' }}>{sub.title}</Link></List.Item>);
           blogssubt.push(sub.title);
         }
-        if (sub.refrencesTo==="podcasts"&&(!podcastssubt.includes(sub.title))){
+        if (sub.refrencesTo==="podcast"&&(!podcastssubt.includes(sub.title))){
           podcastssub.push(<Menu.Item component={Link} to={"/podcasts/"+sub.title}>{sub.title}</Menu.Item>)
           podcastsnav.push(<List.Item><Link to={"/podcasts/"+sub.title} style={{ textDecoration: 'none',fontSize:'18px', fontWeight:'400', color:'#000' }}>{sub.title}</Link></List.Item>);
           podcastssubt.push(sub.title);
@@ -441,14 +446,16 @@ function NavBar() {
 
       </div>
       </Fade>
+      <MantineProvider theme={{ colorScheme: 'dark' }}>
       <Drawer
                 opened={opened}
                 onClose={() => setOpened(false)}
-                title={<img alt="" src={logo} style={{ height: 40 }} />}
+                title={<img alt="" src={logo2} style={{ height: 40 }} />}
                 padding="xs"
                 size="100%"
+                color="dark"
                 >
-                   <div style={{backgroundColor:'#ffffff', width:'100%', height:'60px',position:'fixed',zIndex:4,top:50,left:0}}>
+                   <div style={{backgroundColor:'#1a1b1e', width:'100%', height:'60px',position:'fixed',zIndex:4,top:50,left:0}}>
                       <Center style={{height:'100%'}}>
                         <TextInput variant="filled" style={{width:'80%'}} ></TextInput>
                         <ActionIcon variant="light" style={{marginLeft:10,width:40, height:40, borderRadius:50}}>
@@ -457,8 +464,8 @@ function NavBar() {
                       </Center>
 
       </div>
-                  <Group position="apart" style={{marginTop:'75px'}}>
-                    <div style={{ width:'180px'}}>
+                  <Grid justify="space-around" align="flex-start" style={{marginTop:'25px'}}>
+                    <div style={{ width:'180px',marginTop:'50px'}}>
                       <Link to="/news" style={{ textDecoration: 'none' }}>
                       <Text style={{fontSize:'26px', fontWeight:'700', textDecoration:'none'}}>News</Text>
                       </Link>
@@ -467,7 +474,7 @@ function NavBar() {
                       </List>
                       
                     </div>
-                    <div style={{width:'180px'}}>
+                    <div style={{width:'180px',marginTop:'50px'}}>
                     <Link to="/blogs" style={{ textDecoration: 'none' }}>
                       <Text style={{fontSize:'26px', fontWeight:'700', textDecoration:'none'}}>Blogs</Text>
                       </Link>
@@ -475,7 +482,7 @@ function NavBar() {
                         {blogsnav}
                       </List>
                     </div>
-                    <div style={{width:'180px'}}>
+                    <div style={{width:'180px',marginTop:'50px' }}>
                     <Link to="/events" style={{ textDecoration: 'none' }}>
                       <Text style={{fontSize:'26px', fontWeight:'700', textDecoration:'none'}}>Events</Text>
                       </Link>
@@ -484,7 +491,7 @@ function NavBar() {
                         edseds
                       </List>
                     </div>
-                    <div style={{width:'180px'}}>
+                    <div style={{width:'180px',marginTop:'50px'}}>
                     <Link to="/podcasts" style={{ textDecoration: 'none' }}>
                       <Text style={{fontSize:'26px', fontWeight:'700', textDecoration:'none'}}>Podcasts</Text>
                       </Link>
@@ -508,7 +515,7 @@ function NavBar() {
                 >
                   <a href="https://www.facebook.com/TunisianModernNewspaperOfficiel" >
                     <FacebookIcon
-                      style={{ fontSize: "48px" }}
+                      style={{ fontSize: "48px", color:'#fff' }}
                       className={classes.fcb}
                     />
                   </a>
@@ -518,23 +525,25 @@ function NavBar() {
                         marginLeft: 50,
                         marginRight: 50,
                         fontSize: "48px",
+                        color:'#fff'
                       }}
                       className={classes.ins}
                     />
                   </a>
                   <a href="https://www.linkedin.com/company/tunisian-modern-newspaper/">
                     <LinkedInIcon
-                      style={{ fontSize: "48px" }}
+                      style={{ fontSize: "48px" , color:'#fff'}}
                       className={classes.ytb}
                     />
                   </a>
                 </SimpleGrid>
                     
-                    </Group>
+            </Grid>
                     
                 
                 
               </Drawer>
+              </MantineProvider>
     </div>
   );
 }

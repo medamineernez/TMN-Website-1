@@ -35,7 +35,7 @@ function LandingPage() {
               <SliderArticle
                 src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
                 id="02"
-                title="Ernez 3mal pull request"
+                title="Ernez 3mal pull request ██👽██" 
                 description="enfin, ba3d allahou a3laam 9adem wa9t, ernez 3mal pull request, literally wallit nebki mel far7a ki choft el notification"
               />
             </div>
@@ -66,13 +66,17 @@ function LandingPage() {
           <Group position="center">
             <LatestNews
               id="5"
+              category='news'
+              subcategory='1'
               title="eds eds"
               description="description of said event"
               src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
             />
-            <LatestNews id="5" title="title" description="tell me why" />
+            <LatestNews category='news' subcategory='1' id="5" title="title" description="tell me why" />
             <LatestNews
               id="5"
+              category='news'
+              subcategory='1'
               title="this is basically copy paste"
               description="you get the idea"
             />
@@ -83,18 +87,24 @@ function LandingPage() {
           <Group position="center">
             <LatestNews
               id="5"
+              category='events'
+              subcategory='1'
               title="eds eds"
               description="description of said event"
               src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
             />
             <LatestNews
               id="5"
+              category='events'
+              subcategory='1'
               title="title"
               description="tell me why"
               src="https://i0.wp.com/www.eurasiareview.com/wp-content/uploads/2018/12/c-13.jpg?fit=830%2C510&ssl=1"
             />
             <LatestNews
               id="5"
+              category='events'
+              subcategory='1'
               title="this is basically copy paste"
               description="you get the idea"
             />
@@ -105,13 +115,17 @@ function LandingPage() {
           <Group position="center">
             <LatestNews
               id="5"
+              category='blogs'
+              subcategory='1'
               title="eds eds"
               description="description of said event"
               src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
             />
-            <LatestNews id="5" title="title" description="tell me why" />
+            <LatestNews category='blogs' subcategory='1' id="5" title="title" description="tell me why" />
             <LatestNews
               id="5"
+              category='blogs'
+              subcategory='1'
               title="this is basically copy paste"
               description="you get the idea"
               src="https://i0.wp.com/www.eurasiareview.com/wp-content/uploads/2018/12/c-13.jpg?fit=830%2C510&ssl=1"
@@ -123,13 +137,18 @@ function LandingPage() {
           <Group position="center">
             <LatestNews
               id="5"
+              category='podcasts'
+              subcategory='1'
               title="eds eds"
               description="description of said event"
               src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
             />
-            <LatestNews id="5" title="title" description="tell me why" />
+            <LatestNews 
+            category='podcasts' subcategory='1' id="5" title="title" description="tell me why" />
             <LatestNews
               id="5"
+              category='podcasts'
+              subcategory='1'
               title="this is basically copy paste"
               description="you get the idea"
               src="https://i0.wp.com/www.eurasiareview.com/wp-content/uploads/2018/12/c-13.jpg?fit=830%2C510&ssl=1"
