@@ -35,7 +35,7 @@ function LandingPage() {
               <SliderArticle
                 src="https://cdnb.artstation.com/p/assets/images/images/024/796/147/large/thomas-simon-untitled-8.jpg?1583562121&dl=1"
                 id="02"
-                title="Ernez 3mal pull request ██👽██" 
+                title="dezz akel pull request" 
                 description="enfin, ba3d allahou a3laam 9adem wa9t, ernez 3mal pull request, literally wallit nebki mel far7a ki choft el notification"
               />
             </div>
@@ -43,7 +43,7 @@ function LandingPage() {
               <SliderArticle
                 src="https://i0.wp.com/www.eurasiareview.com/wp-content/uploads/2018/12/c-13.jpg?fit=830%2C510&ssl=1"
                 id="3"
-                title="zidou fas5ou el subcategories"
+                title="ya wael sayab el subcategories"
                 description="yfass5ou fel subcategories mel DB w au meme temps y7ebbouni ne5dem el fonctionalité ta3 page el subcategory"
               />
             </div>
@@ -51,7 +51,7 @@ function LandingPage() {
               <SliderArticle
                 src="https://i0.wp.com/www.eurasiareview.com/wp-content/uploads/2018/12/c-13.jpg?fit=830%2C510&ssl=1"
                 id="3"
-                title="islam??"
+                title="quoi??"
                 description="m5ollili subcategory wa7da esmha islam?? t7ebech nroddou el site y9ollek el 9eblaa mniin wakahaw"
               />
             </div>

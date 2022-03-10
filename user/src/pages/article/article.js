@@ -52,7 +52,7 @@ function Article() {
         <h1 style={{ color: "#000000", fontSize: 40 }}>{category}</h1>
         {rows}
       </div>
-      <Footer/> 
+      <Footer/>
     </div>
   );}
 }

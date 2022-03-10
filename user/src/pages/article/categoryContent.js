@@ -11,11 +11,11 @@ function CategoryContent() {
   let [post, setPost] = useState();
   var rows = [];
 
-function getcategory(categoryid){
+/*function getcategory(categoryid){
   axios.get("http://localhost:3000/api/categorys/allCategorys/"+categoryid).then((response) => {
     alert(response.data);
   });
-}
+}*/
 
   useEffect(() => { 
     function getdata(){
