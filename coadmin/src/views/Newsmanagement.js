@@ -5,7 +5,7 @@ import { Container, Row, Col, Card, CardHeader, CardBody, Button ,FormInput,
 
 import PageTitle from "../components/common/PageTitle";
 
-const Inusemanagement = () => {
+const Newsmanagement = () => {
   const [toggle,setToggle] = useState(false);
   function show(){
     setToggle(!toggle);
@@ -14,7 +14,7 @@ const Inusemanagement = () => {
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="Users" subtitle="Users management" className="text-sm-left" />
+      <PageTitle sm="4" title="News" subtitle="News Management" className="text-sm-left" />
     </Row>
 
     {/* Default Light Table */}
@@ -22,7 +22,7 @@ const Inusemanagement = () => {
       <Col>
         <Card small className="mb-4">
           <CardHeader className="border-bottom">
-            <h6 className="m-0">Users list</h6>
+            <h6 className="m-0">News list</h6>
             <Button
                   size="sm"
                   theme="success"
@@ -94,4 +94,4 @@ const Inusemanagement = () => {
   </Container>
 );
   };
-export default Inusemanagement;
+export default Newsmanagement;

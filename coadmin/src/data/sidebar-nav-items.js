@@ -11,9 +11,9 @@ export default function() {
       to: "/Blogmanagement",
     },
     {
-      title: "In use Management",
+      title: "News Management",
       htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/Inusemanagement",
+      to: "/Newsmanagement",
     },
     {
       title: "Category",

@@ -10,7 +10,7 @@ import UserProfileLite from "./views/UserProfileLite";
 import Blogmanagement from "./views/Blogmanagement";
 import Errors from "./views/Errors";
 import ComponentsOverview from "./views/ComponentsOverview";
-import Inusemanagement from "./views/Inusemanagement";
+import Inusemanagement from "./views/Newsmanagement";
 import Podcast from "./views/Podcast";
 import Category from "./views/Category";
 
@@ -52,7 +52,7 @@ export default [
     component: Category
   },
   {
-    path: "/Inusemanagement",
+    path: "/Newsmanagement",
     layout: DefaultLayout,
     component: Inusemanagement
   },

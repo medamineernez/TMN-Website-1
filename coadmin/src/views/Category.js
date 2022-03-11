@@ -41,7 +41,7 @@ const Category = () => {
                   <code>&nbsp;</code>Title
                   </th>
                   <th scope="col" className="border-0">
-                    References Tool
+                    References Tools
                   </th>
                   <th scope="col" className="border-0">
                   
