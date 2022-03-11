@@ -4,12 +4,10 @@ import { Container, Row, Col, Card, CardHeader, CardBody, Button ,FormInput,
   import ReactQuill from "react-quill";
 
 import PageTitle from "../components/common/PageTitle";
+import { Link } from "react-router-dom";
 
 const Newsmanagement = () => {
-  const [toggle,setToggle] = useState(false);
-  function show(){
-    setToggle(!toggle);
-  } 
+  
   return (
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
@@ -23,15 +21,17 @@ const Newsmanagement = () => {
         <Card small className="mb-4">
           <CardHeader className="border-bottom">
             <h6 className="m-0">News list</h6>
+           <Link to="/Addnews">
             <Button
                   size="sm"
                   theme="success"
                   className="mb-2 mr-1"
                   id="pos"
-                  onClick={() => show()}
+                  
                 >
                   Create
                 </Button>
+                </Link>
           </CardHeader>
           <CardBody className="p-0 pb-3">
             <table className="table mb-0">
@@ -76,21 +76,7 @@ const Newsmanagement = () => {
         </Card>
       </Col>
     </Row>
-    { toggle? (<Row>
-        <Col>
-        <Card small className="mb-3">
-    <CardBody>
-      <Form className="add-new-post">
-      <FormInput size="lg" className="mb-3" placeholder="Your First Name	" required />
-      <FormInput size="lg" className="mb-3" placeholder="Your Last Name"  required />
-        <FormInput size="lg" className="mb-3" placeholder="Your City" required />
-        <ReactQuill className="add-new-post__editor mb-1" />
-        <Button type="submit" size="sm" theme="success" className="mb-2 mr-1" id="pos" >Create</Button>
-      </Form>
-    </CardBody>
-  </Card>
-        </Col>
-      </Row>) : null}
+   
   </Container>
 );
   };

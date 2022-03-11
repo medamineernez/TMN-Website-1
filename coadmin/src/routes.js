@@ -13,6 +13,10 @@ import ComponentsOverview from "./views/ComponentsOverview";
 import Inusemanagement from "./views/Newsmanagement";
 import Podcast from "./views/Podcast";
 import Category from "./views/Category";
+import Addnewpodcast from "./views/Addnewpodcast";
+import Addnewblog from "./views/Addnewblog";
+import Addnews from "./views/Addnews";
+import Addnewcategory from "./views/Addnewcategory";
 
 export default [
   {
@@ -60,5 +64,26 @@ export default [
     path: "/Podcast",
     layout: DefaultLayout,
     component: Podcast
+  },
+  {
+    path:"/Addnewpodcast",
+    layout:DefaultLayout,
+    component:Addnewpodcast
+  },
+  {
+    path:"/Addnewblog",
+    layout:DefaultLayout,
+    component:Addnewblog
+  },
+  {
+    path:"/Addnews",
+    layout:DefaultLayout,
+    component:Addnews
+  },
+  {
+    path:"/Addnewcategory",
+    layout:DefaultLayout,
+    component:Addnewcategory
   }
+
 ];

@@ -19,13 +19,11 @@ import {
 } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
+import { Link } from "react-router-dom";
 
 
 const Podcast = () => {
-  const [toggle,setToggle] = useState(false);
-  function show(){
-    setToggle(!toggle);
-  }
+  
   return(
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
@@ -39,8 +37,9 @@ const Podcast = () => {
         <Card small className="mb-4">
           <CardHeader className="border-bottom">
             <h6 className="m-0">Podcasts list</h6>
-            <Button size="sm" theme="success" className="mb-2 mr-1" id="pos" onClick={() => show()} >Create</Button>
-            
+            <Link to="/Addnewpodcast">
+            <Button size="sm" theme="success" className="mb-2 mr-1" id="pos">Create</Button>
+            </Link>
           </CardHeader>
           <CardBody className="p-0 pb-3">
             <table className="table mb-0">
@@ -92,22 +91,7 @@ const Podcast = () => {
         </Card>
       </Col>
     </Row>
-    { toggle? (<Row>
-        <Col>
-        <Card small className="mb-3">
-    <CardBody>
-      <Form className="add-new-post">
-      <FormInput size="lg" className="mb-3" placeholder="Your Post Title" required />
-      <FormInput size="lg" className="mb-3" placeholder="Your Propriety" required />
-        <FormInput type="date" size="lg" className="mb-3" placeholder="Date of post" required />
-        <ReactQuill className="add-new-post__editor mb-1" />
-        <Button type="submit" size="sm" theme="success" className="mb-2 mr-1" id="pos" >Create</Button>
-            
-      </Form>
-    </CardBody>
-  </Card>
-        </Col>
-      </Row>) : null}
+    
   </Container>
 );
 };
