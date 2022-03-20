@@ -13,7 +13,7 @@ import Errors from "./views/Errors";
 import ComponentsOverview from "./views/ComponentsOverview";
 
 import BlogPosts from "./views/BlogPosts";
-import CoAdmin from "./views/CoAdmin";
+
 import BlogsApproval from "./views/BlogsApproval";
 import PodcastsApproval from "./views/PodcastSApproval";
 import NewsApproval from "./views/NewsApproval";
@@ -64,11 +64,6 @@ export default [
     path: "/components-overview",
     layout: DefaultLayout,
     component: ComponentsOverview
-  },
-  {
-    path: "/co-admin",
-    layout: DefaultLayout,
-    component: CoAdmin 
   },
   {
 
