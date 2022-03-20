@@ -1,39 +1,34 @@
 export default function() {
   return [
     {
-      title: "Podcast Management",
+      title: "Blog Posts",
       htmlBefore: '<i class="material-icons">vertical_split</i>',
-      to: "/Podcast",
+      to: "/blog-posts",
     },
     {
-      title: "Blog Management",
-      htmlBefore: '<i class="material-icons">note_add</i>',
-      to: "/Blogmanagement",
+      title: "Blogs Management",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/Blogs-management",
+    },
+    {
+      title: "Podcasts Management",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/Podcasts-management",
+    },
+    {
+      title: "Categories",
+      htmlBefore: '<i class="material-icons">view_module</i>',
+      to: "/categories",
     },
     {
       title: "News Management",
       htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/Newsmanagement",
+      to: "/News-management",
     },
     {
-      title: "Category",
+      title: "Events Management",
       htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/Category",
-    },
-    {
-      title: "User Profile",
-      htmlBefore: '<i class="material-icons">person</i>',
-      to: "/user-profile-lite",
-    },
-    {
-      title: "Forms & Components",
-      htmlBefore: '<i class="material-icons">view_module</i>',
-      to: "/components-overview",
-    },
-    {
-      title: "Errors",
-      htmlBefore: '<i class="material-icons">error</i>',
-      to: "/errors",
+      to: "/Events-management",
     }
   ];
 }
