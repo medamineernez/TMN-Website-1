@@ -2,7 +2,9 @@ import React from "react";
 import { Redirect,} from "react-router-dom";
 
 // Layout Types
-import { DefaultLayout } from "./layouts";
+import { DefaultLayout} from "./layouts";
+
+
 
 // Route Views
 import BlogOverview from "./views/BlogOverview";
@@ -22,6 +24,8 @@ import Categories from "./views/Categories";
 import NewSubCategory from "./views/NewSubCategory";
 import AddNewNews from "./views/AddNewNews";
 import AddNewEvent from "./views/AddNewEvent";
+import Login from "./views/Login";
+
 
 export default [
   {
@@ -102,5 +106,7 @@ export default [
     path: "/blog-posts",
     layout: DefaultLayout,
     component: BlogPosts
-  },
+  }
+ 
+  
 ];

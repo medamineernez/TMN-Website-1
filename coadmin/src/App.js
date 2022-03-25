@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import "./shards-dashboard/styles/Login.css";
 import routes from "./routes";
 import withTracker from "./withTracker";
+import Login from "./views/Login";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./shards-dashboard/styles/shards-dashboards.1.1.0.min.css";
@@ -11,8 +12,18 @@ import "./shards-dashboard/styles/shards-dashboards.1.1.0.min.css";
 export default () => (
   <Router basename={process.env.REACT_APP_BASENAME || ""}>
     <div>
+    
+      <Route exact path="/login">
+       <Login />
+         </Route>
+      
+
       {routes.map((route, index) => {
         return (
+         
+        
+         
+       
           <Route
             key={index}
             path={route.path}
