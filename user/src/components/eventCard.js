@@ -3,16 +3,16 @@ import { MediaQuery, Card, Image, Text } from "@mantine/core";
 import { Link } from "react-router-dom";
 
 const hide = { display: "none" };
-function ArticleCard(props) {
+function EventCard(props) {
   return (
     <div>
-      <MediaQuery largerThan="md" styles={hide}>
+      <MediaQuery largerThan="xs" styles={hide}>
         <Card
           style={{ width: "900px", height: "300px" }}
           shadow="xl"
           padding="xl"
           component={Link}
-          to={"/" + props.category + "/" + props.id}
+          to={"/events/" + props.id}
         >
           <Card.Section>
             <Image src={props.src} height={450} withPlaceholder />
@@ -31,10 +31,9 @@ function ArticleCard(props) {
         </Card>
       </MediaQuery>
 
-      <MediaQuery smallerThan="md" styles={hide}>
-        <div style={{width:'90vw'}}>
+      <MediaQuery smallerThan="xs" styles={hide}>
         <Card
-          style={{ width: "100%" }}
+          style={{ width: "400px", height: "300px" }}
           shadow="sm"
           padding="xl"
           component={Link}
@@ -53,10 +52,9 @@ function ArticleCard(props) {
           </Card.Section>
           
         </Card>
-        </div>
       </MediaQuery>
     </div>
   );
 }
 
-export default ArticleCard;
+export default EventCard;

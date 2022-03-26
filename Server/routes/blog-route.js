@@ -1,20 +1,35 @@
 const router = require("express").Router();
 const Blog = require("../models/blog");
 const path = require("path");
-const mltr = require("../midlewares/multer_config");
+const multer=require("multer")
+
+
+// multer storage 
+const storage = multer.diskStorage({
+  destination: './images/',
+  filename: function(req, file ,cb){
+    cb(null ,Date.now() + '-' + file.originalname)
+  }
+})
+const upload = multer({ storage })
 
 //add new blog
 
-router.post("/addblog", mltr, (req, res, next) => {
-  const url = req.protocol + "://" + req.get("host");
+router.post("/addblog", upload.single('image'),upload.single('image2'),(req, res, next) => {
+
+
+  const imageUrl = `http://localhost:3000/images/${req.file.filename}`
+
 
   const blog = new Blog({
+    
     title: req.body.title,
     category: req.body.category,
     content: req.body.content,
+    image: imageUrl,
+    author:req.body.author,
+    status :"on hold",
 
-    image: url + "/images/" + req.file.filname,
-    image2: url + "/images/" + req.file.filename,
   });
 
   blog
@@ -34,7 +49,7 @@ router.post("/addblog", mltr, (req, res, next) => {
 //get all blogs
 
 router.get("/allblogs", (req, res, next) => {
-  Blog.find()
+  Blog.find().populate("category")
     .then((blogs) => {
       res.status(200).json(blogs);
     })
@@ -47,10 +62,11 @@ router.get("/allblogs", (req, res, next) => {
 
 //get one blog
 
-router.get("/oneblog/:id", (res, req, next) => {
-  Blog.findOne({
+ router.get('/detail/:id',(req ,res) => {
+   
+     Blog.findOne({
     _id: req.params.id,
-  })
+  }).populate("category")
     .then((blog) => {
       res.status(200).json(blog);
     })
@@ -59,7 +75,9 @@ router.get("/oneblog/:id", (res, req, next) => {
         error: error,
       });
     });
-});
+   
+  }); 
+
 
 //delete one blog
 
@@ -79,7 +97,7 @@ router.delete("/allblogs/:id", (req, res, next) => {
 
 //update blog
 
-router.patch("/:id", (req, res) => {
+router.patch("/allblogs/:id", (req, res) => {
   const blog = Blog.find((blog) => blog.id === req.params.id);
 
   blog.title = req.body.title;

@@ -12,7 +12,7 @@ const CategorySchema = new Schema(
     refrencesTo: {
       type: String,
       required: true,
-      enum: ["news", "blogs"],
+      enum: ["news", "blogs","podcast"],
     },
   },
   { timestamps: true }
