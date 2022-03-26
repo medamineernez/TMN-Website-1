@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PageTitle from "../components/common/PageTitle";
 import Editor from "../components/add-new-post/Editor";
 import { Link } from "react-router-dom";
@@ -15,7 +15,26 @@ import {  Container,
           FormInput } from "shards-react";
 
 
-const AddNewNews = () => (
+const AddNewNews = () => {
+
+  const [categories,setCategories] = useState([]);
+
+  const fetchData = () => {
+    fetch("http://localhost:3000/api/categorys/allCategorys")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setCategories(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  return(
+
   <Container fluid className="main-content-container px-4 pb-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
@@ -46,10 +65,13 @@ const AddNewNews = () => (
             <InputGroupText>Sub-Category</InputGroupText>
           </InputGroupAddon>
         <FormSelect>
-          <option>Choose</option>
-          <option>Sports</option>
-          <option>Adventures</option>
-          <option>Buisness</option>
+
+        {categories &&
+                categories.map((category) => (
+
+          <option>{category.title}</option>
+        ))}
+        
         </FormSelect>
         </InputGroup>
         <div className="custom-file mb-3">
@@ -73,6 +95,7 @@ const AddNewNews = () => (
       
     </Row>
   </Container>
-);
+  );
+};
 
 export default AddNewNews;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import PageTitle from "../components/common/PageTitle";
 import {
     ListGroup,
@@ -15,11 +15,35 @@ import {
     InputGroupAddon,
     InputGroupText,
     FormSelect
-  } from "shards-react";
-import { Link } from "react-router-dom";
+                    } from "shards-react";
+import { Link, useHistory } from "react-router-dom";
 
 
-const AddNewCoAdmin = () => (
+const AddNewCoAdmin = () => {
+
+  const [title,setTitle] = useState('');
+  const [refrencesTo,setReferencesTo] = useState('blogs');
+  const [isPending,setIsPending] = useState('');
+
+  const history = useHistory();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const category = { title, refrencesTo };
+
+  fetch('http://localhost:3000/api/categorys/addCategory', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(category)
+    }).then(() => {
+      console.log('new Co-Admin added');
+      setIsPending(true);
+      history.go(-1);
+    })
+
+  }
+
+  return(
   <Container fluid className="main-content-container px-4 pb-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
@@ -31,7 +55,7 @@ const AddNewCoAdmin = () => (
         <Link to="/">Dashboard</Link>
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <Link to="/co-admin">Categories</Link>
+        <Link to="/categories">Categories</Link>
       </BreadcrumbItem>
       <BreadcrumbItem active>New Sub-Category</BreadcrumbItem>
     </Breadcrumb>
@@ -41,6 +65,7 @@ const AddNewCoAdmin = () => (
       <Row>
         <Col>
           <Form>
+          <form onSubmit={handleSubmit}>
             <Row form>
             <Col md="6" className="form-group">
                 <label htmlFor="feFirstName">Sub-Category Name</label>
@@ -49,6 +74,8 @@ const AddNewCoAdmin = () => (
                   type="text"
                   placeholder="Sub-Category name"
                   required={true}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </Col>
               <Col md="6">
@@ -57,22 +84,27 @@ const AddNewCoAdmin = () => (
                 <InputGroupAddon type="prepend">
                 <InputGroupText>Refers to</InputGroupText>
                 </InputGroupAddon>
-                <FormSelect>
-                <option>Choose</option>
-                <option>Blog</option>
-                <option>Podcast</option>
-                <option>News</option>
+                <FormSelect
+                value={refrencesTo}
+                onChange={(e) => setReferencesTo(e.target.value)}
+                >
+                <option>blog</option>
+                <option>podcast</option>
+                <option>news</option>
                 </FormSelect>
               </InputGroup>
               </Col>
             </Row>
-            <Button type="submit">Add</Button>
+            { !isPending && <Button type="submit">Add</Button> }
+            { isPending && <Button type="submit">Adding...</Button> }
+          </form>
           </Form>
         </Col>
       </Row>
     </ListGroupItem>
   </ListGroup>
   </Container>
-);
+  )
+};
 
 export default AddNewCoAdmin;

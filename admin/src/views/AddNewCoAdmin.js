@@ -12,11 +12,13 @@ import {
     Breadcrumb, 
     BreadcrumbItem,
   } from "shards-react";
-import { Link } from "react-router-dom";
+import { Link, useHistory,} from "react-router-dom";
 
 
 const AddNewCoAdmin = () => {
 
+  const history = useHistory();
+  
   const [name,setName] = useState('');
   const [lastName,setLastName] = useState('');
   const [email,setEmail] = useState('');
@@ -28,13 +30,14 @@ const AddNewCoAdmin = () => {
     e.preventDefault();
     const coadmin = { name, lastName, email, password, city };
 
-    fetch('http://localhost:3000/api/admin/addcoadmin', {
+    fetch('http://localhost:3000/api/coadmin/addCoadmin', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(coadmin)
     }).then(() => {
       console.log('new Co-Admin added');
-      setIsPending(false);
+      setIsPending(true);
+      history.go(-1);
     })
 
   }
@@ -61,7 +64,8 @@ const AddNewCoAdmin = () => {
       <Row>
         <Col>
           <Form>
-            <Row form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
+            <Row form>
             <Col md="6" className="form-group">
                 <label htmlFor="feFirstName">First Name</label>
                 <FormInput
@@ -115,6 +119,7 @@ const AddNewCoAdmin = () => {
             </Row>
             { !isPending && <Button type="submit">Create</Button>}
             { isPending && <Button  disabled>Adding...</Button>}
+            </form>
           </Form>
         </Col>
       </Row>

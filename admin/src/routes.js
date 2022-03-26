@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect,} from "react-router-dom";
 
 // Layout Types
 import { DefaultLayout } from "./layouts";
@@ -14,7 +14,6 @@ import ComponentsOverview from "./views/ComponentsOverview";
 import UsersManagement from "./views/UsersManagement";
 import BlogPosts from "./views/BlogPosts";
 import CoAdmin from "./views/CoAdmin";
-
 import BlogsApproval from "./views/BlogsApproval";
 import PodcastsApproval from "./views/PodcastSApproval";
 import NewsApproval from "./views/NewsApproval";
@@ -23,6 +22,7 @@ import Categories from "./views/Categories";
 import NewSubCategory from "./views/NewSubCategory";
 import AddNewNews from "./views/AddNewNews";
 import AddNewEvent from "./views/AddNewEvent";
+import BlogDetails from "./views/BlogDetails";
 
 export default [
   {
@@ -123,5 +123,10 @@ export default [
     path: "/blog-posts",
     layout: DefaultLayout,
     component: BlogPosts
+  },
+  {
+    path: "/Blog-Details/:id",
+    layout: DefaultLayout,
+    component: BlogDetails
   },
 ];

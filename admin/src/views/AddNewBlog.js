@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import PageTitle from "../components/common/PageTitle";
 import Editor from "../components/add-new-post/Editor";
 import { Link } from "react-router-dom";
@@ -17,7 +17,26 @@ import {  Container,
           FormInput } from "shards-react";
 
 
-const AddNewBlog = () => (
+const AddNewBlog = () => {
+
+  const [categories,setCategories] = useState([]);
+
+  const fetchData = () => {
+    fetch("http://localhost:3000/api/categorys/allCategorys")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setCategories(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  return(
+  
   <Container fluid className="main-content-container px-4 pb-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
@@ -45,13 +64,10 @@ const AddNewBlog = () => (
       <Col lg="12" md="12">
         <InputGroup className="mb-3">
           <InputGroupAddon type="prepend">
-
-
             <InputGroupText>Category</InputGroupText>
           </InputGroupAddon>
         <FormSelect>
           <option>Choose</option>
-
           <option>News</option>
           <option>Blog</option>
           <option>Podcast</option>
@@ -60,17 +76,14 @@ const AddNewBlog = () => (
         </InputGroup>
         <InputGroup className="mb-3">
           <InputGroupAddon type="prepend">
-
             <InputGroupText>Sub-Category</InputGroupText>
           </InputGroupAddon>
         <FormSelect>
-          <option>Choose</option>
-          <option>Sports</option>
-          <option>Adventures</option>
-          <option>Buisness</option>
-          <option>Sports</option>
-          <option>Adventures</option>
-          <option>EDS EDS</option>
+        {categories &&
+                categories.map((category) => (
+
+          <option>{category.title}</option>
+        ))}
         </FormSelect>
         </InputGroup>
         <div className="custom-file mb-3">
@@ -98,14 +111,13 @@ const AddNewBlog = () => (
           <i className="material-icons">file_copy</i> Publish
         </Button>
 
-        <Button theme="accent" size="sm" className="ml-auto">
-            <i className="material-icons">file_copy</i> Publish
-          </Button>
+        
       </Col>
       
     </Row>
   </Container>
 );
+};
 
 
 export default AddNewBlog;

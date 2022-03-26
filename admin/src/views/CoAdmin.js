@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {Link} from "react-router-dom";
+import {Link, useHistory,} from "react-router-dom";
 import { Container, Row, Col, Card, CardHeader, CardBody, Button, Breadcrumb, BreadcrumbItem, } from "shards-react";
 import PageTitle from "../components/common/PageTitle";
-
 
 const Tables = () => {
   const [coadmins, setCoadmins] = useState([])
 
+  const history = useHistory();
+
   const fetchData = () => {
-    fetch("http://localhost:3000/api/coadmin/allCoadmins")
+    fetch("http://localhost:3000/api/coadmin/allCoadmins/")
       .then(response => {
         return response.json()
       })
@@ -20,6 +21,15 @@ const Tables = () => {
   useEffect(() => {
     fetchData()
   }, [])
+
+  const handleDelete= (id) => {
+    fetch(`http://localhost:3000/api/coadmin/deleteCoadmin/${id}` , {
+        method: 'DELETE'
+    }).then(() => {
+        console.log("deleted");
+        history.go(0);
+    })
+  }
 
   return(
   <Container fluid className="main-content-container px-4">
@@ -68,7 +78,6 @@ const Tables = () => {
                   </th>
                 </tr>
               </thead>
-              
               <tbody>
               {coadmins &&
                 coadmins.map((coadmin) => (
@@ -78,7 +87,7 @@ const Tables = () => {
                   <td>{coadmin.email}</td>
                   <td>{coadmin.city}</td>
                   <td>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
+                    <Button outline type="button" size="sm" theme="danger" className="mb-2 mr-1" onClick={ () => handleDelete(coadmin._id)}>
                       Delete
                     </Button>
                   </td>

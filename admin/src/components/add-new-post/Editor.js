@@ -10,7 +10,7 @@ const Editor = () => (
     <CardBody>
       <Form className="add-new-post">
         <FormInput size="lg" className="mb-3" placeholder="Your Title" />
-        <ReactQuill className="add-new-post__editor mb-1" />
+        <ReactQuill className="add-new-post__editor mb-1"/>
       </Form>
     </CardBody>
   </Card>
