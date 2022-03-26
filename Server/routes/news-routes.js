@@ -50,7 +50,7 @@ news
 //get all news 
 
 router.get("/allNews", (req, res, next) => {
-    News.find()
+    News.find().populate("category")
       .then((news) => {
         res.status(200).json(news);
       })
@@ -67,7 +67,7 @@ router.get("/allNews", (req, res, next) => {
   router.get("/oneNews/:id", (req,res,next) => {
     News.findOne({
       _id: req.params.id,
-    })
+    }).populate("category")
       .then((oneNews) => {
         res.status(200).json(oneNews);
       })
