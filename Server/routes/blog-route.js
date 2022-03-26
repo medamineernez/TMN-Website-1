@@ -15,7 +15,7 @@ const upload = multer({ storage })
 
 //add new blog
 
-router.post("/addblog", upload.single('image'),upload.single('image2'), (req, res, next) => {
+router.post("/addblog", upload.single('image'),upload.single('image2'),(req, res, next) => {
 
 
   const imageUrl = `http://localhost:3000/images/${req.file.filename}`
@@ -27,7 +27,6 @@ router.post("/addblog", upload.single('image'),upload.single('image2'), (req, re
     category: req.body.category,
     content: req.body.content,
     image: imageUrl,
-    image2: imageUrl,
     author:req.body.author,
     status :"on hold",
 
@@ -50,7 +49,7 @@ router.post("/addblog", upload.single('image'),upload.single('image2'), (req, re
 //get all blogs
 
 router.get("/allblogs", (req, res, next) => {
-  Blog.find()
+  Blog.find().populate("category")
     .then((blogs) => {
       res.status(200).json(blogs);
     })
@@ -67,7 +66,7 @@ router.get("/allblogs", (req, res, next) => {
    
      Blog.findOne({
     _id: req.params.id,
-  })
+  }).populate("category")
     .then((blog) => {
       res.status(200).json(blog);
     })

@@ -5,6 +5,7 @@ const CoAdmin = require("../models/coAdmin");
 const keys = require("../config/keys");
 
 router.post("/login", (req, res) => {
+  const name =req.body.name;
   const email = req.body.email;
   const password = req.body.password;
 
@@ -23,8 +24,7 @@ router.post("/login", (req, res) => {
         });
       });
     } else {
-      errors.password = "password incorrect ";
-      return res.status(400).json(errors);
+      res.status(400).json({"message":"password incorrect "})
     }
   });
 });
