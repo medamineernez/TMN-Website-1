@@ -13,7 +13,7 @@ export default () => (
   <Router basename={process.env.REACT_APP_BASENAME || ""}>
     <div>
     
-      <Route exact path="/login">
+      <Route exact path="/coadmin">
        <Login />
          </Route>
       
