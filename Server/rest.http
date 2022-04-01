@@ -117,7 +117,15 @@ DELETE http://localhost:3000/api/news/deleteNews/:id
 
 POST  http://localhost:3000/api/addPodcast
 
-//
+//get all podcasts
+GET http://localhost:3000/api/podcasts/allPodcasts
+
+
+//get one podcasts
+
+GET http://localhost:3000/api/podcasts/allPodcasts/:id
+
+
 
 
 

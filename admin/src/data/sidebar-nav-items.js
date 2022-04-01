@@ -6,53 +6,39 @@ export default function() {
       to: "/blog-posts",
     },
     {
-      title: "Add New Post",
-      htmlBefore: '<i class="material-icons">note_add</i>',
-      to: "/add-new-post",
-    },
-    {
       title: "Categories",
       htmlBefore: '<i class="material-icons">view_module</i>',
       to: "/categories",
     },
     {
-      title: "Users Management",
+      title: "Co-Admins",
       htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/co-admin",
+    },
+    {
+      title: "Users Management",
+      htmlBefore: '<i class="material-icons">person</i>',
       to: "/UsersManagement",
     },
     {
-      title: "Co-Admins",
+      title: "Blogs Management",
       htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/co-admin",
+      to: "/Blogs-management",
     },
     {
-      title: "Blogs Approval",
+      title: "Podcasts Management",
       htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/Blogs-approval",
+      to: "/Podcasts-management",
     },
     {
-      title: "Podcasts Approval",
+      title: "News Management",
       htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/Podcasts-approval",
+      to: "/News-management",
     },
     {
-      title: "News Approval",
+      title: "Events Management",
       htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/News-approval",
-    },
-    {
-      title: "Events Approval",
-      htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/Events-approval",
-
-      title: "Users Management",
-      htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/tables",
-    },
-    {
-      title: "Co-Admins",
-      htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/co-admin",
+      to: "/Events-management",
     },
     {
       title: "User Profile",

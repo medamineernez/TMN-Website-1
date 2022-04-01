@@ -1,10 +1,41 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link, useHistory} from "react-router-dom";
 import { Container, Row, Col, Card, CardHeader, CardBody, Button, Breadcrumb, BreadcrumbItem, } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
 
-const Tables = () => (
+const Tables = () => {
+
+  const [categories, setCategories] = useState([])
+
+  const history = useHistory();
+
+  const fetchData = () => {
+    fetch("http://localhost:3000/api/categorys/allCategorys")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setCategories(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const handleDelete= (id) => {
+    fetch(`http://localhost:3000/api/categorys/allCategorys/${id}` , {
+        method: 'DELETE'
+    }).then(() => {
+        console.log("deleted");
+        history.go(0);
+    })
+  }
+
+
+  return (
+
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
@@ -58,19 +89,22 @@ const Tables = () => (
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Podcast</td>
-                  <td>1</td>
-                  <td>Buisness</td>
+              {categories &&
+                categories.map((category, _id) => (
+                <tr key={category._id}>
+                  <td></td>
+                  <td>{category.refrencesTo}</td>
+                  <td></td>
+                  <td>{category.title}</td>
                   <td></td>
                   <td></td>
                   <td>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
+                    <Button outline size="sm" theme="danger" className="mb-2 mr-1" onClick={ () => handleDelete(category._id)}>
                       Delete Sub-Category
-                    </Button>
+                    </Button> 
                   </td>
-                </tr>               
+                </tr>
+                ))}
               </tbody>
             </table>
           </CardBody>
@@ -78,6 +112,7 @@ const Tables = () => (
       </Col>
     </Row>
   </Container>
-);
+  )
+};
 
 export default Tables;

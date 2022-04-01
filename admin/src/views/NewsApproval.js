@@ -1,28 +1,31 @@
-import React from "react";
-import { Container, Row, Col, Card, CardHeader, CardBody, Button, Modal, ModalBody, ModalHeader, Breadcrumb, BreadcrumbItem, Badge, Alert } from "shards-react";
+import React, { useEffect, useState} from "react";
+import { Container, Row, Col, Card, CardHeader, CardBody, Breadcrumb, BreadcrumbItem, Badge, Button } from "shards-react";
 import { Link } from "react-router-dom";
 import PageTitle from "../components/common/PageTitle";
 
-export default class NewsApproval extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { open: false };
-    this.toggle = this.toggle.bind(this);
-  }
+const NewsManagement = () => {
 
-  toggle() {
-    this.setState({
-      open: !this.state.open
-    });
-  }
+  const [data, setData] = useState([])
 
-  render() {
-    const { open } = this.state;
+    const fetchData = () => {
+      fetch("http://localhost:3000/api/news/allNews")
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setData(data)
+        })
+    }
+  
+    useEffect(() => {
+      fetchData()
+    }, [])
+
     return (
         <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle sm="4" title="News list" subtitle="News approval" className="text-sm-left" />
+      <PageTitle sm="4" title="News list" subtitle="News Management" className="text-sm-left" />
     </Row>
 
     {/* Components Navigation */}
@@ -30,7 +33,7 @@ export default class NewsApproval extends React.Component {
       <BreadcrumbItem>
         <Link to="/">Dashboard</Link>
       </BreadcrumbItem>
-      <BreadcrumbItem active>News Approval</BreadcrumbItem>
+      <BreadcrumbItem active>News Management</BreadcrumbItem>
     </Breadcrumb>
 
     {/* Default Dark Table */}
@@ -38,20 +41,19 @@ export default class NewsApproval extends React.Component {
       <Col>
         <Card small className="mb-4 overflow-hidden">
           <CardHeader className="bg-dark">
-            <h6 className="m-0 text-white">Requested Blogs</h6>
+            <h6 className="m-0 text-white">News list</h6>
+            <Link to="/new-news">
+              <Button outline theme="primary" className="mb-2 mr-1" style={{float: "right"}}>
+                Add News
+              </Button>
+            </Link>
           </CardHeader>
           <CardBody className="bg-dark p-0 pb-3">
             <table className="table table-dark mb-0">
               <thead className="thead-dark">
                 <tr>
                   <th scope="col" className="border-0">
-                    #
-                  </th>
-                  <th scope="col" className="border-0">
                     Title
-                  </th>
-                  <th scope="col" className="border-0">
-                    Category
                   </th>
                   <th scope="col" className="border-0">
                     Sub-Category
@@ -68,75 +70,30 @@ export default class NewsApproval extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Week's recap</td>
-                  <td>News</td>
-                  <td>Buisness</td>
-                  <td>Malek</td>
+              {data &&
+                data.map((news, _id) =>(
+                <tr key={news._id}>
+                  <td>{news.title}</td>
+                  <td>{news.category ? news.category.title : ""}</td>
+                  <td>{news.author}</td>
                   <td>
-                  <Badge theme="success">Approved</Badge>
+                  <Badge theme={news.status==="on hold" ? "warning": news.status==="approved"?"success": "danger"}>{news.status}</Badge>
                   </td>
                   <td>
-                    <Button onClick={this.toggle} outline size="sm" theme="success" className="mb-2 mr-1">
+                    <Button outline size="sm" theme="success" className="mb-2 mr-1">
                         Approve
                     </Button>
                     <Button outline size="sm" theme="danger" className="mb-2 mr-1">
                         Reject
                     </Button>
-                    <Link to="/Blog-details">
+                    <Link to={`/news-details/${news._id}`}>
                         <Button outline size="sm" theme="info" className="mb-2 mr-1">
                         Info
                         </Button>
                     </Link>
                   </td>
                 </tr> 
-                <tr>
-                  <td>2</td>
-                  <td>worldwide</td>
-                  <td>News</td>
-                  <td>Adventure</td>
-                  <td>Amine</td>
-                  <td>
-                  <Badge theme="warning">On hold</Badge>
-                  </td>
-                  <td>
-                    <Button onClick={this.toggle} outline size="sm" theme="success" className="mb-2 mr-1">
-                        Approve
-                    </Button>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
-                        Reject
-                    </Button>
-                    <Link to="/Blog-details">
-                        <Button outline size="sm" theme="info" className="mb-2 mr-1">
-                        Info
-                        </Button>
-                    </Link>
-                  </td>
-                </tr> 
-                <tr>
-                  <td>2</td>
-                  <td>worldwide</td>
-                  <td>News</td>
-                  <td>Adventure</td>
-                  <td>Amine</td>
-                  <td>
-                  <Badge theme="danger">Rejected</Badge>
-                  </td>
-                  <td>
-                    <Button onClick={this.toggle} outline size="sm" theme="success" className="mb-2 mr-1">
-                        Approve
-                    </Button>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
-                        Reject
-                    </Button>
-                    <Link to="/Blog-details">
-                        <Button outline size="sm" theme="info" className="mb-2 mr-1">
-                        Info
-                        </Button>
-                    </Link>
-                  </td>
-                </tr>                   
+                ))}
               </tbody>
             </table>
           </CardBody>
@@ -144,17 +101,9 @@ export default class NewsApproval extends React.Component {
       </Col>
     </Row>
 
-    <div>
-    <Modal open={open} toggle={this.toggle}>
-        <ModalHeader>Approved</ModalHeader>
-            <ModalBody>
-              <Alert theme="success">
-                New successfully approved{" "}
-              </Alert>
-            </ModalBody>
-        </Modal>
-    </div>
   </Container>
     );
   }
-}
+
+
+export default NewsManagement;
