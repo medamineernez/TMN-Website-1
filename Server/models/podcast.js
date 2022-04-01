@@ -1,38 +1,41 @@
 const { Schema, model } = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
-const EventSchema = new Schema(
+const PodcastSchema = new Schema(
   {
     title: {
       type : String ,
       required : true ,
 
     },
-
-    date: {
-     type : Date ,
-     required : true
-    },
-
-    hour :{
+    author :{
         type :String,
         required : true
     },
 
-     location :{
+     guests:{
+        type :String,
+        required : true
+    },
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: "Category",
+      },
+
+     podcastLink:{
         type :String,
         required : true
     },
 
-     eventPoster:{
+    videoTeaser:{
+        type :String,
+        required : true
+    },
+    details:{
         type :String,
         required : true
     },
 
-        details:{
-        type :String,
-        required : true
-    },
     status :{
       type :String ,
       required : true ,
@@ -42,8 +45,8 @@ const EventSchema = new Schema(
 
   },
   { timestamps: true }
-);
+)
 
-EventSchema.plugin(uniqueValidator);
+PodcastSchema.plugin(uniqueValidator);
 
-module.exports = model("Event", EventSchema);
+module.exports = model("Podcast", PodcastSchema);
