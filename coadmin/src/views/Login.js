@@ -54,7 +54,7 @@ export default function Login() {
     <ListGroupItem className="p-3">
       <Row>
         <Col>
-          <Form onSubmit={(e) => handleSubmit(e)}>
+          <form onSubmit={(e) => handleSubmit(e)}>
             <Row form>
             <Col md="6" className="form-group">
                 <label htmlFor="feEmailAddress">Name</label>
@@ -93,7 +93,7 @@ export default function Login() {
         Sign In
       </Button>
       
-          </Form>
+          </form>
         </Col>
       </Row>
     </ListGroupItem>
