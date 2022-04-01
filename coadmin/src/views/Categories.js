@@ -90,8 +90,8 @@ const Tables = () => {
               </thead>
               <tbody>
               {categories &&
-                categories.map((category) => (
-                <tr>
+                categories.map((category, _id) => (
+                <tr key={category._id}>
                   <td></td>
                   <td>{category.refrencesTo}</td>
                   <td></td>
@@ -101,7 +101,7 @@ const Tables = () => {
                   <td>
                     <Button outline size="sm" theme="danger" className="mb-2 mr-1" onClick={ () => handleDelete(category._id)}>
                       Delete Sub-Category
-                    </Button>
+                    </Button> 
                   </td>
                 </tr>
                 ))}

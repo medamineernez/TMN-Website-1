@@ -6,13 +6,12 @@ import {
   Col,
   Form,
   FormInput,
-  FormGroup,
-  FormCheckbox,
-  FormSelect,
   Button
 } from "shards-react";
+
 import "../shards-dashboard/styles/Login.css";
 import { useHistory } from "react-router-dom";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,24 +21,25 @@ export default function Login() {
     return email.length > 0 && password.length > 0;
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  const handleSubmit=(e)=> {
+    e.preventDefault();
     let data={email,password,name};
 
-  fetch('url',
+  fetch("http://localhost:3000/api/coadmin/login",
   {
     method:'POST',
     headers: {"Content-Type":"application/json"},
-    body:JSON.stringify(data)
+    body: data
   }
-  .then(res => {
-    if (!res.ok) { 
-      
+  
+  ).then(res => {
+    
+    if (res.ok) { 
       history.push("/blog-posts");
     } 
+    alert(JSON.stringify(res))
     return res.json();
   })
-  )
   }
   return (
     <div className="log">
@@ -54,7 +54,7 @@ export default function Login() {
     <ListGroupItem className="p-3">
       <Row>
         <Col>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={(e) => handleSubmit(e)}>
             <Row form>
             <Col md="6" className="form-group">
                 <label htmlFor="feEmailAddress">Name</label>
@@ -89,7 +89,7 @@ export default function Login() {
             </Row>
             <br></br>
             
-            <Button onClick={handleSubmit} size="sm" theme="dark" className="mb-2 mr-1" >
+            <Button type="submit" size="sm" theme="dark" className="mb-2 mr-1" >
         Sign In
       </Button>
       

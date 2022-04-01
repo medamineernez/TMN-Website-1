@@ -6,6 +6,12 @@ export default function() {
       to: "/blog-posts",
     },
     {
+      title: "Categories",
+      htmlBefore: '<i class="material-icons">view_module</i>',
+      to: "/categories",
+    },
+    
+    {
       title: "Blogs Management",
       htmlBefore: '<i class="material-icons">table_chart</i>',
       to: "/Blogs-management",
@@ -14,11 +20,6 @@ export default function() {
       title: "Podcasts Management",
       htmlBefore: '<i class="material-icons">table_chart</i>',
       to: "/Podcasts-management",
-    },
-    {
-      title: "Categories",
-      htmlBefore: '<i class="material-icons">view_module</i>',
-      to: "/categories",
     },
     {
       title: "News Management",
