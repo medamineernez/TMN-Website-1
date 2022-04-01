@@ -50,13 +50,13 @@ const Tables = () => {
     {/* Default Light Table */}
     <Row>
       <Col>
-        <Card small className="mb-4">
-          <CardHeader className="border-bottom">
-            <h6 className="m-0">Users list</h6>
+        <Card small className="mb-4 overflow-hidden">
+          <CardHeader className="bg-dark">
+            <h6 className="m-0 text-white">Users list</h6>
           </CardHeader>
-          <CardBody className="p-0 pb-3">
-            <table className="table mb-0">
-              <thead className="bg-light">
+          <CardBody className="bg-dark p-0 pb-3">
+            <table className="table table-dark mb-0">
+              <thead className="thead-dark">
                 <tr>
                   <th scope="col" className="border-0">
                     First Name
@@ -77,8 +77,8 @@ const Tables = () => {
               </thead>
               <tbody>
               {users &&
-                users.map((user) => (
-                <tr>
+                users.map((user, _id) => (
+                <tr key={user._id}>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.city}</td>

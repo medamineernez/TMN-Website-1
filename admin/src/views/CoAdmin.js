@@ -80,8 +80,8 @@ const Tables = () => {
               </thead>
               <tbody>
               {coadmins &&
-                coadmins.map((coadmin) => (
-                <tr>
+                coadmins.map((coadmin, _id) => (
+                <tr key={coadmin._id}>
                   <td>{coadmin.name}</td>
                   <td>{coadmin.lastName}</td>
                   <td>{coadmin.email}</td>

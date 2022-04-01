@@ -1,25 +1,28 @@
-import React from "react";
-import { Container, Row, Col, Card, CardHeader, CardBody, Button, Modal, ModalBody, ModalHeader, Breadcrumb, BreadcrumbItem, Badge, Alert } from "shards-react";
+import React, {useEffect, useState} from "react";
+import { Container, Row, Col, Card, CardHeader, CardBody, Button, Breadcrumb, BreadcrumbItem, Badge } from "shards-react";
 import { Link } from "react-router-dom";
 import PageTitle from "../components/common/PageTitle";
 
-export default class EventsManagement extends React.Component {
+const EventsManagement = () => {
+
+  const [events, setEvents] = useState([])
+
+    const fetchData = () => {
+      fetch("http://localhost:3000/api/event/allEvents")
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setEvents(data)
+        })
+    }
   
-  constructor(props) {
-    super(props);
-    this.state = { open: false };
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      open: !this.state.open
-    });
-  }
-
-  render() {
-    const { open } = this.state;
+    useEffect(() => {
+      fetchData()
+    }, [])
+  
     return (
+
   <Container fluid className="main-content-container px-4">
 
     {/* Page Header */}
@@ -52,9 +55,6 @@ export default class EventsManagement extends React.Component {
               <thead className="thead-dark">
                 <tr>
                   <th scope="col" className="border-0">
-                    #
-                  </th>
-                  <th scope="col" className="border-0">
                     Title
                   </th>
                   <th scope="col" className="border-0">
@@ -67,6 +67,9 @@ export default class EventsManagement extends React.Component {
                     Location
                   </th>
                   <th scope="col" className="border-0">
+                    Posted by
+                  </th>
+                  <th scope="col" className="border-0">
                     Status
                   </th>
                   <th scope="col" className="border-0">
@@ -75,75 +78,39 @@ export default class EventsManagement extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Ted X</td>
-                  <td>28/04/2022</td>
-                  <td>10 AM</td>
-                  <td>Sousse</td>
+              {events &&
+                events.map((event, _id) =>(
+                <tr key={event._id}>
+                  <td>{event.title}</td>
+                  <td>{event.date}</td>
+                  <td>{event.hour}</td>
+                  <td>{event.location}</td>
+                  <td>{event.eventPoster}</td>
                   <td>
-                  <Badge theme="danger">Rejected</Badge>
+                  <Badge theme={(() => {
+                        switch (event.status) {
+                          case "aproved":   return "success";
+                          case "rejected":  return "danger";
+                          default :         return "warning";
+                        }
+                    })()}>{event.status}
+                  </Badge>
                   </td>
                   <td>
-                    <Button onClick={this.toggle} outline size="sm" theme="success" className="mb-2 mr-1">
+                    <Button outline size="sm" theme="success" className="mb-2 mr-1">
                         Approve
                     </Button>
                     <Button outline size="sm" theme="danger" className="mb-2 mr-1">
                         Reject
                     </Button>
-                    <Link to="/Blog-details">
-                        <Button outline size="sm" theme="info" className="mb-2 mr-1">
-                        Info
-                        </Button>
-                    </Link>
-                  </td>
-                </tr> 
-                <tr>
-                  <td>2</td>
-                  <td>Ted X</td>
-                  <td>28/04/2022</td>
-                  <td>10 AM</td>
-                  <td>Sousse</td>
-                  <td>
-                  <Badge theme="success">Approved</Badge>
-                  </td>
-                  <td>
-                    <Button onClick={this.toggle} outline size="sm" theme="success" className="mb-2 mr-1">
-                        Approve
-                    </Button>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
-                        Reject
-                    </Button>
-                    <Link to="/Blog-details">
+                    <Link to={`/event-details/${event._id}`}>
                         <Button outline size="sm" theme="info" className="mb-2 mr-1">
                         Info
                         </Button>
                     </Link>
                   </td>
                 </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Ted X</td>
-                  <td>28/04/2022</td>
-                  <td>10 AM</td>
-                  <td>Sousse</td>
-                  <td>
-                  <Badge theme="warning">On hold</Badge>
-                  </td>
-                  <td>
-                    <Button onClick={this.toggle} outline size="sm" theme="success" className="mb-2 mr-1">
-                        Approve
-                    </Button>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
-                        Reject
-                    </Button>
-                    <Link to="/Blog-details">
-                        <Button outline size="sm" theme="info" className="mb-2 mr-1">
-                        Info
-                        </Button>
-                    </Link>
-                  </td>
-                </tr>   
+                ))}    
               </tbody>
             </table>
           </CardBody>
@@ -151,18 +118,10 @@ export default class EventsManagement extends React.Component {
       </Col>
     </Row>
 
-    <div>
-        <Modal open={open} toggle={this.toggle}>
-            <ModalHeader>Approved</ModalHeader>
-            <ModalBody>
-              <Alert theme="success">
-                Event successfully approved{" "}
-              </Alert>
-            </ModalBody>
-        </Modal>
-    </div>
+
     
   </Container>
     );
   }
-}
+
+  export default EventsManagement;

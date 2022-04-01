@@ -15,7 +15,7 @@ import UsersManagement from "./views/UsersManagement";
 import BlogPosts from "./views/BlogPosts";
 import CoAdmin from "./views/CoAdmin";
 import BlogsApproval from "./views/BlogsApproval";
-import PodcastsApproval from "./views/PodcastSApproval";
+import PodcastSApproval from "./views/PodcastSApproval";
 import NewsApproval from "./views/NewsApproval";
 import EventsApproval from "./views/EventsApproval";
 import Categories from "./views/Categories";
@@ -23,6 +23,8 @@ import NewSubCategory from "./views/NewSubCategory";
 import AddNewNews from "./views/AddNewNews";
 import AddNewEvent from "./views/AddNewEvent";
 import BlogDetails from "./views/BlogDetails";
+import EventDetails from "./views/EventDetails";
+
 
 export default [
   {
@@ -100,7 +102,7 @@ export default [
   {
     path: "/Podcasts-management",
     layout: DefaultLayout,
-    component: PodcastsApproval 
+    component: PodcastSApproval 
   },
   {
     path: "/News-management",
@@ -128,5 +130,10 @@ export default [
     path: "/Blog-Details/:id",
     layout: DefaultLayout,
     component: BlogDetails
+  },
+  {
+    path: "/event-Details/:id",
+    layout: DefaultLayout,
+    component: EventDetails
   },
 ];

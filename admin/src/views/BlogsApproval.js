@@ -73,16 +73,23 @@ const BlogsManagement = () => {
               </thead>
               <tbody>
               {blogs &&
-                blogs.map((blog) => (
+                blogs.map((blog, _id) => (
                 <tr key={blog._id}>
                   <td>{blog.title}</td>
-                  <td>{blog.category}</td>
+                  <td>{blog.category ? blog.category.title : ""}</td>
                   <td>{blog.author}</td>
                   <td>                 
-                    <Badge theme={blog.status==="on hold" ? "warning": blog.status==="approved"?"success": "danger"}>{blog.status}</Badge>
+                    <Badge theme={(() => {
+                        switch (blog.status) {
+                          case "aproved":   return "success";
+                          case "rejected":  return "danger";
+                          default :         return "warning";
+                        }
+                    })()}>{blog.status}
+                    </Badge>
                   </td>
                   <td>
-                    <Button outline size="sm" theme="success" className="mb-2 mr-1">
+                    <Button outline size="sm" theme="success" className="mb-2 mr-1" disabled={blog.status==="rejected" ? true: "" ? blog.status==="approved" ? true: "":""}>
                         Approve
                     </Button>
                     <Button outline size="sm" theme="danger" className="mb-2 mr-1">

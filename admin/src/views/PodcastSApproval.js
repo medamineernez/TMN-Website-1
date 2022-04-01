@@ -1,23 +1,26 @@
-import React from "react";
-import { Container, Row, Col, Card, CardHeader, CardBody, Button, Modal, ModalBody, ModalHeader, Breadcrumb, BreadcrumbItem, Badge, Alert } from "shards-react";
+import React, { useEffect, useState} from "react";
+import { Container, Row, Col, Card, CardHeader, CardBody, Button, Breadcrumb, BreadcrumbItem, Badge} from "shards-react";
 import { Link } from "react-router-dom";
 import PageTitle from "../components/common/PageTitle";
 
-export default class PodcastsApproval extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { open: false };
-    this.toggle = this.toggle.bind(this);
-  }
+const PodcastsApproval = () => {
 
-  toggle() {
-    this.setState({
-      open: !this.state.open
-    });
-  }
+  const [podcasts, setPodcasts] = useState([])
 
-  render() {
-    const { open } = this.state;
+    const fetchData = () => {
+      fetch("http://localhost:3000/api/podcasts/allPodcasts")
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setPodcasts(data)
+        })
+    }
+  
+    useEffect(() => {
+      fetchData()
+    }, [])
+
     return (
         <Container fluid className="main-content-container px-4">
     {/* Page Header */}
@@ -38,20 +41,14 @@ export default class PodcastsApproval extends React.Component {
       <Col>
         <Card small className="mb-4 overflow-hidden">
           <CardHeader className="bg-dark">
-            <h6 className="m-0 text-white">Requested Blogs</h6>
+            <h6 className="m-0 text-white">Requested Podcasts</h6>
           </CardHeader>
           <CardBody className="bg-dark p-0 pb-3">
             <table className="table table-dark mb-0">
               <thead className="thead-dark">
                 <tr>
                   <th scope="col" className="border-0">
-                    #
-                  </th>
-                  <th scope="col" className="border-0">
                     Title
-                  </th>
-                  <th scope="col" className="border-0">
-                    Category
                   </th>
                   <th scope="col" className="border-0">
                     Sub-Category
@@ -68,75 +65,49 @@ export default class PodcastsApproval extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Week's recap</td>
-                  <td>Podcast</td>
-                  <td>Buisness</td>
-                  <td>Malek</td>
+              {podcasts && 
+                podcasts.map((podcast, _id) =>(
+                <tr key={podcast._id}>
+                  <td>{podcast.title}</td>
+                  <td>{podcast.category ? podcast.category.title :""}</td>
+                  <td>{podcast.author}</td>
                   <td>
-                  <Badge theme="success">Approved</Badge>
+                  <Badge theme={(() => {
+                        switch (podcast.status) {
+                          case "approved":   return "success";
+                          case "rejected":  return "danger";
+                          default :         return "warning";
+                        }
+                    })()}>{podcast.status}
+                  </Badge>
                   </td>
                   <td>
-                    <Button onClick={this.toggle} outline size="sm" theme="success" className="mb-2 mr-1">
+                    <Button outline size="sm" theme="success" className="mb-2 mr-1" hidden={(() => {
+                      switch (podcast.status) {
+                        case "approved":     return true;
+                        case "rejected":    return true;
+                        default :           return false;
+                      }
+                    })()}>
                         Approve
                     </Button>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
+                    <Button outline size="sm" theme="danger" className="mb-2 mr-1" hidden={(() => {
+                      switch (podcast.status) {
+                        case "approved":     return true;
+                        case "rejected":    return true;
+                        default :           return false;
+                      }
+                    })()}>
                         Reject
                     </Button>
-                    <Link to="/Blog-details">
+                    <Link to={`/podcast-details/${podcast._id}`}>
                         <Button outline size="sm" theme="info" className="mb-2 mr-1">
                         Info
                         </Button>
                     </Link>
                   </td>
                 </tr> 
-                <tr>
-                  <td>2</td>
-                  <td>worldwide</td>
-                  <td>Podcast</td>
-                  <td>Adventure</td>
-                  <td>Amine</td>
-                  <td>
-                  <Badge theme="warning">On hold</Badge>
-                  </td>
-                  <td>
-                    <Button onClick={this.toggle} outline size="sm" theme="success" className="mb-2 mr-1">
-                        Approve
-                    </Button>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
-                        Reject
-                    </Button>
-                    <Link to="/Blog-details">
-                        <Button outline size="sm" theme="info" className="mb-2 mr-1">
-                        Info
-                        </Button>
-                    </Link>
-                  </td>
-                </tr> 
-                <tr>
-                  <td>2</td>
-                  <td>worldwide</td>
-                  <td>Podcast</td>
-                  <td>Adventure</td>
-                  <td>Amine</td>
-                  <td>
-                  <Badge theme="danger">Rejected</Badge>
-                  </td>
-                  <td>
-                    <Button onClick={this.toggle} outline size="sm" theme="success" className="mb-2 mr-1">
-                        Approve
-                    </Button>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
-                        Reject
-                    </Button>
-                    <Link to="/Blog-details">
-                        <Button outline size="sm" theme="info" className="mb-2 mr-1">
-                        Info
-                        </Button>
-                    </Link>
-                  </td>
-                </tr>                   
+                ))}              
               </tbody>
             </table>
           </CardBody>
@@ -144,17 +115,8 @@ export default class PodcastsApproval extends React.Component {
       </Col>
     </Row>
 
-    <div>
-    <Modal open={open} toggle={this.toggle}>
-            <ModalHeader>Approved</ModalHeader>
-            <ModalBody>
-              <Alert theme="success">
-                Podcast successfully approved{" "}
-              </Alert>
-            </ModalBody>
-        </Modal>
-    </div>
   </Container>
     );
   }
-}
+
+export default PodcastsApproval;

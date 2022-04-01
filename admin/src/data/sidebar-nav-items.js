@@ -17,7 +17,7 @@ export default function() {
     },
     {
       title: "Users Management",
-      htmlBefore: '<i class="material-icons">table_chart</i>',
+      htmlBefore: '<i class="material-icons">person</i>',
       to: "/UsersManagement",
     },
     {

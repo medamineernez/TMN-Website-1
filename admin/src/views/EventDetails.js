@@ -3,15 +3,16 @@ import { Container, Row, Col, Breadcrumb, BreadcrumbItem, CardBody, Card, CardFo
 import { Link, useHistory, useParams } from "react-router-dom";
 import PageTitle from "../components/common/PageTitle";
 
-const BlogDetails = () => {
+const EventDetails = () => {
 
   let {id}=useParams()
+  
   const history = useHistory();
   
   const [data, setData] = useState('')
 
     const fetchData = () => {
-      fetch(`http://localhost:3000/api/blogs/detail/${id}`)
+      fetch(`http://localhost:3000/api/event/allEvents/${id}`)
         .then(response => {
           return response.json()
         })
@@ -25,7 +26,7 @@ const BlogDetails = () => {
     }, [])
 
     const handleDelete= (id) => {
-      fetch(`http://localhost:3000/api/blogs/allblogs/${id}` , {
+      fetch(`http://localhost:3000/api/event/deleteEvents/${id}` , {
           method: 'DELETE'
       }).then(() => {
           console.log("deleted");
@@ -48,7 +49,7 @@ const BlogDetails = () => {
         <Link to="/">Dashboard</Link>
       </BreadcrumbItem>
       <BreadcrumbItem>
-        <Link to="/Blogs-management">Blogs management</Link>
+        <Link to="/Events-management">Events Management</Link>
     </BreadcrumbItem>
     { data && (
     <BreadcrumbItem active>{data.title}</BreadcrumbItem>
@@ -60,36 +61,24 @@ const BlogDetails = () => {
       <Col>
       <Row>
           { data && (
-            <Col lg="12" md="12" sm="12" className="mb-4">
-              <Card small className="card-post h-100">
-                <div
-                  className="card-post__image"
-                  style={{ backgroundImage: `url(${data.image})`, height: 300 }}
-                />
+            <Col lg="12" key={data._id}>
+              <Card small className="card-post mb-4">
                 <CardBody>
-                  <h5 className="card-title">
-                    <p className="text-fiord-blue">
-                      {data.title}
-                    </p>
-                  </h5>
-                  <p className="card-text">{data.content}</p>
+                  <h5 className="card-title">{data.title}</h5>
+                  <p className="card-text text-muted">{data.details}</p>
                 </CardBody>
-                <CardFooter className="text-muted border-top py-3">
-                  <span className="d-inline-block">
-                    Written By
-                    <p className="text-fiord-blue">
-                      {data.author}
-                    </p>
-                  </span>
-                  <br/>
-                  <span className="d-inline-block">
-                    Created At
-                    <p className="text-fiord-blue">
-                      {data.createdAt}
-                    </p>
-                  </span>
+                <CardFooter className="border-top d-flex">
+                  <div className="card-post__author d-flex">
+                    <div className="d-flex flex-column justify-content-center ml-3">
+                      <span className="card-post__author-name">
+                      <div className="text-fiord-blue">Posted by</div>
+                        {data.eventPoster}
+                      </span>
+                      <small className="text-muted">{data.date}</small>
+                    </div>
+                  </div>
                   <div className="my-auto ml-auto">
-                    <Button pill  theme="danger" className="mb-2 mr-1" onClick={ () => handleDelete(data._id)} >
+                    <Button pill size="sm" theme="danger" className="mb-2 mr-1" onClick={ () => handleDelete(data._id)} >
                       Delete
                     </Button>
                   </div>
@@ -105,4 +94,4 @@ const BlogDetails = () => {
           
 }
 
-export default BlogDetails;
+export default EventDetails;

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import PageTitle from "../components/common/PageTitle";
-import Editor from "../components/add-new-post/Editor";
 import { Link } from "react-router-dom";
+import ReactQuill from "react-quill";
 
 import {  Container,
           Button,
@@ -10,7 +10,9 @@ import {  Container,
           InputGroup,
           InputGroupAddon,
           InputGroupText,
-
+          CardBody,
+          Card,
+          Form,
           FormSelect,
           Breadcrumb,
           BreadcrumbItem,
@@ -58,7 +60,14 @@ const AddNewBlog = () => {
       {/* Editor */}
 
       <Col lg="12" md="12">
-        <Editor />
+        <Card small className="mb-3">
+        <CardBody>
+          <Form className="add-new-post">
+            <FormInput size="lg" className="mb-3" placeholder="Your Title" />
+            <ReactQuill className="add-new-post__editor mb-1"/>
+          </Form>
+        </CardBody>
+     </Card>
       </Col>
 
       <Col lg="12" md="12">

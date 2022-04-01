@@ -90,8 +90,8 @@ const Tables = () => {
               </thead>
               <tbody>
               {categories &&
-                categories.map((category) => (
-                <tr>
+                categories.map((category, _id) => (
+                <tr key={category._id}>
                   <td></td>
                   <td>{category.refrencesTo}</td>
                   <td></td>
