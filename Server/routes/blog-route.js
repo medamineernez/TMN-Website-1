@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Blog = require("../models/blog");
 const path = require("path");
 const multer=require("multer")
-
+var fs = require('fs');
 
 // multer storage 
 const storage = multer.diskStorage({
@@ -13,12 +13,22 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
+function base64_encode(file) {
+  // read binary data
+  var bitmap = fs.readFileSync(file);
+  // convert binary data to base64 encoded string
+  return new Buffer.from(bitmap).toString('base64');
+}
+
+
+
 //add new blog
 
-router.post("/addblog", upload.single('image'),upload.single('image2'),(req, res, next) => {
+router.post("/addblog", (req, res, next) => {
 
 
-  const imageUrl = `http://localhost:3000/images/${req.file.filename}`
+
+  //const imageUrl = `http://localhost:3000/images/${req.file.filename}`
 
 
   const blog = new Blog({
@@ -26,7 +36,8 @@ router.post("/addblog", upload.single('image'),upload.single('image2'),(req, res
     title: req.body.title,
     category: req.body.category,
     content: req.body.content,
-    image: imageUrl,
+    image: base64_encode(req.body.image),
+    image2: base64_encode(req.body.image2),
     author:req.body.author,
     status :"on hold",
 
