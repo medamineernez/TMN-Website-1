@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
 import { Container, Row, Col, Card, CardHeader, CardBody, Button, Breadcrumb, BreadcrumbItem } from "shards-react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import PageTitle from "../components/common/PageTitle";
 
-const Tables = () => (
+const Tables = () => {
+
+  const [users, setUsers] = useState([])
+
+  const history = useHistory();
+
+  const fetchData = () => {
+    fetch("http://localhost:3000/api/users/allusers")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setUsers(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const handleDelete= (id) => {
+    fetch(`http://localhost:3000/api/users/allusers/${id}` , {
+        method: 'DELETE'
+    }).then(() => {
+        console.log("deleted");
+        history.go(0);
+    })
+  }
+
+  return(
+
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
@@ -20,28 +50,21 @@ const Tables = () => (
     {/* Default Light Table */}
     <Row>
       <Col>
-        <Card small className="mb-4">
-          <CardHeader className="border-bottom">
-            <h6 className="m-0">Users list</h6>
+        <Card small className="mb-4 overflow-hidden">
+          <CardHeader className="bg-dark">
+            <h6 className="m-0 text-white">Users list</h6>
           </CardHeader>
-          <CardBody className="p-0 pb-3">
-            <table className="table mb-0">
-              <thead className="bg-light">
+          <CardBody className="bg-dark p-0 pb-3">
+            <table className="table table-dark mb-0">
+              <thead className="thead-dark">
                 <tr>
                   <th scope="col" className="border-0">
-                    ID
-                  </th>
-                  <th scope="col" className="border-0">
                     First Name
-                  </th>
-                  <th scope="col" className="border-0">
-                    Last Name
                   </th>
                   <th scope="col" className="border-0">
                     E-mail
                   </th>
                   <th scope="col" className="border-0">
-
                     City
                   </th>
                   <th scope="col" className="border-0">
@@ -53,18 +76,19 @@ const Tables = () => (
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Wael</td>
-                  <td>Morjen</td>
-                  <td>waelmorjen@gmail.com</td>
-                  <td>Sousse</td>
+              {users &&
+                users.map((user, _id) => (
+                <tr key={user._id}>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.city}</td>
                   <td></td>
                   <td>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
+                    <Button outline size="sm" theme="danger" className="mb-2 mr-1" onClick={ () => handleDelete(user._id)}>
                       Delete
                     </Button></td>
                 </tr>
+                ))}
               </tbody>
             </table>
           </CardBody>
@@ -72,6 +96,7 @@ const Tables = () => (
       </Col>
     </Row>
   </Container>
-);
+  )
+};
 
 export default Tables;

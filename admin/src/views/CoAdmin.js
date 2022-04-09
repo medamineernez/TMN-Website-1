@@ -1,10 +1,37 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {Link, useHistory,} from "react-router-dom";
 import { Container, Row, Col, Card, CardHeader, CardBody, Button, Breadcrumb, BreadcrumbItem, } from "shards-react";
-
 import PageTitle from "../components/common/PageTitle";
 
-const Tables = () => (
+const Tables = () => {
+  const [coadmins, setCoadmins] = useState([])
+
+  const history = useHistory();
+
+  const fetchData = () => {
+    fetch("http://localhost:3000/api/coadmin/allCoadmins/")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setCoadmins(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const handleDelete= (id) => {
+    fetch(`http://localhost:3000/api/coadmin/deleteCoadmin/${id}` , {
+        method: 'DELETE'
+    }).then(() => {
+        console.log("deleted");
+        history.go(0);
+    })
+  }
+
+  return(
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
@@ -35,9 +62,6 @@ const Tables = () => (
               <thead className="thead-dark">
                 <tr>
                   <th scope="col" className="border-0">
-                    #
-                  </th>
-                  <th scope="col" className="border-0">
                     First Name
                   </th>
                   <th scope="col" className="border-0">
@@ -55,18 +79,20 @@ const Tables = () => (
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Amine</td>
-                  <td>Ernez</td>
-                  <td>amineernez@gmail.com</td>
-                  <td>Sousse</td>
+              {coadmins &&
+                coadmins.map((coadmin, _id) => (
+                <tr key={coadmin._id}>
+                  <td>{coadmin.name}</td>
+                  <td>{coadmin.lastName}</td>
+                  <td>{coadmin.email}</td>
+                  <td>{coadmin.city}</td>
                   <td>
-                    <Button outline size="sm" theme="danger" className="mb-2 mr-1">
+                    <Button outline type="button" size="sm" theme="danger" className="mb-2 mr-1" onClick={ () => handleDelete(coadmin._id)}>
                       Delete
                     </Button>
                   </td>
-                </tr>               
+                </tr>
+                ))}
               </tbody>
             </table>
           </CardBody>
@@ -74,6 +100,6 @@ const Tables = () => (
       </Col>
     </Row>
   </Container>
-);
-
+  )
+};
 export default Tables;

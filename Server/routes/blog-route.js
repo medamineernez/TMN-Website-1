@@ -27,6 +27,7 @@ function base64_encode(file) {
 router.post("/addblog", (req, res, next) => {
 
 
+
   //const imageUrl = `http://localhost:3000/images/${req.file.filename}`
 
 
@@ -59,7 +60,7 @@ router.post("/addblog", (req, res, next) => {
 //get all blogs
 
 router.get("/allblogs", (req, res, next) => {
-  Blog.find()
+  Blog.find().populate("category")
     .then((blogs) => {
       res.status(200).json(blogs);
     })
@@ -76,7 +77,7 @@ router.get("/allblogs", (req, res, next) => {
    
      Blog.findOne({
     _id: req.params.id,
-  })
+  }).populate("category")
     .then((blog) => {
       res.status(200).json(blog);
     })
