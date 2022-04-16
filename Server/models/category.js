@@ -8,8 +8,9 @@ const CategorySchema = new Schema(
     },
 
     refrencesTo: {
-      type: Number,
+      type: String,
       required:true,
+      enum:["news","blog","podcast"]
     },
 
   },

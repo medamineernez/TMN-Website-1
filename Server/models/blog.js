@@ -34,6 +34,10 @@ const BlogSchema = new Schema(
       required :true ,
       enum :["aproved","on hold","rejected"]
     },
+    authorSocialMedia:{
+      type:String,
+      required:true,
+    }
   },
   { timestamps: true }
 );
